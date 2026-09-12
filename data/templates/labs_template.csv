@@ -1,0 +1,19 @@
+draw_id,draw_date,lab,analyte_code,analyte_name,value,unit,ref_low,ref_high,target_low,target_high,fasting_hours,hours_since_training,days_since_fast,phase_id,notes
+2026-09-XX,2026-09-XX,LifeLabs,apob,Apolipoprotein B,,g/L,,,,0.80,12,48,14,,example row — delete
+2026-09-XX,2026-09-XX,LifeLabs,ldl_c,LDL cholesterol,,mmol/L,,,,2.0,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,lpa,Lipoprotein(a),,nmol/L,,,,75,12,48,14,,once only
+2026-09-XX,2026-09-XX,LifeLabs,hscrp,hs-CRP,,mg/L,,,,1.0,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,hba1c,HbA1c,,%,,,,5.4,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,glucose_f,Fasting glucose,,mmol/L,,,,5.3,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,insulin_f,Fasting insulin,,pmol/L,,,,60,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,alt,ALT,,U/L,,,,25,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,ggt,GGT,,U/L,,,,25,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,cystatin_c,Cystatin C,,mg/L,,,,,12,48,14,,creatine user — use cystatin eGFR
+2026-09-XX,2026-09-XX,LifeLabs,ck,Creatine kinase,,U/L,,,,,12,48,14,,post-fast symptom panel if drawn
+2026-09-XX,2026-09-XX,LifeLabs,ferritin,Ferritin,,ug/L,,,50,150,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,vit_d,25-OH vitamin D,,nmol/L,,,75,125,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,tsh,TSH,,mIU/L,,,0.5,2.5,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,ft3,Free T3,,pmol/L,,,,,12,48,14,,deficit signature marker
+2026-09-XX,2026-09-XX,LifeLabs,testosterone_total,Total testosterone,,nmol/L,,,,,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,shbg,SHBG,,nmol/L,,,20,50,12,48,14,,
+2026-09-XX,2026-09-XX,LifeLabs,omega3_index,Omega-3 index,,%,,,8,,12,48,14,,add-on; annual

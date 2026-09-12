@@ -1,0 +1,5 @@
+ts,source,metric,value,unit,notes
+2026-09-XX 07:10,eufy,weight_kg,,kg,manual entry only when the pipe is down
+2026-09-XX 07:10,eufy,body_fat_pct,,%,"enter as percent (17.2),  not fraction"
+2026-09-XX 07:12,polar_h10,rmssd_ms,,ms,morning supine 3 min once adopted
+2026-09-XX 07:15,home_cuff,bp_systolic,,mmHg,seated; 3 readings; record mean

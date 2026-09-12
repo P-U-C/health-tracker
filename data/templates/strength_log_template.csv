@@ -1,0 +1,15 @@
+session_date,session_type,exercise,set_no,load_kg,reps,rpe,notes
+2026-09-XX,A,KB Romanian Deadlift,1,,8,8,example — Day A block 1
+2026-09-XX,A,KB Chest-Supported Row,1,,10,8,
+2026-09-XX,A,Double KB Front Squat,1,,6,8,
+2026-09-XX,A,Half-Kneeling KB Press,1,,6,8,per side
+2026-09-XX,A,KB Suitcase Carry,1,,1,7,load_kg per hand; reps = rounds; note seconds
+2026-09-XX,A,Dead Bug / Weighted Sit-Up,1,,10,7,
+2026-09-XX,B,Pull-Up (weighted),1,,5,8,load_kg = added load (0 = bodyweight)
+2026-09-XX,B,Incline DB Press,1,,6,8,load_kg per dumbbell
+2026-09-XX,B,Hack Squat / Leg Press / Front Squat,1,,8,8,
+2026-09-XX,B,Ham Curl,1,,10,8,
+2026-09-XX,B,Overhead Triceps Extension,1,,10,8,
+2026-09-XX,B,Incline DB Curl,1,,10,8,
+2026-09-XX,B,Face Pull / Rear Delt Fly,1,,15,7,
+2026-09-XX,B,Dead Hang,1,0,1,6,reps = holds; note seconds

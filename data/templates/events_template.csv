@@ -1,0 +1,4 @@
+event_id,kind,start,end,streams_tagged_out,hypothesis,prediction,outcome,notes
+fast-2026-08-31,fast,2026-08-31 18:00,2026-09-03 12:00,"hrv,rhr,sleep,weight",72h fast erases scan #9 fat overshoot,fat −0.5 to −0.7 kg; scale −2 to −3 kg; refill by ~09-13,exited at 66 h; symptom cluster day 5,seed row from chat history
+refeed-2026-09-03,refeed,2026-09-03 18:00,2026-09-04 12:00,weight,,,GI distress after consecutive high-fat meals,n=1: no consecutive high-fat meals post-fast
+stint-2026-09-04,phase_start,2026-09-04,,,−150 kcal/day for 3–5 weeks holds band,Eufy 7d mean stays 70.5–71.5,,variant chosen not recorded — confirm

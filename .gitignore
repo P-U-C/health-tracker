@@ -1,0 +1,4 @@
+data/dexa/raw/
+*.duckdb
+data/parquet/
+.env

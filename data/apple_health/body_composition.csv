@@ -1,0 +1,2134 @@
+date,type,value,source
+2017-01-08,height_cm,172.0,Health
+2017-01-08,weight_kg,75.0,Health
+2017-02-04,weight_kg,77.0,Connect
+2017-02-04,weight_kg,77.0,Connect
+2017-02-06,weight_kg,77.02,Connect
+2017-02-07,weight_kg,77.02,MyFitnessPal
+2017-02-07,weight_kg,77.02,Connect
+2017-02-08,weight_kg,77.02,MyFitnessPal
+2017-02-08,weight_kg,75.7,Connect
+2017-02-09,weight_kg,75.7,MyFitnessPal
+2017-02-10,weight_kg,75.5,MyFitnessPal
+2017-02-10,weight_kg,75.0001,Connect
+2017-02-12,weight_kg,75.0001,MyFitnessPal
+2017-02-13,weight_kg,74.6999,Connect
+2017-02-14,weight_kg,74.6999,MyFitnessPal
+2017-02-15,weight_kg,74.8999,MyFitnessPal
+2017-02-15,weight_kg,74.8999,Connect
+2017-02-16,weight_kg,74.8001,Connect
+2017-02-18,weight_kg,74.8001,MyFitnessPal
+2017-02-19,weight_kg,74.3002,Connect
+2017-02-20,weight_kg,74.3002,MyFitnessPal
+2017-02-20,weight_kg,74.5003,Connect
+2017-02-21,weight_kg,74.5003,MyFitnessPal
+2017-02-23,weight_kg,74.6001,MyFitnessPal
+2017-02-23,weight_kg,74.6001,Connect
+2017-02-24,weight_kg,74.8001,Connect
+2017-02-25,weight_kg,74.8001,MyFitnessPal
+2017-02-28,weight_kg,74.2,MyFitnessPal
+2017-02-28,weight_kg,74.2,Connect
+2017-03-01,weight_kg,74.1002,Connect
+2017-03-01,weight_kg,74.1002,Connect
+2017-03-02,weight_kg,74.1002,MyFitnessPal
+2017-03-05,weight_kg,76.7002,MyFitnessPal
+2017-03-05,weight_kg,76.7002,MyFitnessPal
+2017-03-05,weight_kg,76.7002,Connect
+2017-03-05,weight_kg,76.7002,Connect
+2017-03-06,weight_kg,76.7002,MyFitnessPal
+2017-03-06,weight_kg,76.7002,Connect
+2017-03-07,weight_kg,76.7002,MyFitnessPal
+2017-03-07,weight_kg,76.7002,Connect
+2017-03-12,weight_kg,76.7002,MyFitnessPal
+2017-03-12,weight_kg,76.7002,Connect
+2017-03-12,weight_kg,76.7002,Connect
+2017-03-14,weight_kg,75.9001,Connect
+2017-03-15,weight_kg,75.9001,MyFitnessPal
+2017-05-12,weight_kg,74.0,Connect
+2017-08-19,weight_kg,74.0,Connect
+2017-08-20,weight_kg,74.0,Connect
+2017-08-21,weight_kg,74.0,Connect
+2017-08-22,weight_kg,74.0,Connect
+2017-08-23,weight_kg,74.0,Connect
+2017-08-24,weight_kg,74.0,Connect
+2017-08-25,weight_kg,74.0,Connect
+2017-08-26,weight_kg,74.0,Connect
+2017-08-27,weight_kg,74.0,Connect
+2017-08-28,weight_kg,74.0,Connect
+2017-08-29,weight_kg,74.0,Connect
+2017-08-30,weight_kg,74.0,Connect
+2017-08-31,weight_kg,74.0,Connect
+2017-09-01,weight_kg,74.0,Connect
+2017-09-02,weight_kg,74.0,Connect
+2017-09-03,weight_kg,74.0,Connect
+2017-09-04,weight_kg,74.0,Connect
+2017-09-05,weight_kg,74.0,Connect
+2017-09-06,weight_kg,74.0,Connect
+2017-09-07,weight_kg,74.0,Connect
+2017-09-08,weight_kg,74.0,Connect
+2017-09-09,weight_kg,74.0,Connect
+2017-09-10,weight_kg,74.0,Connect
+2017-09-11,weight_kg,74.0,Connect
+2017-09-12,weight_kg,74.0,Connect
+2017-09-13,weight_kg,74.0,Connect
+2017-09-14,weight_kg,74.0,Connect
+2017-09-15,weight_kg,74.0,Connect
+2017-09-16,weight_kg,74.0,Connect
+2017-09-17,weight_kg,74.0,Connect
+2017-09-18,weight_kg,74.0,Connect
+2017-09-19,weight_kg,74.0,Connect
+2017-09-20,weight_kg,74.0,Connect
+2017-09-21,weight_kg,74.0,Connect
+2017-09-22,weight_kg,74.0,Connect
+2017-09-23,weight_kg,74.0,Connect
+2017-09-24,weight_kg,74.0,Connect
+2017-09-25,weight_kg,74.0,Connect
+2017-09-26,weight_kg,74.0,Connect
+2017-09-27,weight_kg,74.0,Connect
+2017-09-28,weight_kg,74.0,Connect
+2017-09-29,weight_kg,74.0,Connect
+2017-09-30,weight_kg,74.0,Connect
+2017-10-01,weight_kg,74.0,Connect
+2017-10-02,weight_kg,74.0,Connect
+2017-10-03,weight_kg,74.0,Connect
+2017-10-04,weight_kg,74.0,Connect
+2017-10-05,weight_kg,74.0,Connect
+2017-10-08,weight_kg,74.0,Connect
+2017-10-09,weight_kg,74.0,Connect
+2017-10-10,weight_kg,74.0,Connect
+2017-10-11,weight_kg,74.0,Connect
+2017-10-12,weight_kg,74.0,Connect
+2017-10-13,weight_kg,74.0,Connect
+2017-10-14,weight_kg,74.0,Connect
+2017-10-15,weight_kg,74.0,Connect
+2017-10-16,weight_kg,74.0,Connect
+2017-10-16,weight_kg,74.0,Connect
+2017-10-18,weight_kg,74.0,Connect
+2017-10-19,weight_kg,74.0,Connect
+2022-10-06,weight_kg,80.0001,MyFitnessPal
+2023-06-19,weight_kg,85.0,Health
+2023-06-19,weight_kg,85.0,MyFitnessPal
+2023-06-20,weight_kg,82.5,Health
+2023-06-20,weight_kg,82.4998,MyFitnessPal
+2023-06-21,weight_kg,82.0,MyFitnessPal
+2023-06-22,weight_kg,82.2,MyFitnessPal
+2023-06-23,weight_kg,82.0,MyFitnessPal
+2023-06-24,weight_kg,81.5001,MyFitnessPal
+2023-06-24,weight_kg,81.5001,MyFitnessPal
+2023-06-25,weight_kg,83.0999,MyFitnessPal
+2023-06-26,weight_kg,83.0999,MyFitnessPal
+2023-06-27,weight_kg,81.7001,MyFitnessPal
+2023-06-28,weight_kg,81.1,MyFitnessPal
+2023-07-01,weight_kg,82.5003,MyFitnessPal
+2023-07-02,weight_kg,83.5,MyFitnessPal
+2023-07-03,weight_kg,82.1002,MyFitnessPal
+2023-07-04,weight_kg,81.5001,MyFitnessPal
+2023-07-05,weight_kg,81.7999,MyFitnessPal
+2023-07-06,weight_kg,80.8002,MyFitnessPal
+2023-07-10,weight_kg,81.7999,MyFitnessPal
+2023-07-11,weight_kg,80.2999,MyFitnessPal
+2023-07-12,weight_kg,80.0999,MyFitnessPal
+2023-07-14,weight_kg,80.0999,MyFitnessPal
+2023-07-16,weight_kg,81.5001,MyFitnessPal
+2023-07-18,weight_kg,80.7,MyFitnessPal
+2023-07-19,weight_kg,80.4999,MyFitnessPal
+2023-07-20,weight_kg,80.8002,MyFitnessPal
+2023-07-24,weight_kg,83.9999,MyFitnessPal
+2023-07-26,weight_kg,82.0,MyFitnessPal
+2023-07-29,weight_kg,80.4999,MyFitnessPal
+2023-07-30,bmi,26.8,eufy Life
+2023-07-30,bmi,26.9,eufy Life
+2023-07-30,body_fat_pct,0.265,eufy Life
+2023-07-30,body_fat_pct,0.264,eufy Life
+2023-07-30,height_cm,172.0,eufy Life
+2023-07-30,height_cm,172.0,eufy Life
+2023-07-30,lean_mass_kg,58.4681,eufy Life
+2023-07-30,lean_mass_kg,58.6,eufy Life
+2023-07-30,weight_kg,79.4694,eufy Life
+2023-07-30,weight_kg,79.6,eufy Life
+2023-07-30,weight_kg,79.6,MyFitnessPal
+2023-07-31,bmi,26.8,eufy Life
+2023-07-31,bmi,26.3,eufy Life
+2023-07-31,bmi,26.8,eufy Life
+2023-07-31,bmi,26.8,eufy Life
+2023-07-31,body_fat_pct,0.268,eufy Life
+2023-07-31,body_fat_pct,0.254,eufy Life
+2023-07-31,body_fat_pct,0.265,eufy Life
+2023-07-31,body_fat_pct,0.265,eufy Life
+2023-07-31,height_cm,172.0,eufy Life
+2023-07-31,height_cm,172.0,eufy Life
+2023-07-31,height_cm,172.0,eufy Life
+2023-07-31,height_cm,172.0,eufy Life
+2023-07-31,lean_mass_kg,58.25,eufy Life
+2023-07-31,lean_mass_kg,58.25,eufy Life
+2023-07-31,lean_mass_kg,58.5,eufy Life
+2023-07-31,lean_mass_kg,58.5,eufy Life
+2023-07-31,weight_kg,79.55,eufy Life
+2023-07-31,weight_kg,77.95,eufy Life
+2023-07-31,weight_kg,79.5,eufy Life
+2023-07-31,weight_kg,79.5,eufy Life
+2023-07-31,weight_kg,77.9499,MyFitnessPal
+2023-08-01,bmi,26.5,eufy Life
+2023-08-01,bmi,26.6,eufy Life
+2023-08-01,bmi,27.5,eufy Life
+2023-08-01,bmi,26.8,eufy Life
+2023-08-01,body_fat_pct,0.263,eufy Life
+2023-08-01,body_fat_pct,0.261,eufy Life
+2023-08-01,body_fat_pct,0.269,eufy Life
+2023-08-01,body_fat_pct,0.259,eufy Life
+2023-08-01,height_cm,172.0,eufy Life
+2023-08-01,height_cm,172.0,eufy Life
+2023-08-01,height_cm,172.0,eufy Life
+2023-08-01,height_cm,172.0,eufy Life
+2023-08-01,lean_mass_kg,58.05,eufy Life
+2023-08-01,lean_mass_kg,58.3,eufy Life
+2023-08-01,lean_mass_kg,59.6,eufy Life
+2023-08-01,lean_mass_kg,58.95,eufy Life
+2023-08-01,weight_kg,78.65,eufy Life
+2023-08-01,weight_kg,78.8,eufy Life
+2023-08-01,weight_kg,81.4,eufy Life
+2023-08-01,weight_kg,79.45,eufy Life
+2023-08-01,weight_kg,78.7999,MyFitnessPal
+2023-08-02,bmi,26.6,eufy Life
+2023-08-02,bmi,26.7,eufy Life
+2023-08-02,bmi,26.8,eufy Life
+2023-08-02,body_fat_pct,0.262,eufy Life
+2023-08-02,body_fat_pct,0.259,eufy Life
+2023-08-02,body_fat_pct,0.263,eufy Life
+2023-08-02,height_cm,172.0,eufy Life
+2023-08-02,height_cm,172.0,eufy Life
+2023-08-02,height_cm,172.0,eufy Life
+2023-08-02,lean_mass_kg,58.2,eufy Life
+2023-08-02,lean_mass_kg,58.65,eufy Life
+2023-08-02,lean_mass_kg,58.65,eufy Life
+2023-08-02,weight_kg,78.8,eufy Life
+2023-08-02,weight_kg,79.05,eufy Life
+2023-08-02,weight_kg,79.55,eufy Life
+2023-08-02,weight_kg,79.0498,MyFitnessPal
+2023-08-03,bmi,26.5,eufy Life
+2023-08-03,bmi,26.6,eufy Life
+2023-08-03,bmi,26.8,eufy Life
+2023-08-03,body_fat_pct,0.261,eufy Life
+2023-08-03,body_fat_pct,0.262,eufy Life
+2023-08-03,body_fat_pct,0.261,eufy Life
+2023-08-03,height_cm,172.0,eufy Life
+2023-08-03,height_cm,172.0,eufy Life
+2023-08-03,height_cm,172.0,eufy Life
+2023-08-03,lean_mass_kg,58.15,eufy Life
+2023-08-03,lean_mass_kg,58.35,eufy Life
+2023-08-03,lean_mass_kg,58.75,eufy Life
+2023-08-03,weight_kg,78.65,eufy Life
+2023-08-03,weight_kg,78.95,eufy Life
+2023-08-03,weight_kg,79.45,eufy Life
+2023-08-03,weight_kg,78.95,MyFitnessPal
+2023-08-04,bmi,26.6,eufy Life
+2023-08-04,bmi,26.3,eufy Life
+2023-08-04,body_fat_pct,0.263,eufy Life
+2023-08-04,body_fat_pct,0.256,eufy Life
+2023-08-04,height_cm,172.0,eufy Life
+2023-08-04,height_cm,172.0,eufy Life
+2023-08-04,lean_mass_kg,58.1,eufy Life
+2023-08-04,lean_mass_kg,58.1,eufy Life
+2023-08-04,weight_kg,78.7,eufy Life
+2023-08-04,weight_kg,78.0,eufy Life
+2023-08-04,weight_kg,78.7001,MyFitnessPal
+2023-08-05,bmi,26.4,eufy Life
+2023-08-05,body_fat_pct,0.259,eufy Life
+2023-08-05,height_cm,172.0,eufy Life
+2023-08-05,lean_mass_kg,58.1,eufy Life
+2023-08-05,weight_kg,78.3,eufy Life
+2023-08-05,weight_kg,78.3,MyFitnessPal
+2023-08-08,bmi,27.2,eufy Life
+2023-08-08,body_fat_pct,0.263,eufy Life
+2023-08-08,height_cm,172.0,eufy Life
+2023-08-08,lean_mass_kg,59.4,eufy Life
+2023-08-08,weight_kg,80.5,eufy Life
+2023-08-08,weight_kg,80.4999,MyFitnessPal
+2023-08-09,bmi,26.9,eufy Life
+2023-08-09,bmi,27.1,eufy Life
+2023-08-09,body_fat_pct,0.266,eufy Life
+2023-08-09,body_fat_pct,0.267,eufy Life
+2023-08-09,height_cm,172.0,eufy Life
+2023-08-09,height_cm,172.0,eufy Life
+2023-08-09,lean_mass_kg,58.5,eufy Life
+2023-08-09,lean_mass_kg,58.95,eufy Life
+2023-08-09,weight_kg,79.6,eufy Life
+2023-08-09,weight_kg,80.35,eufy Life
+2023-08-09,weight_kg,80.3498,MyFitnessPal
+2023-08-10,bmi,25.7,eufy Life
+2023-08-10,bmi,26.5,eufy Life
+2023-08-10,body_fat_pct,0.246,eufy Life
+2023-08-10,body_fat_pct,0.263,eufy Life
+2023-08-10,height_cm,172.0,eufy Life
+2023-08-10,height_cm,172.0,eufy Life
+2023-08-10,lean_mass_kg,57.65,eufy Life
+2023-08-10,lean_mass_kg,58.0,eufy Life
+2023-08-10,weight_kg,76.35,eufy Life
+2023-08-10,weight_kg,78.6,eufy Life
+2023-08-10,weight_kg,76.3001,MyFitnessPal
+2023-08-11,bmi,26.2,eufy Life
+2023-08-11,bmi,26.3,eufy Life
+2023-08-11,body_fat_pct,0.261,eufy Life
+2023-08-11,body_fat_pct,0.259,eufy Life
+2023-08-11,height_cm,172.0,eufy Life
+2023-08-11,height_cm,172.0,eufy Life
+2023-08-11,lean_mass_kg,57.5,eufy Life
+2023-08-11,lean_mass_kg,57.95,eufy Life
+2023-08-11,weight_kg,77.8,eufy Life
+2023-08-11,weight_kg,78.15,eufy Life
+2023-08-11,weight_kg,77.8002,MyFitnessPal
+2023-08-12,bmi,26.1,eufy Life
+2023-08-12,body_fat_pct,0.255,eufy Life
+2023-08-12,height_cm,172.0,eufy Life
+2023-08-12,lean_mass_kg,57.6,eufy Life
+2023-08-12,weight_kg,77.3,eufy Life
+2023-08-12,weight_kg,77.2999,MyFitnessPal
+2023-08-13,bmi,27.0,eufy Life
+2023-08-13,body_fat_pct,0.267,eufy Life
+2023-08-13,height_cm,172.0,eufy Life
+2023-08-13,lean_mass_kg,58.85,eufy Life
+2023-08-13,weight_kg,80.15,eufy Life
+2023-08-13,weight_kg,80.1502,MyFitnessPal
+2023-08-14,bmi,26.5,eufy Life
+2023-08-14,bmi,26.8,eufy Life
+2023-08-14,body_fat_pct,0.258,eufy Life
+2023-08-14,body_fat_pct,0.264,eufy Life
+2023-08-14,height_cm,172.0,eufy Life
+2023-08-14,height_cm,172.0,eufy Life
+2023-08-14,lean_mass_kg,58.4,eufy Life
+2023-08-14,lean_mass_kg,58.45,eufy Life
+2023-08-14,weight_kg,78.6,eufy Life
+2023-08-14,weight_kg,79.35,eufy Life
+2023-08-14,weight_kg,78.5998,MyFitnessPal
+2023-08-15,bmi,26.4,eufy Life
+2023-08-15,bmi,26.0,eufy Life
+2023-08-15,body_fat_pct,0.26,eufy Life
+2023-08-15,body_fat_pct,0.25,eufy Life
+2023-08-15,height_cm,172.0,eufy Life
+2023-08-15,height_cm,172.0,eufy Life
+2023-08-15,lean_mass_kg,57.9,eufy Life
+2023-08-15,lean_mass_kg,57.95,eufy Life
+2023-08-15,weight_kg,78.2,eufy Life
+2023-08-15,weight_kg,77.15,eufy Life
+2023-08-15,weight_kg,78.1998,MyFitnessPal
+2023-08-16,bmi,26.5,eufy Life
+2023-08-16,body_fat_pct,0.262,eufy Life
+2023-08-16,height_cm,172.0,eufy Life
+2023-08-16,lean_mass_kg,58.05,eufy Life
+2023-08-16,weight_kg,78.55,eufy Life
+2023-08-16,weight_kg,78.55,MyFitnessPal
+2023-08-17,bmi,26.4,eufy Life
+2023-08-17,bmi,26.4,eufy Life
+2023-08-17,bmi,26.6,eufy Life
+2023-08-17,body_fat_pct,0.258,eufy Life
+2023-08-17,body_fat_pct,0.258,eufy Life
+2023-08-17,body_fat_pct,0.256,eufy Life
+2023-08-17,height_cm,172.0,eufy Life
+2023-08-17,height_cm,172.0,eufy Life
+2023-08-17,height_cm,172.0,eufy Life
+2023-08-17,lean_mass_kg,58.1,eufy Life
+2023-08-17,lean_mass_kg,58.1,eufy Life
+2023-08-17,lean_mass_kg,58.85,eufy Life
+2023-08-17,weight_kg,78.2,eufy Life
+2023-08-17,weight_kg,78.2,eufy Life
+2023-08-17,weight_kg,78.95,eufy Life
+2023-08-17,weight_kg,78.1998,MyFitnessPal
+2023-08-18,bmi,26.2,eufy Life
+2023-08-18,bmi,26.0,eufy Life
+2023-08-18,body_fat_pct,0.256,eufy Life
+2023-08-18,body_fat_pct,0.25,eufy Life
+2023-08-18,height_cm,172.0,eufy Life
+2023-08-18,height_cm,172.0,eufy Life
+2023-08-18,lean_mass_kg,57.95,eufy Life
+2023-08-18,lean_mass_kg,57.8,eufy Life
+2023-08-18,weight_kg,77.75,eufy Life
+2023-08-18,weight_kg,77.0,eufy Life
+2023-08-18,weight_kg,77.7498,MyFitnessPal
+2023-08-20,bmi,26.8,eufy Life
+2023-08-20,body_fat_pct,0.262,eufy Life
+2023-08-20,height_cm,172.0,eufy Life
+2023-08-20,lean_mass_kg,58.6,eufy Life
+2023-08-20,weight_kg,79.3,eufy Life
+2023-08-20,weight_kg,79.3002,MyFitnessPal
+2023-08-21,bmi,26.5,eufy Life
+2023-08-21,bmi,26.5,eufy Life
+2023-08-21,body_fat_pct,0.259,eufy Life
+2023-08-21,body_fat_pct,0.261,eufy Life
+2023-08-21,height_cm,172.0,eufy Life
+2023-08-21,height_cm,172.0,eufy Life
+2023-08-21,lean_mass_kg,58.3,eufy Life
+2023-08-21,lean_mass_kg,58.1,eufy Life
+2023-08-21,weight_kg,78.6,eufy Life
+2023-08-21,weight_kg,78.5,eufy Life
+2023-08-21,weight_kg,78.5998,MyFitnessPal
+2023-08-22,bmi,26.2,eufy Life
+2023-08-22,bmi,25.7,eufy Life
+2023-08-22,body_fat_pct,0.257,eufy Life
+2023-08-22,body_fat_pct,0.247,eufy Life
+2023-08-22,height_cm,172.0,eufy Life
+2023-08-22,height_cm,172.0,eufy Life
+2023-08-22,height_cm,172.0,eufy Life
+2023-08-22,lean_mass_kg,57.7,eufy Life
+2023-08-22,lean_mass_kg,57.5,eufy Life
+2023-08-22,weight_kg,78.2,eufy Life
+2023-08-22,weight_kg,77.6,eufy Life
+2023-08-22,weight_kg,76.3,eufy Life
+2023-08-22,weight_kg,76.3001,MyFitnessPal
+2023-08-23,bmi,26.0,eufy Life
+2023-08-23,body_fat_pct,0.256,eufy Life
+2023-08-23,height_cm,172.0,eufy Life
+2023-08-23,lean_mass_kg,57.45,eufy Life
+2023-08-23,weight_kg,77.15,eufy Life
+2023-08-23,weight_kg,77.1502,MyFitnessPal
+2023-08-24,bmi,26.2,eufy Life
+2023-08-24,body_fat_pct,0.258,eufy Life
+2023-08-24,height_cm,172.0,eufy Life
+2023-08-24,lean_mass_kg,57.85,eufy Life
+2023-08-24,weight_kg,77.85,eufy Life
+2023-08-24,weight_kg,77.8501,MyFitnessPal
+2023-08-25,bmi,26.2,eufy Life
+2023-08-25,bmi,26.5,eufy Life
+2023-08-25,body_fat_pct,0.254,eufy Life
+2023-08-25,body_fat_pct,0.262,eufy Life
+2023-08-25,height_cm,172.0,eufy Life
+2023-08-25,height_cm,172.0,eufy Life
+2023-08-25,lean_mass_kg,58.05,eufy Life
+2023-08-25,lean_mass_kg,58.1,eufy Life
+2023-08-25,weight_kg,77.75,eufy Life
+2023-08-25,weight_kg,78.6,eufy Life
+2023-08-25,weight_kg,77.7498,MyFitnessPal
+2023-08-28,bmi,27.1,eufy Life
+2023-08-28,bmi,26.6,eufy Life
+2023-08-28,body_fat_pct,0.269,eufy Life
+2023-08-28,body_fat_pct,0.259,eufy Life
+2023-08-28,height_cm,172.0,eufy Life
+2023-08-28,height_cm,172.0,eufy Life
+2023-08-28,lean_mass_kg,58.7,eufy Life
+2023-08-28,lean_mass_kg,58.4,eufy Life
+2023-08-28,weight_kg,80.3,eufy Life
+2023-08-28,weight_kg,78.8,eufy Life
+2023-08-28,weight_kg,78.7999,MyFitnessPal
+2023-08-29,bmi,26.4,eufy Life
+2023-08-29,body_fat_pct,0.259,eufy Life
+2023-08-29,height_cm,172.0,eufy Life
+2023-08-29,lean_mass_kg,58.05,eufy Life
+2023-08-29,weight_kg,78.25,eufy Life
+2023-08-30,bmi,26.2,eufy Life
+2023-08-30,body_fat_pct,0.257,eufy Life
+2023-08-30,height_cm,172.0,eufy Life
+2023-08-30,lean_mass_kg,57.8,eufy Life
+2023-08-30,weight_kg,77.7,eufy Life
+2023-08-31,bmi,26.4,eufy Life
+2023-08-31,body_fat_pct,0.258,eufy Life
+2023-08-31,height_cm,172.0,eufy Life
+2023-08-31,lean_mass_kg,58.1,eufy Life
+2023-08-31,weight_kg,78.2,eufy Life
+2023-08-31,weight_kg,78.7999,MyFitnessPal
+2023-09-01,bmi,26.2,eufy Life
+2023-09-01,bmi,26.3,eufy Life
+2023-09-01,body_fat_pct,0.255,eufy Life
+2023-09-01,body_fat_pct,0.259,eufy Life
+2023-09-01,height_cm,172.0,eufy Life
+2023-09-01,height_cm,172.0,eufy Life
+2023-09-01,lean_mass_kg,57.95,eufy Life
+2023-09-01,lean_mass_kg,57.8,eufy Life
+2023-09-01,weight_kg,77.65,eufy Life
+2023-09-01,weight_kg,78.0,eufy Life
+2023-09-01,weight_kg,77.65,MyFitnessPal
+2023-09-04,bmi,26.1,eufy Life
+2023-09-04,body_fat_pct,0.253,eufy Life
+2023-09-04,height_cm,172.0,eufy Life
+2023-09-04,lean_mass_kg,57.9,eufy Life
+2023-09-04,weight_kg,77.4,eufy Life
+2023-09-04,weight_kg,77.4001,MyFitnessPal
+2023-09-05,bmi,26.6,eufy Life
+2023-09-05,body_fat_pct,0.263,eufy Life
+2023-09-05,height_cm,172.0,eufy Life
+2023-09-05,lean_mass_kg,58.15,eufy Life
+2023-09-05,weight_kg,78.85,eufy Life
+2023-09-05,weight_kg,78.8498,MyFitnessPal
+2023-09-06,bmi,26.1,eufy Life
+2023-09-06,body_fat_pct,0.255,eufy Life
+2023-09-06,height_cm,172.0,eufy Life
+2023-09-06,lean_mass_kg,57.6,eufy Life
+2023-09-06,weight_kg,77.3,eufy Life
+2023-09-06,weight_kg,77.2999,MyFitnessPal
+2023-09-07,bmi,25.9,eufy Life
+2023-09-07,body_fat_pct,0.252,eufy Life
+2023-09-07,height_cm,172.0,eufy Life
+2023-09-07,lean_mass_kg,57.4,eufy Life
+2023-09-07,weight_kg,76.7,eufy Life
+2023-09-07,weight_kg,76.7002,MyFitnessPal
+2023-09-07,weight_kg,76.7002,MyFitnessPal
+2023-09-08,bmi,26.5,eufy Life
+2023-09-08,body_fat_pct,0.26,eufy Life
+2023-09-08,height_cm,172.0,eufy Life
+2023-09-08,lean_mass_kg,58.1,eufy Life
+2023-09-08,weight_kg,78.5,eufy Life
+2023-09-08,weight_kg,78.5001,MyFitnessPal
+2023-09-08,weight_kg,78.5001,MyFitnessPal
+2023-09-11,bmi,27.4,eufy Life
+2023-09-11,body_fat_pct,0.273,eufy Life
+2023-09-11,height_cm,172.0,eufy Life
+2023-09-11,lean_mass_kg,59.05,eufy Life
+2023-09-11,weight_kg,81.15,eufy Life
+2023-09-11,weight_kg,81.1499,MyFitnessPal
+2023-09-11,weight_kg,81.1499,MyFitnessPal
+2023-09-14,bmi,26.5,eufy Life
+2023-09-14,body_fat_pct,0.258,eufy Life
+2023-09-14,height_cm,172.0,eufy Life
+2023-09-14,lean_mass_kg,58.35,eufy Life
+2023-09-14,weight_kg,78.55,eufy Life
+2023-09-14,weight_kg,78.55,MyFitnessPal
+2023-09-14,weight_kg,78.55,MyFitnessPal
+2023-10-07,bmi,26.9,eufy Life
+2023-10-07,body_fat_pct,0.256,eufy Life
+2023-10-07,height_cm,172.0,eufy Life
+2023-10-07,lean_mass_kg,59.3,eufy Life
+2023-10-07,weight_kg,79.6,eufy Life
+2023-10-07,weight_kg,79.6,MyFitnessPal
+2023-10-07,weight_kg,79.6,MyFitnessPal
+2023-10-09,bmi,26.5,eufy Life
+2023-10-09,bmi,25.8,eufy Life
+2023-10-09,body_fat_pct,0.261,eufy Life
+2023-10-09,body_fat_pct,0.25,eufy Life
+2023-10-09,height_cm,172.0,eufy Life
+2023-10-09,height_cm,172.0,eufy Life
+2023-10-09,lean_mass_kg,58.15,eufy Life
+2023-10-09,lean_mass_kg,57.5,eufy Life
+2023-10-09,weight_kg,78.65,eufy Life
+2023-10-09,weight_kg,76.6,eufy Life
+2023-10-09,weight_kg,78.6502,MyFitnessPal
+2023-10-09,weight_kg,78.6502,MyFitnessPal
+2023-10-10,bmi,26.1,eufy Life
+2023-10-10,bmi,26.3,eufy Life
+2023-10-10,body_fat_pct,0.256,eufy Life
+2023-10-10,body_fat_pct,0.261,eufy Life
+2023-10-10,height_cm,172.0,eufy Life
+2023-10-10,height_cm,172.0,eufy Life
+2023-10-10,lean_mass_kg,57.7,eufy Life
+2023-10-10,lean_mass_kg,57.85,eufy Life
+2023-10-10,weight_kg,77.5,eufy Life
+2023-10-10,weight_kg,77.4999,MyFitnessPal
+2023-10-10,weight_kg,78.15,eufy Life
+2023-10-10,weight_kg,77.4999,MyFitnessPal
+2023-10-11,bmi,26.1,eufy Life
+2023-10-11,bmi,26.2,eufy Life
+2023-10-11,body_fat_pct,0.255,eufy Life
+2023-10-11,body_fat_pct,0.255,eufy Life
+2023-10-11,height_cm,172.72,eufy Life
+2023-10-11,height_cm,172.0,eufy Life
+2023-10-11,height_cm,172.0,eufy Life
+2023-10-11,lean_mass_kg,57.65,eufy Life
+2023-10-11,lean_mass_kg,58.0,eufy Life
+2023-10-11,weight_kg,77.35,eufy Life
+2023-10-11,weight_kg,77.35,eufy Life
+2023-10-11,weight_kg,77.8,eufy Life
+2023-10-11,weight_kg,77.8002,MyFitnessPal
+2023-10-12,bmi,25.9,eufy Life
+2023-10-12,bmi,25.8,eufy Life
+2023-10-12,body_fat_pct,0.253,eufy Life
+2023-10-12,body_fat_pct,0.252,eufy Life
+2023-10-12,height_cm,172.0,eufy Life
+2023-10-12,height_cm,172.0,eufy Life
+2023-10-12,height_cm,172.0,eufy Life
+2023-10-12,height_cm,172.0,eufy Life
+2023-10-12,lean_mass_kg,57.3,eufy Life
+2023-10-12,lean_mass_kg,57.3,eufy Life
+2023-10-12,weight_kg,76.7,eufy Life
+2023-10-12,weight_kg,65.0,eufy Life
+2023-10-12,weight_kg,76.6,eufy Life
+2023-10-12,weight_kg,77.9,eufy Life
+2023-10-12,weight_kg,76.6,MyFitnessPal
+2023-10-13,bmi,25.8,eufy Life
+2023-10-13,body_fat_pct,0.25,eufy Life
+2023-10-13,height_cm,172.0,eufy Life
+2023-10-13,lean_mass_kg,57.35,eufy Life
+2023-10-13,weight_kg,76.45,eufy Life
+2023-10-13,weight_kg,76.4498,MyFitnessPal
+2023-10-14,bmi,25.9,eufy Life
+2023-10-14,body_fat_pct,0.249,eufy Life
+2023-10-14,height_cm,172.0,eufy Life
+2023-10-14,lean_mass_kg,57.75,eufy Life
+2023-10-14,weight_kg,76.75,eufy Life
+2023-10-14,weight_kg,76.7501,MyFitnessPal
+2023-10-16,bmi,26.2,eufy Life
+2023-10-16,body_fat_pct,0.257,eufy Life
+2023-10-16,height_cm,172.0,eufy Life
+2023-10-16,lean_mass_kg,57.9,eufy Life
+2023-10-16,weight_kg,77.8,eufy Life
+2023-10-16,weight_kg,77.8002,MyFitnessPal
+2023-10-17,bmi,26.1,eufy Life
+2023-10-17,body_fat_pct,0.255,eufy Life
+2023-10-17,height_cm,172.0,eufy Life
+2023-10-17,lean_mass_kg,57.65,eufy Life
+2023-10-17,weight_kg,77.35,eufy Life
+2023-10-17,weight_kg,77.3502,MyFitnessPal
+2023-10-18,bmi,26.2,eufy Life
+2023-10-18,body_fat_pct,0.256,eufy Life
+2023-10-18,height_cm,172.0,eufy Life
+2023-10-18,lean_mass_kg,57.8,eufy Life
+2023-10-18,weight_kg,77.6,eufy Life
+2023-10-18,weight_kg,77.6001,MyFitnessPal
+2023-10-20,bmi,26.2,eufy Life
+2023-10-20,bmi,25.5,eufy Life
+2023-10-20,body_fat_pct,0.257,eufy Life
+2023-10-20,body_fat_pct,0.243,eufy Life
+2023-10-20,height_cm,172.0,eufy Life
+2023-10-20,height_cm,172.0,eufy Life
+2023-10-20,lean_mass_kg,57.95,eufy Life
+2023-10-20,lean_mass_kg,57.3,eufy Life
+2023-10-20,weight_kg,77.85,eufy Life
+2023-10-20,weight_kg,75.6,eufy Life
+2023-10-20,weight_kg,75.5998,MyFitnessPal
+2023-10-22,bmi,26.1,eufy Life
+2023-10-22,body_fat_pct,0.256,eufy Life
+2023-10-22,height_cm,172.0,eufy Life
+2023-10-22,lean_mass_kg,57.7,eufy Life
+2023-10-22,weight_kg,77.5,eufy Life
+2023-10-22,weight_kg,77.4999,MyFitnessPal
+2023-10-23,bmi,26.0,eufy Life
+2023-10-23,body_fat_pct,0.255,eufy Life
+2023-10-23,height_cm,172.0,eufy Life
+2023-10-23,lean_mass_kg,57.65,eufy Life
+2023-10-23,weight_kg,77.25,eufy Life
+2023-10-23,weight_kg,77.25,MyFitnessPal
+2023-10-24,bmi,25.8,eufy Life
+2023-10-24,body_fat_pct,0.251,eufy Life
+2023-10-24,height_cm,172.0,eufy Life
+2023-10-24,lean_mass_kg,57.45,eufy Life
+2023-10-24,weight_kg,76.65,eufy Life
+2023-10-24,weight_kg,76.6499,MyFitnessPal
+2023-10-26,bmi,25.7,eufy Life
+2023-10-26,body_fat_pct,0.25,eufy Life
+2023-10-26,height_cm,172.0,eufy Life
+2023-10-26,height_cm,172.0,eufy Life
+2023-10-26,lean_mass_kg,57.3,eufy Life
+2023-10-26,weight_kg,76.3,eufy Life
+2023-10-26,weight_kg,76.3,eufy Life
+2023-10-26,weight_kg,76.3001,MyFitnessPal
+2023-10-27,bmi,25.5,eufy Life
+2023-10-27,body_fat_pct,0.247,eufy Life
+2023-10-27,height_cm,172.0,eufy Life
+2023-10-27,lean_mass_kg,56.95,eufy Life
+2023-10-27,weight_kg,75.55,eufy Life
+2023-10-27,weight_kg,75.5499,MyFitnessPal
+2023-10-28,bmi,25.1,eufy Life
+2023-10-28,body_fat_pct,0.238,eufy Life
+2023-10-28,height_cm,172.0,eufy Life
+2023-10-28,lean_mass_kg,56.7,eufy Life
+2023-10-28,weight_kg,74.4,eufy Life
+2023-10-28,weight_kg,74.4,MyFitnessPal
+2023-10-30,bmi,26.0,eufy Life
+2023-10-30,body_fat_pct,0.252,eufy Life
+2023-10-30,height_cm,172.0,eufy Life
+2023-10-30,lean_mass_kg,57.75,eufy Life
+2023-10-30,weight_kg,77.15,eufy Life
+2023-10-30,weight_kg,77.1502,MyFitnessPal
+2023-11-01,bmi,25.8,eufy Life
+2023-11-01,body_fat_pct,0.249,eufy Life
+2023-11-01,height_cm,172.0,eufy Life
+2023-11-01,lean_mass_kg,57.4,eufy Life
+2023-11-01,weight_kg,76.4,eufy Life
+2023-11-01,weight_kg,76.3999,MyFitnessPal
+2023-11-02,bmi,25.2,eufy Life
+2023-11-02,bmi,25.3,eufy Life
+2023-11-02,bmi,25.2,eufy Life
+2023-11-02,body_fat_pct,0.24,eufy Life
+2023-11-02,body_fat_pct,0.244,eufy Life
+2023-11-02,body_fat_pct,0.241,eufy Life
+2023-11-02,height_cm,172.0,eufy Life
+2023-11-02,height_cm,172.0,eufy Life
+2023-11-02,height_cm,172.0,eufy Life
+2023-11-02,height_cm,172.0,eufy Life
+2023-11-02,lean_mass_kg,56.7,eufy Life
+2023-11-02,lean_mass_kg,56.7,eufy Life
+2023-11-02,lean_mass_kg,56.7,eufy Life
+2023-11-02,weight_kg,74.6,eufy Life
+2023-11-02,weight_kg,75.0,eufy Life
+2023-11-02,weight_kg,75.0,eufy Life
+2023-11-02,weight_kg,74.6,eufy Life
+2023-11-02,weight_kg,74.6001,MyFitnessPal
+2023-11-03,bmi,25.6,eufy Life
+2023-11-03,body_fat_pct,0.25,eufy Life
+2023-11-03,height_cm,172.0,eufy Life
+2023-11-03,lean_mass_kg,57.05,eufy Life
+2023-11-03,weight_kg,76.05,eufy Life
+2023-11-03,weight_kg,76.0502,MyFitnessPal
+2023-11-03,weight_kg,76.0502,MyFitnessPal
+2023-11-06,bmi,26.1,eufy Life
+2023-11-06,body_fat_pct,0.258,eufy Life
+2023-11-06,height_cm,172.0,eufy Life
+2023-11-06,lean_mass_kg,57.65,eufy Life
+2023-11-06,weight_kg,77.55,eufy Life
+2023-11-06,weight_kg,77.5498,MyFitnessPal
+2023-11-07,bmi,26.1,eufy Life
+2023-11-07,body_fat_pct,0.257,eufy Life
+2023-11-07,height_cm,172.0,eufy Life
+2023-11-07,lean_mass_kg,57.65,eufy Life
+2023-11-07,weight_kg,77.55,eufy Life
+2023-11-07,weight_kg,77.5498,MyFitnessPal
+2023-11-21,bmi,26.5,eufy Life
+2023-11-21,body_fat_pct,0.261,eufy Life
+2023-11-21,height_cm,172.0,eufy Life
+2023-11-21,lean_mass_kg,58.15,eufy Life
+2023-11-21,weight_kg,78.65,eufy Life
+2023-11-21,weight_kg,78.6502,MyFitnessPal
+2023-11-28,bmi,26.4,eufy Life
+2023-11-28,body_fat_pct,0.263,eufy Life
+2023-11-28,height_cm,172.0,eufy Life
+2023-11-28,lean_mass_kg,57.8,eufy Life
+2023-11-28,weight_kg,78.3,eufy Life
+2023-11-28,weight_kg,78.3,MyFitnessPal
+2023-12-05,bmi,25.9,eufy Life
+2023-12-05,body_fat_pct,0.253,eufy Life
+2023-12-05,height_cm,172.0,eufy Life
+2023-12-05,lean_mass_kg,57.55,eufy Life
+2023-12-05,weight_kg,76.95,eufy Life
+2023-12-05,weight_kg,76.9501,MyFitnessPal
+2023-12-06,bmi,25.9,eufy Life
+2023-12-06,body_fat_pct,0.254,eufy Life
+2023-12-06,height_cm,172.0,eufy Life
+2023-12-06,lean_mass_kg,57.45,eufy Life
+2023-12-06,weight_kg,76.95,eufy Life
+2023-12-06,weight_kg,76.9501,MyFitnessPal
+2023-12-11,bmi,26.1,eufy Life
+2023-12-11,body_fat_pct,0.256,eufy Life
+2023-12-11,height_cm,172.0,eufy Life
+2023-12-11,lean_mass_kg,57.7,eufy Life
+2023-12-11,weight_kg,77.5,eufy Life
+2023-12-11,weight_kg,77.4999,MyFitnessPal
+2023-12-16,bmi,25.9,eufy Life
+2023-12-16,body_fat_pct,0.252,eufy Life
+2023-12-16,height_cm,172.0,eufy Life
+2023-12-16,lean_mass_kg,57.5,eufy Life
+2023-12-16,weight_kg,76.8,eufy Life
+2023-12-16,weight_kg,76.8,MyFitnessPal
+2024-01-02,bmi,26.0,eufy Life
+2024-01-02,body_fat_pct,0.257,eufy Life
+2024-01-02,height_cm,172.0,eufy Life
+2024-01-02,lean_mass_kg,57.45,eufy Life
+2024-01-02,weight_kg,77.25,eufy Life
+2024-01-02,weight_kg,77.25,MyFitnessPal
+2024-01-08,bmi,26.1,eufy Life
+2024-01-08,bmi,25.8,eufy Life
+2024-01-08,body_fat_pct,0.257,eufy Life
+2024-01-08,body_fat_pct,0.249,eufy Life
+2024-01-08,height_cm,172.0,eufy Life
+2024-01-08,height_cm,172.0,eufy Life
+2024-01-08,lean_mass_kg,57.6,eufy Life
+2024-01-08,lean_mass_kg,57.45,eufy Life
+2024-01-08,weight_kg,77.5,eufy Life
+2024-01-08,weight_kg,76.45,eufy Life
+2024-01-08,weight_kg,76.4498,MyFitnessPal
+2024-01-09,bmi,25.7,eufy Life
+2024-01-09,body_fat_pct,0.25,eufy Life
+2024-01-09,height_cm,172.0,eufy Life
+2024-01-09,lean_mass_kg,57.3,eufy Life
+2024-01-09,weight_kg,76.3,eufy Life
+2024-01-09,weight_kg,76.3001,MyFitnessPal
+2024-01-12,bmi,25.6,eufy Life
+2024-01-12,body_fat_pct,0.247,eufy Life
+2024-01-12,height_cm,172.0,eufy Life
+2024-01-12,lean_mass_kg,57.1,eufy Life
+2024-01-12,weight_kg,75.8,eufy Life
+2024-01-12,weight_kg,75.7998,MyFitnessPal
+2024-01-21,bmi,25.7,eufy Life
+2024-01-21,body_fat_pct,0.247,eufy Life
+2024-01-21,height_cm,172.0,eufy Life
+2024-01-21,lean_mass_kg,57.45,eufy Life
+2024-01-21,weight_kg,76.15,eufy Life
+2024-01-21,weight_kg,76.15,MyFitnessPal
+2024-01-22,bmi,25.4,eufy Life
+2024-01-22,body_fat_pct,0.244,eufy Life
+2024-01-22,height_cm,172.0,eufy Life
+2024-01-22,lean_mass_kg,57.0,eufy Life
+2024-01-22,weight_kg,75.3,eufy Life
+2024-01-22,weight_kg,75.3,MyFitnessPal
+2024-02-09,height_cm,172.0,eufy Life
+2024-02-09,weight_kg,74.35,eufy Life
+2024-02-09,weight_kg,74.3501,MyFitnessPal
+2024-02-15,height_cm,172.0,eufy Life
+2024-02-15,weight_kg,74.15,eufy Life
+2024-02-15,weight_kg,74.1501,MyFitnessPal
+2024-02-16,bmi,25.6,eufy Life
+2024-02-16,body_fat_pct,0.25,eufy Life
+2024-02-16,height_cm,172.0,eufy Life
+2024-02-16,lean_mass_kg,57.0,eufy Life
+2024-02-16,weight_kg,76.0,eufy Life
+2024-02-16,weight_kg,75.9999,MyFitnessPal
+2024-03-15,bmi,24.9,eufy Life
+2024-03-15,body_fat_pct,0.239,eufy Life
+2024-03-15,height_cm,172.0,eufy Life
+2024-03-15,lean_mass_kg,56.3,eufy Life
+2024-03-15,weight_kg,73.9,eufy Life
+2024-03-15,weight_kg,73.9002,MyFitnessPal
+2024-04-16,height_cm,172.0,eufy Life
+2024-04-16,height_cm,172.0,eufy Life
+2024-04-16,weight_kg,77.55,eufy Life
+2024-04-16,weight_kg,77.55,eufy Life
+2024-04-16,weight_kg,77.5498,MyFitnessPal
+2024-05-21,bmi,27.5,eufy Life
+2024-05-21,body_fat_pct,0.272,eufy Life
+2024-05-21,height_cm,172.0,eufy Life
+2024-05-21,lean_mass_kg,59.3,eufy Life
+2024-05-21,weight_kg,81.5,eufy Life
+2024-05-21,weight_kg,81.5001,MyFitnessPal
+2024-05-24,bmi,27.0,eufy Life
+2024-05-24,body_fat_pct,0.27,eufy Life
+2024-05-24,height_cm,172.0,eufy Life
+2024-05-24,lean_mass_kg,58.4,eufy Life
+2024-05-24,weight_kg,79.9,eufy Life
+2024-05-24,weight_kg,79.8998,MyFitnessPal
+2024-05-29,bmi,27.3,eufy Life
+2024-05-29,body_fat_pct,0.273,eufy Life
+2024-05-29,height_cm,172.0,eufy Life
+2024-05-29,lean_mass_kg,58.85,eufy Life
+2024-05-29,weight_kg,80.85,eufy Life
+2024-05-29,weight_kg,80.8501,MyFitnessPal
+2024-06-04,bmi,27.1,eufy Life
+2024-06-04,body_fat_pct,0.271,eufy Life
+2024-06-04,height_cm,172.0,eufy Life
+2024-06-04,lean_mass_kg,58.65,eufy Life
+2024-06-04,weight_kg,80.35,eufy Life
+2024-06-04,weight_kg,80.3498,MyFitnessPal
+2024-06-05,bmi,26.8,eufy Life
+2024-06-05,body_fat_pct,0.264,eufy Life
+2024-06-05,height_cm,172.0,eufy Life
+2024-06-05,lean_mass_kg,58.45,eufy Life
+2024-06-05,weight_kg,79.35,eufy Life
+2024-06-05,weight_kg,79.3501,MyFitnessPal
+2024-06-06,bmi,26.7,eufy Life
+2024-06-06,bmi,27.0,eufy Life
+2024-06-06,body_fat_pct,0.263,eufy Life
+2024-06-06,body_fat_pct,0.271,eufy Life
+2024-06-06,height_cm,172.0,eufy Life
+2024-06-06,height_cm,172.0,eufy Life
+2024-06-06,height_cm,172.0,eufy Life
+2024-06-06,lean_mass_kg,58.3,eufy Life
+2024-06-06,lean_mass_kg,58.45,eufy Life
+2024-06-06,weight_kg,80.15,eufy Life
+2024-06-06,weight_kg,79.1,eufy Life
+2024-06-06,weight_kg,80.15,eufy Life
+2024-06-06,weight_kg,79.1002,MyFitnessPal
+2024-06-20,bmi,27.3,eufy Life
+2024-06-20,body_fat_pct,0.274,eufy Life
+2024-06-20,height_cm,172.0,eufy Life
+2024-06-20,lean_mass_kg,58.85,eufy Life
+2024-06-20,weight_kg,80.95,eufy Life
+2024-06-20,weight_kg,80.9499,MyFitnessPal
+2024-06-22,bmi,27.3,eufy Life
+2024-06-22,body_fat_pct,0.274,eufy Life
+2024-06-22,height_cm,172.0,eufy Life
+2024-06-22,lean_mass_kg,58.75,eufy Life
+2024-06-22,weight_kg,80.85,eufy Life
+2024-06-22,weight_kg,80.8501,MyFitnessPal
+2024-07-03,bmi,26.9,eufy Life
+2024-07-03,body_fat_pct,0.263,eufy Life
+2024-07-03,height_cm,172.0,eufy Life
+2024-07-03,lean_mass_kg,58.85,eufy Life
+2024-07-03,weight_kg,79.75,eufy Life
+2024-07-03,weight_kg,79.7502,MyFitnessPal
+2024-07-05,bmi,26.9,eufy Life
+2024-07-05,body_fat_pct,0.268,eufy Life
+2024-07-05,height_cm,172.0,eufy Life
+2024-07-05,lean_mass_kg,58.55,eufy Life
+2024-07-05,weight_kg,79.85,eufy Life
+2024-07-05,weight_kg,79.8499,MyFitnessPal
+2024-07-07,bmi,26.8,eufy Life
+2024-07-07,body_fat_pct,0.262,eufy Life
+2024-07-07,height_cm,172.0,eufy Life
+2024-07-07,lean_mass_kg,58.75,eufy Life
+2024-07-07,weight_kg,79.55,eufy Life
+2024-07-07,weight_kg,79.5501,MyFitnessPal
+2024-07-09,bmi,26.6,eufy Life
+2024-07-09,bmi,27.2,eufy Life
+2024-07-09,body_fat_pct,0.257,eufy Life
+2024-07-09,body_fat_pct,0.268,eufy Life
+2024-07-09,height_cm,172.0,eufy Life
+2024-07-09,height_cm,172.0,eufy Life
+2024-07-09,lean_mass_kg,58.55,eufy Life
+2024-07-09,lean_mass_kg,59.05,eufy Life
+2024-07-09,weight_kg,78.75,eufy Life
+2024-07-09,weight_kg,80.65,eufy Life
+2024-07-09,weight_kg,80.6501,MyFitnessPal
+2024-07-10,bmi,26.6,eufy Life
+2024-07-10,body_fat_pct,0.259,eufy Life
+2024-07-10,height_cm,172.0,eufy Life
+2024-07-10,lean_mass_kg,58.45,eufy Life
+2024-07-10,weight_kg,78.75,eufy Life
+2024-07-10,weight_kg,78.75,MyFitnessPal
+2024-07-12,bmi,27.1,eufy Life
+2024-07-12,body_fat_pct,0.268,eufy Life
+2024-07-12,height_cm,172.0,eufy Life
+2024-07-12,lean_mass_kg,58.8,eufy Life
+2024-07-12,weight_kg,80.3,eufy Life
+2024-07-12,weight_kg,80.2999,MyFitnessPal
+2024-07-16,bmi,26.9,eufy Life
+2024-07-16,body_fat_pct,0.267,eufy Life
+2024-07-16,height_cm,172.0,eufy Life
+2024-07-16,lean_mass_kg,58.4,eufy Life
+2024-07-16,weight_kg,79.6,eufy Life
+2024-07-16,weight_kg,79.6,MyFitnessPal
+2024-07-17,bmi,26.8,eufy Life
+2024-07-17,body_fat_pct,0.261,eufy Life
+2024-07-17,height_cm,172.0,eufy Life
+2024-07-17,lean_mass_kg,58.75,eufy Life
+2024-07-17,weight_kg,79.35,eufy Life
+2024-07-17,weight_kg,79.3501,MyFitnessPal
+2024-07-18,bmi,26.6,eufy Life
+2024-07-18,body_fat_pct,0.259,eufy Life
+2024-07-18,height_cm,172.0,eufy Life
+2024-07-18,lean_mass_kg,58.45,eufy Life
+2024-07-18,weight_kg,78.85,eufy Life
+2024-07-18,weight_kg,78.8498,MyFitnessPal
+2024-07-21,bmi,26.9,eufy Life
+2024-07-21,body_fat_pct,0.265,eufy Life
+2024-07-21,height_cm,172.0,eufy Life
+2024-07-21,lean_mass_kg,58.7,eufy Life
+2024-07-21,weight_kg,79.8,eufy Life
+2024-07-21,weight_kg,79.8001,MyFitnessPal
+2024-07-23,bmi,26.9,eufy Life
+2024-07-23,body_fat_pct,0.266,eufy Life
+2024-07-23,height_cm,172.0,eufy Life
+2024-07-23,lean_mass_kg,58.6,eufy Life
+2024-07-23,weight_kg,79.8,eufy Life
+2024-07-23,weight_kg,79.8001,MyFitnessPal
+2024-07-31,bmi,27.4,eufy Life
+2024-07-31,body_fat_pct,0.272,eufy Life
+2024-07-31,height_cm,172.0,eufy Life
+2024-07-31,lean_mass_kg,59.2,eufy Life
+2024-07-31,weight_kg,81.3,eufy Life
+2024-07-31,weight_kg,81.3001,MyFitnessPal
+2024-08-01,bmi,26.6,eufy Life
+2024-08-01,body_fat_pct,0.258,eufy Life
+2024-08-01,height_cm,172.0,eufy Life
+2024-08-01,lean_mass_kg,58.45,eufy Life
+2024-08-01,weight_kg,78.75,eufy Life
+2024-08-01,weight_kg,78.75,MyFitnessPal
+2024-08-02,bmi,26.9,eufy Life
+2024-08-02,body_fat_pct,0.267,eufy Life
+2024-08-02,height_cm,172.0,eufy Life
+2024-08-02,lean_mass_kg,58.5,eufy Life
+2024-08-02,weight_kg,79.8,eufy Life
+2024-08-02,weight_kg,79.8001,MyFitnessPal
+2024-08-12,height_cm,172.0,eufy Life
+2024-08-12,weight_kg,79.95,eufy Life
+2024-08-12,weight_kg,79.9502,MyFitnessPal
+2024-08-13,bmi,27.1,eufy Life
+2024-08-13,body_fat_pct,0.27,eufy Life
+2024-08-13,height_cm,172.0,eufy Life
+2024-08-13,lean_mass_kg,58.65,eufy Life
+2024-08-13,weight_kg,80.25,eufy Life
+2024-08-13,weight_kg,80.25,MyFitnessPal
+2024-08-14,bmi,26.8,eufy Life
+2024-08-14,body_fat_pct,0.264,eufy Life
+2024-08-14,height_cm,172.0,eufy Life
+2024-08-14,lean_mass_kg,58.5,eufy Life
+2024-08-14,weight_kg,79.4,eufy Life
+2024-08-14,weight_kg,79.4,MyFitnessPal
+2024-08-16,bmi,27.4,eufy Life
+2024-08-16,body_fat_pct,0.271,eufy Life
+2024-08-16,height_cm,172.0,eufy Life
+2024-08-16,lean_mass_kg,59.2,eufy Life
+2024-08-16,weight_kg,81.2,eufy Life
+2024-08-16,weight_kg,81.1998,MyFitnessPal
+2024-08-21,bmi,27.1,eufy Life
+2024-08-21,body_fat_pct,0.267,eufy Life
+2024-08-21,height_cm,172.0,eufy Life
+2024-08-21,lean_mass_kg,58.85,eufy Life
+2024-08-21,weight_kg,80.25,eufy Life
+2024-08-21,weight_kg,80.25,MyFitnessPal
+2024-08-26,bmi,27.2,eufy Life
+2024-08-26,body_fat_pct,0.271,eufy Life
+2024-08-26,height_cm,172.0,eufy Life
+2024-08-26,lean_mass_kg,58.9,eufy Life
+2024-08-26,weight_kg,80.7,eufy Life
+2024-08-26,weight_kg,80.7,MyFitnessPal
+2024-08-27,bmi,27.1,eufy Life
+2024-08-27,body_fat_pct,0.267,eufy Life
+2024-08-27,height_cm,172.0,eufy Life
+2024-08-27,lean_mass_kg,59.0,eufy Life
+2024-08-27,weight_kg,80.4,eufy Life
+2024-08-27,weight_kg,80.4002,MyFitnessPal
+2024-09-10,bmi,26.9,eufy Life
+2024-09-10,body_fat_pct,0.268,eufy Life
+2024-09-10,height_cm,172.0,eufy Life
+2024-09-10,lean_mass_kg,58.3,eufy Life
+2024-09-10,weight_kg,79.6,eufy Life
+2024-09-10,weight_kg,79.6,MyFitnessPal
+2024-09-16,bmi,27.3,eufy Life
+2024-09-16,body_fat_pct,0.271,eufy Life
+2024-09-16,height_cm,172.0,eufy Life
+2024-09-16,lean_mass_kg,59.0,eufy Life
+2024-09-16,weight_kg,80.8,eufy Life
+2024-09-16,weight_kg,80.8002,MyFitnessPal
+2024-09-17,bmi,27.2,eufy Life
+2024-09-17,body_fat_pct,0.269,eufy Life
+2024-09-17,height_cm,172.0,eufy Life
+2024-09-17,lean_mass_kg,58.95,eufy Life
+2024-09-17,weight_kg,80.55,eufy Life
+2024-09-17,weight_kg,80.5498,MyFitnessPal
+2024-09-18,bmi,26.9,eufy Life
+2024-09-18,bmi,26.8,eufy Life
+2024-09-18,bmi,26.7,eufy Life
+2024-09-18,body_fat_pct,0.266,eufy Life
+2024-09-18,body_fat_pct,0.266,eufy Life
+2024-09-18,body_fat_pct,0.265,eufy Life
+2024-09-18,height_cm,172.0,eufy Life
+2024-09-18,height_cm,172.0,eufy Life
+2024-09-18,height_cm,172.0,eufy Life
+2024-09-18,lean_mass_kg,58.5,eufy Life
+2024-09-18,lean_mass_kg,58.35,eufy Life
+2024-09-18,lean_mass_kg,58.25,eufy Life
+2024-09-18,weight_kg,79.6,eufy Life
+2024-09-18,weight_kg,79.35,eufy Life
+2024-09-18,weight_kg,79.15,eufy Life
+2024-09-18,weight_kg,79.3501,MyFitnessPal
+2024-09-19,bmi,26.5,eufy Life
+2024-09-19,bmi,27.1,eufy Life
+2024-09-19,body_fat_pct,0.261,eufy Life
+2024-09-19,body_fat_pct,0.268,eufy Life
+2024-09-19,height_cm,172.0,eufy Life
+2024-09-19,height_cm,172.0,eufy Life
+2024-09-19,lean_mass_kg,58.05,eufy Life
+2024-09-19,lean_mass_kg,58.8,eufy Life
+2024-09-19,weight_kg,78.45,eufy Life
+2024-09-19,weight_kg,80.2,eufy Life
+2024-09-19,weight_kg,80.2001,MyFitnessPal
+2024-09-20,bmi,26.7,eufy Life
+2024-09-20,body_fat_pct,0.263,eufy Life
+2024-09-20,height_cm,172.0,eufy Life
+2024-09-20,lean_mass_kg,58.35,eufy Life
+2024-09-20,weight_kg,79.15,eufy Life
+2024-09-20,weight_kg,79.1501,MyFitnessPal
+2024-09-21,bmi,27.0,eufy Life
+2024-09-21,body_fat_pct,0.27,eufy Life
+2024-09-21,height_cm,172.0,eufy Life
+2024-09-21,lean_mass_kg,58.4,eufy Life
+2024-09-21,weight_kg,80.0,eufy Life
+2024-09-21,weight_kg,80.0001,MyFitnessPal
+2024-09-23,bmi,27.0,eufy Life
+2024-09-23,bmi,26.7,eufy Life
+2024-09-23,body_fat_pct,0.27,eufy Life
+2024-09-23,body_fat_pct,0.264,eufy Life
+2024-09-23,height_cm,172.0,eufy Life
+2024-09-23,height_cm,172.0,eufy Life
+2024-09-23,height_cm,172.0,eufy Life
+2024-09-23,lean_mass_kg,58.55,eufy Life
+2024-09-23,lean_mass_kg,58.2,eufy Life
+2024-09-23,weight_kg,81.1,eufy Life
+2024-09-23,weight_kg,80.15,eufy Life
+2024-09-23,weight_kg,79.0,eufy Life
+2024-09-23,weight_kg,78.9999,MyFitnessPal
+2024-09-24,bmi,26.9,eufy Life
+2024-09-24,body_fat_pct,0.265,eufy Life
+2024-09-24,height_cm,172.0,eufy Life
+2024-09-24,lean_mass_kg,58.6,eufy Life
+2024-09-24,weight_kg,79.7,eufy Life
+2024-09-24,weight_kg,79.6998,MyFitnessPal
+2024-09-27,bmi,27.2,eufy Life
+2024-09-27,body_fat_pct,0.272,eufy Life
+2024-09-27,height_cm,172.0,eufy Life
+2024-09-27,lean_mass_kg,58.75,eufy Life
+2024-09-27,weight_kg,80.65,eufy Life
+2024-09-27,weight_kg,80.6501,MyFitnessPal
+2024-10-03,bmi,26.9,eufy Life
+2024-10-03,body_fat_pct,0.268,eufy Life
+2024-10-03,height_cm,172.0,eufy Life
+2024-10-03,lean_mass_kg,58.5,eufy Life
+2024-10-03,weight_kg,79.8,eufy Life
+2024-10-03,weight_kg,79.8001,MyFitnessPal
+2024-10-15,bmi,26.5,eufy Life
+2024-10-15,body_fat_pct,0.262,eufy Life
+2024-10-15,height_cm,172.0,eufy Life
+2024-10-15,lean_mass_kg,58.05,eufy Life
+2024-10-15,weight_kg,78.55,eufy Life
+2024-10-15,weight_kg,78.55,MyFitnessPal
+2024-10-16,bmi,26.0,eufy Life
+2024-10-16,body_fat_pct,0.254,eufy Life
+2024-10-16,height_cm,172.0,eufy Life
+2024-10-16,lean_mass_kg,57.65,eufy Life
+2024-10-16,weight_kg,77.15,eufy Life
+2024-10-16,weight_kg,77.1502,MyFitnessPal
+2024-10-17,bmi,25.8,eufy Life
+2024-10-17,body_fat_pct,0.252,eufy Life
+2024-10-17,height_cm,172.0,eufy Life
+2024-10-17,lean_mass_kg,57.3,eufy Life
+2024-10-17,weight_kg,76.5,eufy Life
+2024-10-17,weight_kg,76.5002,MyFitnessPal
+2024-10-21,bmi,26.2,eufy Life
+2024-10-21,body_fat_pct,0.255,eufy Life
+2024-10-21,height_cm,172.0,eufy Life
+2024-10-21,lean_mass_kg,57.95,eufy Life
+2024-10-21,weight_kg,77.65,eufy Life
+2024-10-21,weight_kg,77.65,MyFitnessPal
+2024-10-22,bmi,26.2,eufy Life
+2024-10-22,bmi,25.7,eufy Life
+2024-10-22,body_fat_pct,0.259,eufy Life
+2024-10-22,body_fat_pct,0.252,eufy Life
+2024-10-22,height_cm,172.0,eufy Life
+2024-10-22,height_cm,172.0,eufy Life
+2024-10-22,lean_mass_kg,57.65,eufy Life
+2024-10-22,lean_mass_kg,57.1,eufy Life
+2024-10-22,weight_kg,77.65,eufy Life
+2024-10-22,weight_kg,76.3,eufy Life
+2024-10-22,weight_kg,77.65,MyFitnessPal
+2024-10-23,bmi,25.8,eufy Life
+2024-10-23,bmi,25.9,eufy Life
+2024-10-23,bmi,25.8,eufy Life
+2024-10-23,body_fat_pct,0.25,eufy Life
+2024-10-23,body_fat_pct,0.253,eufy Life
+2024-10-23,body_fat_pct,0.25,eufy Life
+2024-10-23,height_cm,172.0,eufy Life
+2024-10-23,height_cm,172.0,eufy Life
+2024-10-23,height_cm,172.0,eufy Life
+2024-10-23,lean_mass_kg,57.45,eufy Life
+2024-10-23,lean_mass_kg,57.35,eufy Life
+2024-10-23,lean_mass_kg,57.45,eufy Life
+2024-10-23,weight_kg,76.55,eufy Life
+2024-10-23,weight_kg,76.75,eufy Life
+2024-10-23,weight_kg,76.55,eufy Life
+2024-10-23,weight_kg,76.5501,MyFitnessPal
+2024-10-24,bmi,25.5,eufy Life
+2024-10-24,body_fat_pct,0.245,eufy Life
+2024-10-24,height_cm,172.0,eufy Life
+2024-10-24,lean_mass_kg,57.1,eufy Life
+2024-10-24,weight_kg,75.5,eufy Life
+2024-10-24,weight_kg,75.5,MyFitnessPal
+2024-10-28,bmi,26.2,eufy Life
+2024-10-28,bmi,26.0,eufy Life
+2024-10-28,body_fat_pct,0.256,eufy Life
+2024-10-28,body_fat_pct,0.256,eufy Life
+2024-10-28,height_cm,172.0,eufy Life
+2024-10-28,height_cm,172.0,eufy Life
+2024-10-28,lean_mass_kg,57.8,eufy Life
+2024-10-28,lean_mass_kg,57.4,eufy Life
+2024-10-28,weight_kg,77.6,eufy Life
+2024-10-28,weight_kg,77.1,eufy Life
+2024-10-28,weight_kg,77.0998,MyFitnessPal
+2024-10-29,bmi,25.6,eufy Life
+2024-10-29,body_fat_pct,0.249,eufy Life
+2024-10-29,height_cm,172.0,eufy Life
+2024-10-29,lean_mass_kg,57.05,eufy Life
+2024-10-29,weight_kg,75.85,eufy Life
+2024-10-29,weight_kg,75.8502,MyFitnessPal
+2024-10-30,bmi,25.7,eufy Life
+2024-10-30,bmi,25.6,eufy Life
+2024-10-30,body_fat_pct,0.25,eufy Life
+2024-10-30,body_fat_pct,0.248,eufy Life
+2024-10-30,height_cm,172.0,eufy Life
+2024-10-30,height_cm,172.0,eufy Life
+2024-10-30,lean_mass_kg,57.15,eufy Life
+2024-10-30,lean_mass_kg,57.15,eufy Life
+2024-10-30,weight_kg,76.15,eufy Life
+2024-10-30,weight_kg,75.85,eufy Life
+2024-10-30,weight_kg,75.8502,MyFitnessPal
+2024-10-31,bmi,25.3,eufy Life
+2024-10-31,body_fat_pct,0.244,eufy Life
+2024-10-31,height_cm,172.0,eufy Life
+2024-10-31,lean_mass_kg,56.7,eufy Life
+2024-10-31,weight_kg,75.0,eufy Life
+2024-10-31,weight_kg,75.0001,MyFitnessPal
+2024-11-04,bmi,25.9,eufy Life
+2024-11-04,body_fat_pct,0.251,eufy Life
+2024-11-04,height_cm,172.0,eufy Life
+2024-11-04,lean_mass_kg,57.55,eufy Life
+2024-11-04,weight_kg,76.75,eufy Life
+2024-11-04,weight_kg,76.7501,MyFitnessPal
+2024-11-05,bmi,25.7,eufy Life
+2024-11-05,body_fat_pct,0.25,eufy Life
+2024-11-05,height_cm,172.0,eufy Life
+2024-11-05,lean_mass_kg,57.1,eufy Life
+2024-11-05,weight_kg,76.1,eufy Life
+2024-11-05,weight_kg,76.1001,MyFitnessPal
+2024-11-06,bmi,25.5,eufy Life
+2024-11-06,body_fat_pct,0.245,eufy Life
+2024-11-06,height_cm,172.0,eufy Life
+2024-11-06,lean_mass_kg,57.25,eufy Life
+2024-11-06,weight_kg,75.75,eufy Life
+2024-11-06,weight_kg,75.7499,MyFitnessPal
+2024-11-07,bmi,25.3,eufy Life
+2024-11-07,body_fat_pct,0.243,eufy Life
+2024-11-07,height_cm,172.0,eufy Life
+2024-11-07,height_cm,172.0,eufy Life
+2024-11-07,lean_mass_kg,56.7,eufy Life
+2024-11-07,weight_kg,74.9,eufy Life
+2024-11-07,weight_kg,74.9,eufy Life
+2024-11-07,weight_kg,74.8999,MyFitnessPal
+2024-11-12,bmi,26.4,eufy Life
+2024-11-12,bmi,26.3,eufy Life
+2024-11-12,body_fat_pct,0.261,eufy Life
+2024-11-12,body_fat_pct,0.257,eufy Life
+2024-11-12,height_cm,172.0,eufy Life
+2024-11-12,height_cm,172.0,eufy Life
+2024-11-12,lean_mass_kg,57.9,eufy Life
+2024-11-12,lean_mass_kg,58.0,eufy Life
+2024-11-12,weight_kg,78.3,eufy Life
+2024-11-12,weight_kg,78.0,eufy Life
+2024-11-12,weight_kg,78.0002,MyFitnessPal
+2025-02-27,bmi,26.9,eufy Life
+2025-02-27,body_fat_pct,0.267,eufy Life
+2025-02-27,height_cm,172.0,eufy Life
+2025-02-27,lean_mass_kg,58.55,eufy Life
+2025-02-27,weight_kg,79.85,eufy Life
+2025-02-27,weight_kg,79.8499,MyFitnessPal
+2025-03-01,bmi,27.3,eufy Life
+2025-03-01,body_fat_pct,0.272,eufy Life
+2025-03-01,height_cm,172.0,eufy Life
+2025-03-01,lean_mass_kg,59.05,eufy Life
+2025-03-01,weight_kg,81.05,eufy Life
+2025-03-01,weight_kg,81.0502,MyFitnessPal
+2025-04-15,bmi,27.9,eufy Life
+2025-04-15,body_fat_pct,0.279,eufy Life
+2025-04-15,height_cm,172.0,eufy Life
+2025-04-15,lean_mass_kg,59.7,eufy Life
+2025-04-15,weight_kg,82.8,eufy Life
+2025-04-15,weight_kg,82.8001,MyFitnessPal
+2025-04-21,bmi,28.3,eufy Life
+2025-04-21,body_fat_pct,0.287,eufy Life
+2025-04-21,height_cm,172.0,eufy Life
+2025-04-21,lean_mass_kg,59.95,eufy Life
+2025-04-21,weight_kg,83.95,eufy Life
+2025-04-21,weight_kg,83.95,MyFitnessPal
+2025-04-23,bmi,27.2,eufy Life
+2025-04-23,body_fat_pct,0.275,eufy Life
+2025-04-23,height_cm,172.0,eufy Life
+2025-04-23,lean_mass_kg,58.65,eufy Life
+2025-04-23,weight_kg,80.75,eufy Life
+2025-04-23,weight_kg,80.7499,MyFitnessPal
+2025-04-24,bmi,27.5,eufy Life
+2025-04-24,body_fat_pct,0.277,eufy Life
+2025-04-24,height_cm,172.0,eufy Life
+2025-04-24,lean_mass_kg,58.9,eufy Life
+2025-04-24,weight_kg,81.4,eufy Life
+2025-04-24,weight_kg,81.3999,MyFitnessPal
+2025-04-25,bmi,27.1,eufy Life
+2025-04-25,body_fat_pct,0.271,eufy Life
+2025-04-25,height_cm,172.0,eufy Life
+2025-04-25,lean_mass_kg,58.75,eufy Life
+2025-04-25,weight_kg,80.45,eufy Life
+2025-04-25,weight_kg,80.45,MyFitnessPal
+2025-04-26,bmi,27.5,eufy Life
+2025-04-26,bmi,27.5,eufy Life
+2025-04-26,body_fat_pct,0.275,eufy Life
+2025-04-26,body_fat_pct,0.275,eufy Life
+2025-04-26,height_cm,172.0,eufy Life
+2025-04-26,height_cm,172.0,eufy Life
+2025-04-26,lean_mass_kg,59.25,eufy Life
+2025-04-26,lean_mass_kg,59.2,eufy Life
+2025-04-26,weight_kg,81.65,eufy Life
+2025-04-26,weight_kg,81.6,eufy Life
+2025-04-26,weight_kg,81.6498,MyFitnessPal
+2025-04-27,bmi,27.0,eufy Life
+2025-04-27,body_fat_pct,0.268,eufy Life
+2025-04-27,height_cm,172.0,eufy Life
+2025-04-27,lean_mass_kg,58.6,eufy Life
+2025-04-27,weight_kg,80.0,eufy Life
+2025-04-27,weight_kg,80.0001,MyFitnessPal
+2025-04-28,bmi,27.1,eufy Life
+2025-04-28,body_fat_pct,0.268,eufy Life
+2025-04-28,height_cm,172.0,eufy Life
+2025-04-28,lean_mass_kg,58.85,eufy Life
+2025-04-28,weight_kg,80.25,eufy Life
+2025-04-28,weight_kg,80.25,MyFitnessPal
+2025-04-29,bmi,26.8,eufy Life
+2025-04-29,body_fat_pct,0.266,eufy Life
+2025-04-29,height_cm,172.0,eufy Life
+2025-04-29,lean_mass_kg,58.4,eufy Life
+2025-04-29,weight_kg,79.5,eufy Life
+2025-04-29,weight_kg,79.5002,MyFitnessPal
+2025-04-30,bmi,27.1,eufy Life
+2025-04-30,body_fat_pct,0.268,eufy Life
+2025-04-30,height_cm,172.0,eufy Life
+2025-04-30,lean_mass_kg,58.8,eufy Life
+2025-04-30,weight_kg,80.3,eufy Life
+2025-04-30,weight_kg,80.2999,MyFitnessPal
+2025-05-01,bmi,26.6,eufy Life
+2025-05-01,body_fat_pct,0.262,eufy Life
+2025-05-01,height_cm,172.0,eufy Life
+2025-05-01,lean_mass_kg,58.3,eufy Life
+2025-05-01,weight_kg,78.9,eufy Life
+2025-05-01,weight_kg,78.9001,MyFitnessPal
+2025-05-03,bmi,26.5,eufy Life
+2025-05-03,body_fat_pct,0.26,eufy Life
+2025-05-03,height_cm,172.0,eufy Life
+2025-05-03,lean_mass_kg,58.25,eufy Life
+2025-05-03,weight_kg,78.65,eufy Life
+2025-05-03,weight_kg,78.6502,MyFitnessPal
+2025-05-05,bmi,26.3,eufy Life
+2025-05-05,body_fat_pct,0.257,eufy Life
+2025-05-05,height_cm,172.0,eufy Life
+2025-05-05,lean_mass_kg,58.05,eufy Life
+2025-05-05,weight_kg,78.05,eufy Life
+2025-05-05,weight_kg,78.0501,MyFitnessPal
+2025-05-07,bmi,26.3,eufy Life
+2025-05-07,bmi,26.3,eufy Life
+2025-05-07,bmi,26.3,eufy Life
+2025-05-07,body_fat_pct,0.257,eufy Life
+2025-05-07,body_fat_pct,0.257,eufy Life
+2025-05-07,body_fat_pct,0.257,eufy Life
+2025-05-07,height_cm,172.0,eufy Life
+2025-05-07,height_cm,172.0,eufy Life
+2025-05-07,height_cm,172.0,eufy Life
+2025-05-07,lean_mass_kg,58.15,eufy Life
+2025-05-07,lean_mass_kg,58.15,eufy Life
+2025-05-07,lean_mass_kg,58.05,eufy Life
+2025-05-07,weight_kg,78.15,eufy Life
+2025-05-07,weight_kg,78.15,eufy Life
+2025-05-07,weight_kg,78.05,eufy Life
+2025-05-07,weight_kg,78.0501,MyFitnessPal
+2025-05-09,bmi,26.1,eufy Life
+2025-05-09,body_fat_pct,0.254,eufy Life
+2025-05-09,height_cm,172.0,eufy Life
+2025-05-09,lean_mass_kg,57.95,eufy Life
+2025-05-09,weight_kg,77.55,eufy Life
+2025-05-09,weight_kg,77.5498,MyFitnessPal
+2025-05-11,bmi,27.0,eufy Life
+2025-05-11,body_fat_pct,0.267,eufy Life
+2025-05-11,height_cm,172.0,eufy Life
+2025-05-11,lean_mass_kg,58.6,eufy Life
+2025-05-11,weight_kg,79.9,eufy Life
+2025-05-11,weight_kg,79.8998,MyFitnessPal
+2025-05-13,bmi,26.1,eufy Life
+2025-05-13,body_fat_pct,0.255,eufy Life
+2025-05-13,height_cm,172.0,eufy Life
+2025-05-13,lean_mass_kg,57.7,eufy Life
+2025-05-13,weight_kg,77.4,eufy Life
+2025-05-13,weight_kg,77.4001,MyFitnessPal
+2025-05-15,bmi,26.0,eufy Life
+2025-05-15,body_fat_pct,0.252,eufy Life
+2025-05-15,height_cm,172.0,eufy Life
+2025-05-15,lean_mass_kg,57.75,eufy Life
+2025-05-15,weight_kg,77.15,eufy Life
+2025-05-15,weight_kg,77.1502,MyFitnessPal
+2025-05-17,bmi,25.8,eufy Life
+2025-05-17,body_fat_pct,0.249,eufy Life
+2025-05-17,height_cm,172.0,eufy Life
+2025-05-17,lean_mass_kg,57.45,eufy Life
+2025-05-17,weight_kg,76.45,eufy Life
+2025-05-17,weight_kg,76.4498,MyFitnessPal
+2025-05-19,bmi,25.7,eufy Life
+2025-05-19,bmi,25.7,eufy Life
+2025-05-19,bmi,25.7,eufy Life
+2025-05-19,body_fat_pct,0.249,eufy Life
+2025-05-19,body_fat_pct,0.249,eufy Life
+2025-05-19,body_fat_pct,0.248,eufy Life
+2025-05-19,height_cm,172.0,eufy Life
+2025-05-19,height_cm,172.0,eufy Life
+2025-05-19,height_cm,172.0,eufy Life
+2025-05-19,lean_mass_kg,57.45,eufy Life
+2025-05-19,lean_mass_kg,57.45,eufy Life
+2025-05-19,lean_mass_kg,57.4,eufy Life
+2025-05-19,weight_kg,76.35,eufy Life
+2025-05-19,weight_kg,76.35,eufy Life
+2025-05-19,weight_kg,76.2,eufy Life
+2025-05-19,weight_kg,76.1999,MyFitnessPal
+2025-05-21,bmi,25.8,eufy Life
+2025-05-21,bmi,25.8,eufy Life
+2025-05-21,body_fat_pct,0.249,eufy Life
+2025-05-21,body_fat_pct,0.249,eufy Life
+2025-05-21,height_cm,172.0,eufy Life
+2025-05-21,height_cm,172.0,eufy Life
+2025-05-21,height_cm,172.0,eufy Life
+2025-05-21,height_cm,172.0,eufy Life
+2025-05-21,lean_mass_kg,57.45,eufy Life
+2025-05-21,lean_mass_kg,57.45,eufy Life
+2025-05-21,weight_kg,78.2,eufy Life
+2025-05-21,weight_kg,76.45,eufy Life
+2025-05-21,weight_kg,76.45,eufy Life
+2025-05-21,weight_kg,76.45,eufy Life
+2025-05-21,weight_kg,76.4498,MyFitnessPal
+2025-05-22,bmi,25.9,eufy Life
+2025-05-22,bmi,25.7,eufy Life
+2025-05-22,body_fat_pct,0.182,eufy Life
+2025-05-22,body_fat_pct,0.179,eufy Life
+2025-05-22,height_cm,172.0,eufy Life
+2025-05-22,height_cm,172.0,eufy Life
+2025-05-22,lean_mass_kg,62.95,eufy Life
+2025-05-22,lean_mass_kg,62.75,eufy Life
+2025-05-22,weight_kg,76.85,eufy Life
+2025-05-22,weight_kg,76.35,eufy Life
+2025-05-22,weight_kg,76.35,MyFitnessPal
+2025-05-23,bmi,25.5,eufy Life
+2025-05-23,bmi,26.5,eufy Life
+2025-05-23,body_fat_pct,0.179,eufy Life
+2025-05-23,body_fat_pct,0.187,eufy Life
+2025-05-23,height_cm,172.0,eufy Life
+2025-05-23,height_cm,172.0,eufy Life
+2025-05-23,lean_mass_kg,62.2,eufy Life
+2025-05-23,lean_mass_kg,63.95,eufy Life
+2025-05-23,weight_kg,75.7,eufy Life
+2025-05-23,weight_kg,78.55,eufy Life
+2025-05-23,weight_kg,78.55,MyFitnessPal
+2025-05-24,bmi,26.2,eufy Life
+2025-05-24,body_fat_pct,0.184,eufy Life
+2025-05-24,height_cm,172.0,eufy Life
+2025-05-24,lean_mass_kg,63.4,eufy Life
+2025-05-24,weight_kg,77.6,eufy Life
+2025-05-24,weight_kg,77.6001,MyFitnessPal
+2025-05-25,bmi,25.7,eufy Life
+2025-05-25,bmi,26.6,eufy Life
+2025-05-25,body_fat_pct,0.18,eufy Life
+2025-05-25,body_fat_pct,0.189,eufy Life
+2025-05-25,height_cm,172.0,eufy Life
+2025-05-25,height_cm,172.0,eufy Life
+2025-05-25,lean_mass_kg,62.55,eufy Life
+2025-05-25,lean_mass_kg,63.95,eufy Life
+2025-05-25,weight_kg,76.15,eufy Life
+2025-05-25,weight_kg,78.75,eufy Life
+2025-05-25,weight_kg,78.75,MyFitnessPal
+2025-05-26,bmi,25.9,eufy Life
+2025-05-26,bmi,25.6,eufy Life
+2025-05-26,body_fat_pct,0.183,eufy Life
+2025-05-26,body_fat_pct,0.178,eufy Life
+2025-05-26,height_cm,172.0,eufy Life
+2025-05-26,height_cm,172.0,eufy Life
+2025-05-26,lean_mass_kg,62.85,eufy Life
+2025-05-26,lean_mass_kg,62.4,eufy Life
+2025-05-26,weight_kg,76.85,eufy Life
+2025-05-26,weight_kg,75.9,eufy Life
+2025-05-26,weight_kg,75.9001,MyFitnessPal
+2025-05-27,bmi,25.5,eufy Life
+2025-05-27,body_fat_pct,0.178,eufy Life
+2025-05-27,height_cm,172.0,eufy Life
+2025-05-27,lean_mass_kg,62.1,eufy Life
+2025-05-27,weight_kg,75.5,eufy Life
+2025-05-27,weight_kg,75.5,MyFitnessPal
+2025-05-28,bmi,25.7,eufy Life
+2025-05-28,body_fat_pct,0.181,eufy Life
+2025-05-28,height_cm,172.0,eufy Life
+2025-05-28,lean_mass_kg,62.55,eufy Life
+2025-05-28,weight_kg,76.25,eufy Life
+2025-05-28,weight_kg,76.2498,MyFitnessPal
+2025-05-29,bmi,26.0,eufy Life
+2025-05-29,body_fat_pct,0.183,eufy Life
+2025-05-29,height_cm,172.72,eufy Life
+2025-05-29,height_cm,172.72,eufy Life
+2025-05-29,lean_mass_kg,63.1854,eufy Life
+2025-05-29,weight_kg,77.2921,eufy Life
+2025-05-29,weight_kg,77.2921,eufy Life
+2025-05-29,weight_kg,77.2921,MyFitnessPal
+2025-06-08,bmi,27.0,eufy Life
+2025-06-08,bmi,26.5,eufy Life
+2025-06-08,body_fat_pct,0.189,eufy Life
+2025-06-08,body_fat_pct,0.185,eufy Life
+2025-06-08,height_cm,172.72,eufy Life
+2025-06-08,height_cm,172.72,eufy Life
+2025-06-08,lean_mass_kg,64.8637,eufy Life
+2025-06-08,lean_mass_kg,63.9565,eufy Life
+2025-06-08,weight_kg,79.9683,eufy Life
+2025-06-08,weight_kg,78.4715,eufy Life
+2025-06-08,weight_kg,78.4715,MyFitnessPal
+2025-06-09,bmi,26.5,eufy Life
+2025-06-09,bmi,26.3,eufy Life
+2025-06-09,bmi,25.9,eufy Life
+2025-06-09,bmi,26.2,eufy Life
+2025-06-09,bmi,26.2,eufy Life
+2025-06-09,body_fat_pct,0.187,eufy Life
+2025-06-09,body_fat_pct,0.186,eufy Life
+2025-06-09,body_fat_pct,0.18,eufy Life
+2025-06-09,body_fat_pct,0.184,eufy Life
+2025-06-09,body_fat_pct,0.184,eufy Life
+2025-06-09,height_cm,172.72,eufy Life
+2025-06-09,height_cm,172.72,eufy Life
+2025-06-09,height_cm,172.72,eufy Life
+2025-06-09,height_cm,172.72,eufy Life
+2025-06-09,height_cm,172.72,eufy Life
+2025-06-09,lean_mass_kg,63.8658,eufy Life
+2025-06-09,lean_mass_kg,63.5,eufy Life
+2025-06-09,lean_mass_kg,63.15,eufy Life
+2025-06-09,lean_mass_kg,63.5,eufy Life
+2025-06-09,lean_mass_kg,63.5,eufy Life
+2025-06-09,weight_kg,78.4715,eufy Life
+2025-06-09,weight_kg,78.0,eufy Life
+2025-06-09,weight_kg,76.95,eufy Life
+2025-06-09,weight_kg,77.7,eufy Life
+2025-06-09,weight_kg,77.7,eufy Life
+2025-06-09,weight_kg,77.6999,MyFitnessPal
+2025-06-10,bmi,25.8,eufy Life
+2025-06-10,body_fat_pct,0.182,eufy Life
+2025-06-10,height_cm,172.0,eufy Life
+2025-06-10,height_cm,172.0,eufy Life
+2025-06-10,lean_mass_kg,62.55,eufy Life
+2025-06-10,weight_kg,77.95,eufy Life
+2025-06-10,weight_kg,76.45,eufy Life
+2025-06-10,weight_kg,76.4498,MyFitnessPal
+2025-06-11,bmi,25.9,eufy Life
+2025-06-11,body_fat_pct,0.182,eufy Life
+2025-06-11,height_cm,172.0,eufy Life
+2025-06-11,lean_mass_kg,62.9,eufy Life
+2025-06-11,weight_kg,76.8,eufy Life
+2025-06-11,weight_kg,76.8,MyFitnessPal
+2025-06-13,bmi,26.0,eufy Life
+2025-06-13,bmi,25.8,eufy Life
+2025-06-13,body_fat_pct,0.184,eufy Life
+2025-06-13,body_fat_pct,0.18,eufy Life
+2025-06-13,height_cm,172.0,eufy Life
+2025-06-13,height_cm,172.0,eufy Life
+2025-06-13,height_cm,172.0,eufy Life
+2025-06-13,lean_mass_kg,62.9,eufy Life
+2025-06-13,lean_mass_kg,62.85,eufy Life
+2025-06-13,weight_kg,77.95,eufy Life
+2025-06-13,weight_kg,77.0,eufy Life
+2025-06-13,weight_kg,76.55,eufy Life
+2025-06-13,weight_kg,76.5501,MyFitnessPal
+2025-06-14,bmi,25.4,eufy Life
+2025-06-14,body_fat_pct,0.177,eufy Life
+2025-06-14,height_cm,172.0,eufy Life
+2025-06-14,lean_mass_kg,61.95,eufy Life
+2025-06-14,weight_kg,75.25,eufy Life
+2025-06-14,weight_kg,75.2501,MyFitnessPal
+2025-06-15,bmi,26.5,eufy Life
+2025-06-15,body_fat_pct,0.187,eufy Life
+2025-06-15,height_cm,172.0,eufy Life
+2025-06-15,lean_mass_kg,63.9,eufy Life
+2025-06-15,weight_kg,78.5,eufy Life
+2025-06-15,weight_kg,78.5001,MyFitnessPal
+2025-06-16,bmi,25.9,eufy Life
+2025-06-16,bmi,25.5,eufy Life
+2025-06-16,body_fat_pct,0.182,eufy Life
+2025-06-16,body_fat_pct,0.176,eufy Life
+2025-06-16,height_cm,172.0,eufy Life
+2025-06-16,height_cm,172.0,eufy Life
+2025-06-16,lean_mass_kg,62.8,eufy Life
+2025-06-16,lean_mass_kg,62.45,eufy Life
+2025-06-16,weight_kg,76.7,eufy Life
+2025-06-16,weight_kg,75.75,eufy Life
+2025-06-16,weight_kg,75.7499,MyFitnessPal
+2025-06-17,bmi,25.4,eufy Life
+2025-06-17,bmi,25.4,eufy Life
+2025-06-17,body_fat_pct,0.176,eufy Life
+2025-06-17,body_fat_pct,0.176,eufy Life
+2025-06-17,height_cm,172.0,eufy Life
+2025-06-17,height_cm,172.0,eufy Life
+2025-06-17,lean_mass_kg,62.05,eufy Life
+2025-06-17,lean_mass_kg,62.05,eufy Life
+2025-06-17,weight_kg,75.25,eufy Life
+2025-06-17,weight_kg,75.25,eufy Life
+2025-06-17,weight_kg,75.2501,MyFitnessPal
+2025-06-18,bmi,25.4,eufy Life
+2025-06-18,body_fat_pct,0.174,eufy Life
+2025-06-18,height_cm,172.0,eufy Life
+2025-06-18,lean_mass_kg,62.25,eufy Life
+2025-06-18,weight_kg,75.25,eufy Life
+2025-06-18,weight_kg,75.2501,MyFitnessPal
+2025-06-19,bmi,25.2,eufy Life
+2025-06-19,bmi,25.1,eufy Life
+2025-06-19,body_fat_pct,0.174,eufy Life
+2025-06-19,body_fat_pct,0.173,eufy Life
+2025-06-19,height_cm,172.0,eufy Life
+2025-06-19,height_cm,172.0,eufy Life
+2025-06-19,lean_mass_kg,61.7,eufy Life
+2025-06-19,lean_mass_kg,61.5,eufy Life
+2025-06-19,weight_kg,74.6,eufy Life
+2025-06-19,weight_kg,74.3,eufy Life
+2025-06-19,weight_kg,74.2998,MyFitnessPal
+2025-06-20,bmi,25.6,eufy Life
+2025-06-20,body_fat_pct,0.179,eufy Life
+2025-06-20,height_cm,172.0,eufy Life
+2025-06-20,lean_mass_kg,62.3,eufy Life
+2025-06-20,weight_kg,75.8,eufy Life
+2025-06-20,weight_kg,75.7998,MyFitnessPal
+2025-06-22,bmi,25.3,eufy Life
+2025-06-22,body_fat_pct,0.173,eufy Life
+2025-06-22,height_cm,172.0,eufy Life
+2025-06-22,lean_mass_kg,62.1,eufy Life
+2025-06-22,weight_kg,75.0,eufy Life
+2025-06-22,weight_kg,75.0001,MyFitnessPal
+2025-06-23,bmi,25.6,eufy Life
+2025-06-23,body_fat_pct,0.179,eufy Life
+2025-06-23,height_cm,172.0,eufy Life
+2025-06-23,lean_mass_kg,62.4,eufy Life
+2025-06-23,weight_kg,76.0,eufy Life
+2025-06-23,weight_kg,75.9999,MyFitnessPal
+2025-06-24,bmi,25.8,eufy Life
+2025-06-24,bmi,25.7,eufy Life
+2025-06-24,bmi,25.6,eufy Life
+2025-06-24,bmi,25.4,eufy Life
+2025-06-24,body_fat_pct,0.182,eufy Life
+2025-06-24,body_fat_pct,0.18,eufy Life
+2025-06-24,body_fat_pct,0.176,eufy Life
+2025-06-24,body_fat_pct,0.174,eufy Life
+2025-06-24,height_cm,172.0,eufy Life
+2025-06-24,height_cm,172.0,eufy Life
+2025-06-24,height_cm,172.0,eufy Life
+2025-06-24,height_cm,172.0,eufy Life
+2025-06-24,lean_mass_kg,62.75,eufy Life
+2025-06-24,lean_mass_kg,62.5,eufy Life
+2025-06-24,lean_mass_kg,62.55,eufy Life
+2025-06-24,lean_mass_kg,62.3,eufy Life
+2025-06-24,weight_kg,76.65,eufy Life
+2025-06-24,weight_kg,76.2,eufy Life
+2025-06-24,weight_kg,75.85,eufy Life
+2025-06-24,weight_kg,75.4,eufy Life
+2025-06-24,weight_kg,75.4002,MyFitnessPal
+2025-06-26,bmi,25.3,eufy Life
+2025-06-26,bmi,25.4,eufy Life
+2025-06-26,body_fat_pct,0.175,eufy Life
+2025-06-26,body_fat_pct,0.175,eufy Life
+2025-06-26,height_cm,172.0,eufy Life
+2025-06-26,height_cm,172.0,eufy Life
+2025-06-26,height_cm,172.0,eufy Life
+2025-06-26,lean_mass_kg,62.05,eufy Life
+2025-06-26,lean_mass_kg,62.25,eufy Life
+2025-06-26,weight_kg,75.15,eufy Life
+2025-06-26,weight_kg,75.35,eufy Life
+2025-06-26,weight_kg,75.35,eufy Life
+2025-06-26,weight_kg,75.3499,MyFitnessPal
+2025-06-27,bmi,25.1,eufy Life
+2025-06-27,bmi,25.0,eufy Life
+2025-06-27,body_fat_pct,0.173,eufy Life
+2025-06-27,body_fat_pct,0.172,eufy Life
+2025-06-27,height_cm,172.0,eufy Life
+2025-06-27,height_cm,172.0,eufy Life
+2025-06-27,lean_mass_kg,61.55,eufy Life
+2025-06-27,lean_mass_kg,61.55,eufy Life
+2025-06-27,weight_kg,74.35,eufy Life
+2025-06-27,weight_kg,74.25,eufy Life
+2025-06-27,weight_kg,74.2499,MyFitnessPal
+2025-06-29,bmi,25.1,eufy Life
+2025-06-29,body_fat_pct,0.17,eufy Life
+2025-06-29,height_cm,172.0,eufy Life
+2025-06-29,lean_mass_kg,61.8,eufy Life
+2025-06-29,weight_kg,74.4,eufy Life
+2025-06-29,weight_kg,74.4,MyFitnessPal
+2025-07-02,height_cm,172.0,JuggernautAI
+2025-07-03,bmi,25.5,eufy Life
+2025-07-03,body_fat_pct,0.18,eufy Life
+2025-07-03,height_cm,172.0,eufy Life
+2025-07-03,lean_mass_kg,62.15,eufy Life
+2025-07-03,weight_kg,75.75,eufy Life
+2025-07-04,bmi,25.4,eufy Life
+2025-07-04,body_fat_pct,0.174,eufy Life
+2025-07-04,height_cm,172.0,eufy Life
+2025-07-04,lean_mass_kg,62.25,eufy Life
+2025-07-04,weight_kg,75.35,eufy Life
+2025-07-07,bmi,25.6,eufy Life
+2025-07-07,body_fat_pct,0.177,eufy Life
+2025-07-07,height_cm,172.0,eufy Life
+2025-07-07,lean_mass_kg,62.4,eufy Life
+2025-07-07,weight_kg,75.8,eufy Life
+2025-07-09,bmi,25.5,eufy Life
+2025-07-09,body_fat_pct,0.177,eufy Life
+2025-07-09,height_cm,172.0,eufy Life
+2025-07-09,lean_mass_kg,62.35,eufy Life
+2025-07-09,weight_kg,75.65,eufy Life
+2025-07-14,bmi,25.0,eufy Life
+2025-07-14,body_fat_pct,0.169,eufy Life
+2025-07-14,height_cm,172.0,eufy Life
+2025-07-14,lean_mass_kg,61.7,eufy Life
+2025-07-14,weight_kg,74.2,eufy Life
+2025-07-16,bmi,25.2,eufy Life
+2025-07-16,body_fat_pct,0.171,eufy Life
+2025-07-16,height_cm,172.0,eufy Life
+2025-07-16,lean_mass_kg,62.15,eufy Life
+2025-07-16,weight_kg,74.85,eufy Life
+2025-07-21,bmi,26.0,eufy Life
+2025-07-21,body_fat_pct,0.183,eufy Life
+2025-07-21,height_cm,172.0,eufy Life
+2025-07-21,lean_mass_kg,63.1,eufy Life
+2025-07-21,weight_kg,77.2,eufy Life
+2025-07-24,bmi,25.6,eufy Life
+2025-07-24,body_fat_pct,0.178,eufy Life
+2025-07-24,height_cm,172.0,eufy Life
+2025-07-24,lean_mass_kg,62.45,eufy Life
+2025-07-24,weight_kg,75.85,eufy Life
+2025-07-28,bmi,25.9,eufy Life
+2025-07-28,body_fat_pct,0.182,eufy Life
+2025-07-28,height_cm,172.0,eufy Life
+2025-07-28,lean_mass_kg,62.8,eufy Life
+2025-07-28,weight_kg,76.7,eufy Life
+2025-07-31,bmi,26.1,eufy Life
+2025-07-31,body_fat_pct,0.185,eufy Life
+2025-07-31,height_cm,172.0,eufy Life
+2025-07-31,lean_mass_kg,63.2,eufy Life
+2025-07-31,weight_kg,77.5,eufy Life
+2025-08-04,bmi,26.3,eufy Life
+2025-08-04,body_fat_pct,0.189,eufy Life
+2025-08-04,height_cm,172.0,eufy Life
+2025-08-04,lean_mass_kg,63.45,eufy Life
+2025-08-04,weight_kg,78.15,eufy Life
+2025-08-05,height_cm,172.0,eufy Life
+2025-08-05,height_cm,172.0,eufy Life
+2025-08-05,weight_kg,80.5,eufy Life
+2025-08-05,weight_kg,80.5,eufy Life
+2025-08-11,bmi,26.5,eufy Life
+2025-08-11,bmi,26.4,eufy Life
+2025-08-11,body_fat_pct,0.187,eufy Life
+2025-08-11,body_fat_pct,0.185,eufy Life
+2025-08-11,height_cm,172.0,eufy Life
+2025-08-11,height_cm,172.0,eufy Life
+2025-08-11,height_cm,172.0,eufy Life
+2025-08-11,lean_mass_kg,63.8,eufy Life
+2025-08-11,lean_mass_kg,63.85,eufy Life
+2025-08-11,weight_kg,78.4,eufy Life
+2025-08-11,weight_kg,20.2,eufy Life
+2025-08-11,weight_kg,78.25,eufy Life
+2025-08-12,bmi,26.3,eufy Life
+2025-08-12,body_fat_pct,0.188,eufy Life
+2025-08-12,height_cm,172.0,eufy Life
+2025-08-12,lean_mass_kg,63.55,eufy Life
+2025-08-12,weight_kg,78.15,eufy Life
+2025-08-16,bmi,26.4,eufy Life
+2025-08-16,body_fat_pct,0.19,eufy Life
+2025-08-16,height_cm,172.0,eufy Life
+2025-08-16,lean_mass_kg,63.45,eufy Life
+2025-08-16,weight_kg,78.25,eufy Life
+2025-08-17,bmi,26.6,eufy Life
+2025-08-17,body_fat_pct,0.192,eufy Life
+2025-08-17,height_cm,172.0,eufy Life
+2025-08-17,lean_mass_kg,63.8,eufy Life
+2025-08-17,weight_kg,78.9,eufy Life
+2025-08-18,bmi,26.8,eufy Life
+2025-08-18,body_fat_pct,0.193,eufy Life
+2025-08-18,height_cm,172.0,eufy Life
+2025-08-18,lean_mass_kg,64.1,eufy Life
+2025-08-18,weight_kg,79.4,eufy Life
+2025-08-19,bmi,26.1,eufy Life
+2025-08-19,body_fat_pct,0.185,eufy Life
+2025-08-19,height_cm,172.0,eufy Life
+2025-08-19,lean_mass_kg,63.1,eufy Life
+2025-08-19,weight_kg,77.4,eufy Life
+2025-08-20,bmi,27.0,eufy Life
+2025-08-20,body_fat_pct,0.198,eufy Life
+2025-08-20,height_cm,172.0,eufy Life
+2025-08-20,height_cm,172.0,eufy Life
+2025-08-20,height_cm,172.0,eufy Life
+2025-08-20,height_cm,172.0,eufy Life
+2025-08-20,lean_mass_kg,64.2,eufy Life
+2025-08-20,weight_kg,79.4,eufy Life
+2025-08-20,weight_kg,80.0,eufy Life
+2025-08-20,weight_kg,80.0,eufy Life
+2025-08-20,weight_kg,80.0,eufy Life
+2025-08-26,bmi,26.6,eufy Life
+2025-08-26,body_fat_pct,0.188,eufy Life
+2025-08-26,height_cm,172.0,eufy Life
+2025-08-26,lean_mass_kg,64.0,eufy Life
+2025-08-26,weight_kg,78.7,eufy Life
+2025-08-27,height_cm,172.0,eufy Life
+2025-08-27,weight_kg,79.9,eufy Life
+2025-08-28,bmi,26.7,eufy Life
+2025-08-28,bmi,26.4,eufy Life
+2025-08-28,body_fat_pct,0.193,eufy Life
+2025-08-28,body_fat_pct,0.188,eufy Life
+2025-08-28,height_cm,172.0,eufy Life
+2025-08-28,height_cm,172.0,eufy Life
+2025-08-28,lean_mass_kg,63.9,eufy Life
+2025-08-28,lean_mass_kg,63.65,eufy Life
+2025-08-28,weight_kg,79.1,eufy Life
+2025-08-28,weight_kg,78.35,eufy Life
+2025-09-01,bmi,26.8,eufy Life
+2025-09-01,body_fat_pct,0.192,eufy Life
+2025-09-01,height_cm,172.0,eufy Life
+2025-09-01,lean_mass_kg,64.3,eufy Life
+2025-09-01,weight_kg,79.5,eufy Life
+2025-09-02,bmi,26.4,eufy Life
+2025-09-02,body_fat_pct,0.188,eufy Life
+2025-09-02,height_cm,172.0,eufy Life
+2025-09-02,lean_mass_kg,63.65,eufy Life
+2025-09-02,weight_kg,78.35,eufy Life
+2025-09-03,height_cm,172.0,eufy Life
+2025-09-03,weight_kg,79.45,eufy Life
+2025-10-01,bmi,26.8,eufy Life
+2025-10-01,body_fat_pct,0.192,eufy Life
+2025-10-01,height_cm,172.0,eufy Life
+2025-10-01,lean_mass_kg,64.15,eufy Life
+2025-10-01,weight_kg,79.35,eufy Life
+2025-10-13,bmi,26.7,eufy Life
+2025-10-13,body_fat_pct,0.192,eufy Life
+2025-10-13,height_cm,172.0,eufy Life
+2025-10-13,lean_mass_kg,64.05,eufy Life
+2025-10-13,weight_kg,79.15,eufy Life
+2025-10-15,bmi,26.1,eufy Life
+2025-10-15,body_fat_pct,0.184,eufy Life
+2025-10-15,height_cm,172.0,eufy Life
+2025-10-15,lean_mass_kg,63.25,eufy Life
+2025-10-15,weight_kg,77.45,eufy Life
+2025-10-16,bmi,26.3,eufy Life
+2025-10-16,body_fat_pct,0.186,eufy Life
+2025-10-16,height_cm,172.0,eufy Life
+2025-10-16,lean_mass_kg,63.55,eufy Life
+2025-10-16,weight_kg,78.05,eufy Life
+2025-10-17,bmi,26.1,eufy Life
+2025-10-17,bmi,26.0,eufy Life
+2025-10-17,body_fat_pct,0.186,eufy Life
+2025-10-17,body_fat_pct,0.184,eufy Life
+2025-10-17,height_cm,172.0,eufy Life
+2025-10-17,height_cm,172.0,eufy Life
+2025-10-17,lean_mass_kg,63.0,eufy Life
+2025-10-17,lean_mass_kg,63.05,eufy Life
+2025-10-17,weight_kg,77.3,eufy Life
+2025-10-17,weight_kg,77.25,eufy Life
+2025-10-19,bmi,26.0,eufy Life
+2025-10-19,body_fat_pct,0.185,eufy Life
+2025-10-19,height_cm,172.0,eufy Life
+2025-10-19,lean_mass_kg,63.0,eufy Life
+2025-10-19,weight_kg,77.2,eufy Life
+2025-10-20,bmi,26.9,eufy Life
+2025-10-20,body_fat_pct,0.194,eufy Life
+2025-10-20,height_cm,172.0,eufy Life
+2025-10-20,lean_mass_kg,64.45,eufy Life
+2025-10-20,weight_kg,79.85,eufy Life
+2025-10-21,bmi,26.6,eufy Life
+2025-10-21,bmi,26.0,eufy Life
+2025-10-21,body_fat_pct,0.192,eufy Life
+2025-10-21,body_fat_pct,0.182,eufy Life
+2025-10-21,height_cm,172.0,eufy Life
+2025-10-21,height_cm,172.0,eufy Life
+2025-10-21,lean_mass_kg,63.7,eufy Life
+2025-10-21,lean_mass_kg,63.15,eufy Life
+2025-10-21,weight_kg,78.8,eufy Life
+2025-10-21,weight_kg,77.15,eufy Life
+2025-10-22,bmi,25.9,eufy Life
+2025-10-22,body_fat_pct,0.18,eufy Life
+2025-10-22,height_cm,172.0,eufy Life
+2025-10-22,lean_mass_kg,63.0,eufy Life
+2025-10-22,weight_kg,76.8,eufy Life
+2025-10-23,bmi,26.0,eufy Life
+2025-10-23,body_fat_pct,0.182,eufy Life
+2025-10-23,height_cm,172.0,eufy Life
+2025-10-23,lean_mass_kg,63.05,eufy Life
+2025-10-23,weight_kg,77.05,eufy Life
+2025-10-24,bmi,25.9,eufy Life
+2025-10-24,body_fat_pct,0.183,eufy Life
+2025-10-24,height_cm,172.0,eufy Life
+2025-10-24,lean_mass_kg,62.75,eufy Life
+2025-10-24,weight_kg,76.75,eufy Life
+2025-10-25,bmi,26.0,eufy Life
+2025-10-25,body_fat_pct,0.183,eufy Life
+2025-10-25,height_cm,172.0,eufy Life
+2025-10-25,lean_mass_kg,63.05,eufy Life
+2025-10-25,weight_kg,77.15,eufy Life
+2025-10-28,bmi,26.3,eufy Life
+2025-10-28,bmi,26.1,eufy Life
+2025-10-28,body_fat_pct,0.188,eufy Life
+2025-10-28,body_fat_pct,0.184,eufy Life
+2025-10-28,height_cm,172.0,eufy Life
+2025-10-28,height_cm,172.0,eufy Life
+2025-10-28,lean_mass_kg,63.3,eufy Life
+2025-10-28,lean_mass_kg,63.3,eufy Life
+2025-10-28,weight_kg,77.9,eufy Life
+2025-10-28,weight_kg,77.5,eufy Life
+2025-10-29,bmi,26.4,eufy Life
+2025-10-29,body_fat_pct,0.187,eufy Life
+2025-10-29,height_cm,172.0,eufy Life
+2025-10-29,lean_mass_kg,63.6,eufy Life
+2025-10-29,weight_kg,78.2,eufy Life
+2025-11-04,bmi,26.2,eufy Life
+2025-11-04,body_fat_pct,0.185,eufy Life
+2025-11-04,height_cm,172.0,eufy Life
+2025-11-04,lean_mass_kg,63.55,eufy Life
+2025-11-04,weight_kg,77.85,eufy Life
+2025-12-04,bmi,26.6,eufy Life
+2025-12-04,bmi,26.6,eufy Life
+2025-12-04,bmi,26.6,eufy Life
+2025-12-04,body_fat_pct,0.194,eufy Life
+2025-12-04,body_fat_pct,0.194,eufy Life
+2025-12-04,body_fat_pct,0.194,eufy Life
+2025-12-04,height_cm,172.0,eufy Life
+2025-12-04,height_cm,172.0,eufy Life
+2025-12-04,height_cm,172.0,eufy Life
+2025-12-04,lean_mass_kg,63.65,eufy Life
+2025-12-04,lean_mass_kg,63.65,eufy Life
+2025-12-04,lean_mass_kg,63.65,eufy Life
+2025-12-04,weight_kg,78.85,eufy Life
+2025-12-04,weight_kg,78.85,eufy Life
+2025-12-04,weight_kg,78.85,eufy Life
+2025-12-05,bmi,27.0,eufy Life
+2025-12-05,body_fat_pct,0.197,eufy Life
+2025-12-05,height_cm,172.0,eufy Life
+2025-12-05,lean_mass_kg,64.35,eufy Life
+2025-12-05,weight_kg,80.05,eufy Life
+2025-12-10,bmi,26.6,eufy Life
+2025-12-10,body_fat_pct,0.191,eufy Life
+2025-12-10,height_cm,172.0,eufy Life
+2025-12-10,lean_mass_kg,63.85,eufy Life
+2025-12-10,weight_kg,78.85,eufy Life
+2025-12-11,bmi,26.3,eufy Life
+2025-12-11,body_fat_pct,0.188,eufy Life
+2025-12-11,height_cm,172.0,eufy Life
+2025-12-11,lean_mass_kg,63.35,eufy Life
+2025-12-11,weight_kg,77.95,eufy Life
+2025-12-13,bmi,26.6,eufy Life
+2025-12-13,body_fat_pct,0.19,eufy Life
+2025-12-13,height_cm,172.0,eufy Life
+2025-12-13,lean_mass_kg,63.95,eufy Life
+2025-12-13,weight_kg,78.85,eufy Life
+2025-12-15,bmi,26.6,eufy Life
+2025-12-15,body_fat_pct,0.192,eufy Life
+2025-12-15,height_cm,172.0,eufy Life
+2025-12-15,lean_mass_kg,63.65,eufy Life
+2025-12-15,weight_kg,78.75,eufy Life
+2025-12-17,bmi,26.5,eufy Life
+2025-12-17,body_fat_pct,0.191,eufy Life
+2025-12-17,height_cm,172.0,eufy Life
+2025-12-17,lean_mass_kg,63.65,eufy Life
+2025-12-17,weight_kg,78.55,eufy Life
+2025-12-18,bmi,26.0,eufy Life
+2025-12-18,body_fat_pct,0.187,eufy Life
+2025-12-18,height_cm,172.0,eufy Life
+2025-12-18,lean_mass_kg,62.8,eufy Life
+2025-12-18,weight_kg,77.2,eufy Life
+2025-12-19,bmi,26.7,eufy Life
+2025-12-19,body_fat_pct,0.192,eufy Life
+2025-12-19,height_cm,172.0,eufy Life
+2025-12-19,lean_mass_kg,64.0,eufy Life
+2025-12-19,weight_kg,79.1,eufy Life
+2025-12-22,bmi,27.1,eufy Life
+2025-12-22,body_fat_pct,0.198,eufy Life
+2025-12-22,height_cm,172.0,eufy Life
+2025-12-22,lean_mass_kg,64.55,eufy Life
+2025-12-22,weight_kg,80.35,eufy Life
+2025-12-23,bmi,27.1,eufy Life
+2025-12-23,body_fat_pct,0.197,eufy Life
+2025-12-23,height_cm,172.0,eufy Life
+2025-12-23,lean_mass_kg,64.55,eufy Life
+2025-12-23,weight_kg,80.25,eufy Life
+2026-01-01,bmi,27.3,eufy Life
+2026-01-01,body_fat_pct,0.199,eufy Life
+2026-01-01,height_cm,172.0,eufy Life
+2026-01-01,lean_mass_kg,64.8,eufy Life
+2026-01-01,weight_kg,80.8,eufy Life
+2026-01-03,bmi,26.4,eufy Life
+2026-01-03,body_fat_pct,0.193,eufy Life
+2026-01-03,height_cm,172.0,eufy Life
+2026-01-03,lean_mass_kg,63.25,eufy Life
+2026-01-03,weight_kg,78.35,eufy Life
+2026-01-04,bmi,26.3,eufy Life
+2026-01-04,body_fat_pct,0.19,eufy Life
+2026-01-04,height_cm,172.0,eufy Life
+2026-01-04,lean_mass_kg,63.15,eufy Life
+2026-01-04,weight_kg,77.95,eufy Life
+2026-01-05,bmi,26.2,eufy Life
+2026-01-05,bmi,26.1,eufy Life
+2026-01-05,bmi,26.0,eufy Life
+2026-01-05,body_fat_pct,0.189,eufy Life
+2026-01-05,body_fat_pct,0.186,eufy Life
+2026-01-05,body_fat_pct,0.186,eufy Life
+2026-01-05,height_cm,172.0,eufy Life
+2026-01-05,height_cm,172.0,eufy Life
+2026-01-05,height_cm,172.0,eufy Life
+2026-01-05,lean_mass_kg,63.15,eufy Life
+2026-01-05,lean_mass_kg,63.05,eufy Life
+2026-01-05,lean_mass_kg,62.8,eufy Life
+2026-01-05,weight_kg,77.75,eufy Life
+2026-01-05,weight_kg,77.35,eufy Life
+2026-01-05,weight_kg,77.1,eufy Life
+2026-01-06,bmi,25.7,eufy Life
+2026-01-06,bmi,25.7,eufy Life
+2026-01-06,body_fat_pct,0.183,eufy Life
+2026-01-06,body_fat_pct,0.183,eufy Life
+2026-01-06,height_cm,172.0,eufy Life
+2026-01-06,height_cm,172.0,eufy Life
+2026-01-06,lean_mass_kg,62.2,eufy Life
+2026-01-06,lean_mass_kg,62.2,eufy Life
+2026-01-06,weight_kg,76.1,eufy Life
+2026-01-06,weight_kg,76.1,eufy Life
+2026-01-07,bmi,25.9,eufy Life
+2026-01-07,bmi,25.9,eufy Life
+2026-01-07,bmi,25.6,eufy Life
+2026-01-07,body_fat_pct,0.185,eufy Life
+2026-01-07,body_fat_pct,0.185,eufy Life
+2026-01-07,body_fat_pct,0.18,eufy Life
+2026-01-07,height_cm,172.0,eufy Life
+2026-01-07,height_cm,172.0,eufy Life
+2026-01-07,height_cm,172.0,eufy Life
+2026-01-07,lean_mass_kg,62.65,eufy Life
+2026-01-07,lean_mass_kg,62.65,eufy Life
+2026-01-07,lean_mass_kg,62.2,eufy Life
+2026-01-07,weight_kg,76.75,eufy Life
+2026-01-07,weight_kg,76.75,eufy Life
+2026-01-07,weight_kg,75.8,eufy Life
+2026-01-08,bmi,25.3,eufy Life
+2026-01-08,body_fat_pct,0.179,eufy Life
+2026-01-08,height_cm,172.0,eufy Life
+2026-01-08,lean_mass_kg,61.7,eufy Life
+2026-01-08,weight_kg,75.1,eufy Life
+2026-01-09,bmi,25.6,eufy Life
+2026-01-09,bmi,25.9,eufy Life
+2026-01-09,body_fat_pct,0.182,eufy Life
+2026-01-09,body_fat_pct,0.183,eufy Life
+2026-01-09,height_cm,172.0,eufy Life
+2026-01-09,height_cm,172.0,eufy Life
+2026-01-09,lean_mass_kg,62.15,eufy Life
+2026-01-09,lean_mass_kg,62.75,eufy Life
+2026-01-09,weight_kg,75.85,eufy Life
+2026-01-09,weight_kg,76.75,eufy Life
+2026-01-10,bmi,25.6,eufy Life
+2026-01-10,body_fat_pct,0.182,eufy Life
+2026-01-10,height_cm,172.0,eufy Life
+2026-01-10,lean_mass_kg,62.2,eufy Life
+2026-01-10,weight_kg,76.0,eufy Life
+2026-01-11,bmi,25.6,eufy Life
+2026-01-11,body_fat_pct,0.181,eufy Life
+2026-01-11,height_cm,172.0,eufy Life
+2026-01-11,lean_mass_kg,62.35,eufy Life
+2026-01-11,weight_kg,76.05,eufy Life
+2026-01-12,bmi,25.3,eufy Life
+2026-01-12,bmi,25.4,eufy Life
+2026-01-12,body_fat_pct,0.179,eufy Life
+2026-01-12,body_fat_pct,0.177,eufy Life
+2026-01-12,height_cm,172.0,eufy Life
+2026-01-12,height_cm,172.0,eufy Life
+2026-01-12,lean_mass_kg,61.6,eufy Life
+2026-01-12,lean_mass_kg,61.9,eufy Life
+2026-01-12,weight_kg,75.0,eufy Life
+2026-01-12,weight_kg,75.2,eufy Life
+2026-01-13,bmi,25.0,eufy Life
+2026-01-13,body_fat_pct,0.174,eufy Life
+2026-01-13,height_cm,172.0,eufy Life
+2026-01-13,lean_mass_kg,61.35,eufy Life
+2026-01-13,weight_kg,74.25,eufy Life
+2026-01-14,bmi,25.3,eufy Life
+2026-01-14,bmi,25.3,eufy Life
+2026-01-14,bmi,25.3,eufy Life
+2026-01-14,body_fat_pct,0.177,eufy Life
+2026-01-14,body_fat_pct,0.176,eufy Life
+2026-01-14,body_fat_pct,0.175,eufy Life
+2026-01-14,height_cm,172.0,eufy Life
+2026-01-14,height_cm,172.0,eufy Life
+2026-01-14,height_cm,172.0,eufy Life
+2026-01-14,lean_mass_kg,61.75,eufy Life
+2026-01-14,lean_mass_kg,61.85,eufy Life
+2026-01-14,lean_mass_kg,61.85,eufy Life
+2026-01-14,weight_kg,74.95,eufy Life
+2026-01-14,weight_kg,74.95,eufy Life
+2026-01-14,weight_kg,74.95,eufy Life
+2026-01-15,bmi,25.0,eufy Life
+2026-01-15,body_fat_pct,0.173,eufy Life
+2026-01-15,height_cm,172.0,eufy Life
+2026-01-15,lean_mass_kg,61.25,eufy Life
+2026-01-15,weight_kg,74.05,eufy Life
+2026-01-16,bmi,25.3,eufy Life
+2026-01-16,bmi,25.3,eufy Life
+2026-01-16,body_fat_pct,0.177,eufy Life
+2026-01-16,body_fat_pct,0.177,eufy Life
+2026-01-16,height_cm,172.0,eufy Life
+2026-01-16,height_cm,172.0,eufy Life
+2026-01-16,lean_mass_kg,61.95,eufy Life
+2026-01-16,lean_mass_kg,61.95,eufy Life
+2026-01-16,weight_kg,75.15,eufy Life
+2026-01-16,weight_kg,75.15,eufy Life
+2026-01-17,bmi,25.5,eufy Life
+2026-01-17,body_fat_pct,0.178,eufy Life
+2026-01-17,height_cm,172.0,eufy Life
+2026-01-17,height_cm,172.0,eufy Life
+2026-01-17,lean_mass_kg,62.1,eufy Life
+2026-01-17,weight_kg,75.5,eufy Life
+2026-01-17,weight_kg,75.5,eufy Life
+2026-01-18,bmi,25.5,eufy Life
+2026-01-18,bmi,25.5,eufy Life
+2026-01-18,body_fat_pct,0.179,eufy Life
+2026-01-18,body_fat_pct,0.179,eufy Life
+2026-01-18,height_cm,172.0,eufy Life
+2026-01-18,height_cm,172.0,eufy Life
+2026-01-18,lean_mass_kg,62.15,eufy Life
+2026-01-18,lean_mass_kg,62.15,eufy Life
+2026-01-18,weight_kg,75.65,eufy Life
+2026-01-18,weight_kg,75.65,eufy Life
+2026-01-19,bmi,25.1,eufy Life
+2026-01-19,body_fat_pct,0.175,eufy Life
+2026-01-19,height_cm,172.0,eufy Life
+2026-01-19,lean_mass_kg,61.5,eufy Life
+2026-01-19,weight_kg,74.5,eufy Life
+2026-01-20,bmi,25.1,eufy Life
+2026-01-20,bmi,25.1,eufy Life
+2026-01-20,body_fat_pct,0.175,eufy Life
+2026-01-20,body_fat_pct,0.173,eufy Life
+2026-01-20,height_cm,172.0,eufy Life
+2026-01-20,height_cm,172.0,eufy Life
+2026-01-20,lean_mass_kg,61.5,eufy Life
+2026-01-20,lean_mass_kg,61.65,eufy Life
+2026-01-20,weight_kg,74.5,eufy Life
+2026-01-20,weight_kg,74.45,eufy Life
+2026-01-21,bmi,24.9,eufy Life
+2026-01-21,body_fat_pct,0.171,eufy Life
+2026-01-21,height_cm,172.0,eufy Life
+2026-01-21,lean_mass_kg,61.25,eufy Life
+2026-01-21,weight_kg,73.85,eufy Life
+2026-01-22,bmi,25.4,eufy Life
+2026-01-22,bmi,25.4,eufy Life
+2026-01-22,bmi,25.4,eufy Life
+2026-01-22,bmi,25.1,eufy Life
+2026-01-22,bmi,25.1,eufy Life
+2026-01-22,body_fat_pct,0.177,eufy Life
+2026-01-22,body_fat_pct,0.177,eufy Life
+2026-01-22,body_fat_pct,0.177,eufy Life
+2026-01-22,body_fat_pct,0.171,eufy Life
+2026-01-22,body_fat_pct,0.172,eufy Life
+2026-01-22,height_cm,172.0,eufy Life
+2026-01-22,height_cm,172.0,eufy Life
+2026-01-22,height_cm,172.0,eufy Life
+2026-01-22,height_cm,172.0,eufy Life
+2026-01-22,height_cm,172.0,eufy Life
+2026-01-22,lean_mass_kg,61.9,eufy Life
+2026-01-22,lean_mass_kg,61.9,eufy Life
+2026-01-22,lean_mass_kg,61.9,eufy Life
+2026-01-22,lean_mass_kg,61.8,eufy Life
+2026-01-22,lean_mass_kg,61.6,eufy Life
+2026-01-22,weight_kg,75.2,eufy Life
+2026-01-22,weight_kg,75.2,eufy Life
+2026-01-22,weight_kg,75.2,eufy Life
+2026-01-22,weight_kg,74.5,eufy Life
+2026-01-22,weight_kg,74.3,eufy Life
+2026-01-23,bmi,24.8,eufy Life
+2026-01-23,body_fat_pct,0.169,eufy Life
+2026-01-23,height_cm,172.0,eufy Life
+2026-01-23,lean_mass_kg,61.15,eufy Life
+2026-01-23,weight_kg,73.55,eufy Life
+2026-01-25,bmi,25.1,eufy Life
+2026-01-25,bmi,25.1,eufy Life
+2026-01-25,body_fat_pct,0.174,eufy Life
+2026-01-25,body_fat_pct,0.175,eufy Life
+2026-01-25,height_cm,172.0,eufy Life
+2026-01-25,height_cm,172.0,eufy Life
+2026-01-25,lean_mass_kg,61.45,eufy Life
+2026-01-25,lean_mass_kg,61.55,eufy Life
+2026-01-25,weight_kg,74.35,eufy Life
+2026-01-25,weight_kg,74.55,eufy Life
+2026-01-26,bmi,25.1,eufy Life
+2026-01-26,bmi,25.1,eufy Life
+2026-01-26,body_fat_pct,0.173,eufy Life
+2026-01-26,body_fat_pct,0.173,eufy Life
+2026-01-26,height_cm,172.0,eufy Life
+2026-01-26,height_cm,172.0,eufy Life
+2026-01-26,lean_mass_kg,61.6,eufy Life
+2026-01-26,lean_mass_kg,61.5,eufy Life
+2026-01-26,weight_kg,74.4,eufy Life
+2026-01-26,weight_kg,74.3,eufy Life
+2026-01-27,bmi,25.1,eufy Life
+2026-01-27,bmi,25.7,eufy Life
+2026-01-27,bmi,25.8,eufy Life
+2026-01-27,bmi,25.8,eufy Life
+2026-01-27,body_fat_pct,0.173,eufy Life
+2026-01-27,body_fat_pct,0.18,eufy Life
+2026-01-27,body_fat_pct,0.18,eufy Life
+2026-01-27,body_fat_pct,0.18,eufy Life
+2026-01-27,height_cm,172.0,eufy Life
+2026-01-27,height_cm,172.0,eufy Life
+2026-01-27,height_cm,172.0,eufy Life
+2026-01-27,height_cm,172.0,eufy Life
+2026-01-27,lean_mass_kg,61.6,eufy Life
+2026-01-27,lean_mass_kg,62.65,eufy Life
+2026-01-27,lean_mass_kg,62.7,eufy Life
+2026-01-27,lean_mass_kg,62.75,eufy Life
+2026-01-27,weight_kg,74.4,eufy Life
+2026-01-27,weight_kg,76.35,eufy Life
+2026-01-27,weight_kg,76.4,eufy Life
+2026-01-27,weight_kg,76.45,eufy Life
+2026-01-28,bmi,25.3,eufy Life
+2026-01-28,body_fat_pct,0.176,eufy Life
+2026-01-28,height_cm,172.0,eufy Life
+2026-01-28,lean_mass_kg,61.8,eufy Life
+2026-01-28,weight_kg,75.0,eufy Life
+2026-01-29,bmi,24.7,eufy Life
+2026-01-29,body_fat_pct,0.168,eufy Life
+2026-01-29,height_cm,172.0,eufy Life
+2026-01-29,lean_mass_kg,61.0,eufy Life
+2026-01-29,weight_kg,73.3,eufy Life
+2026-01-30,bmi,25.1,eufy Life
+2026-01-30,body_fat_pct,0.172,eufy Life
+2026-01-30,height_cm,172.0,eufy Life
+2026-01-30,lean_mass_kg,61.75,eufy Life
+2026-01-30,weight_kg,74.45,eufy Life

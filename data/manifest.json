@@ -1,0 +1,298 @@
+{
+  "package": "health-system-package",
+  "generated": "2026-09-12",
+  "subject_alias": "Zoz (@0xZOZ)",
+  "warning": "Apple Health CSVs end 2026-01-29/30. A regenerated set through Aug 2026 exists on the subject's side (parse_export.py output, health_data_2026-08/) but was never uploaded. Backfill from a fresh Apple Health export before any analysis of 2026.",
+  "files": [
+    {
+      "path": "data/apple_health/activity_rings.csv",
+      "rows": 743,
+      "columns": [
+        "date",
+        "active_cal",
+        "active_goal",
+        "exercise_min",
+        "exercise_goal",
+        "stand_hrs",
+        "stand_goal"
+      ],
+      "first": "2023-05-12",
+      "last": "2026-01-29",
+      "sha256_16": "354790993c0dc1b1"
+    },
+    {
+      "path": "data/apple_health/body_composition.csv",
+      "rows": 2133,
+      "columns": [
+        "date",
+        "type",
+        "value",
+        "source"
+      ],
+      "first": "2017-01-08",
+      "last": "2026-01-30",
+      "sha256_16": "6cf6c426d8b07ab4"
+    },
+    {
+      "path": "data/apple_health/daily_metrics.csv",
+      "rows": 1722,
+      "columns": [
+        "date",
+        "active_cal",
+        "asymmetry_pct",
+        "basal_cal",
+        "daylight_min",
+        "distance_km",
+        "double_support_pct",
+        "env_audio_db",
+        "exercise_min",
+        "flights",
+        "headphone_db",
+        "physical_effort",
+        "resp_rate",
+        "run_gct_ms",
+        "run_power_w",
+        "run_speed_kmh",
+        "run_stride_cm",
+        "run_vert_osc_cm",
+        "stair_down_speed",
+        "stair_up_speed",
+        "stand_min",
+        "steps",
+        "walk_speed_kmh",
+        "walk_stride_cm"
+      ],
+      "first": "2017-02-05",
+      "last": "2026-01-30",
+      "sha256_16": "a6d6bccdee940902"
+    },
+    {
+      "path": "data/apple_health/heart_rate_hourly.csv",
+      "rows": 15207,
+      "columns": [
+        "datetime",
+        "hr_avg",
+        "hr_min",
+        "hr_max",
+        "samples"
+      ],
+      "first": "2017-02-05",
+      "last": "2026-01-29",
+      "sha256_16": "c730a3b25282070c"
+    },
+    {
+      "path": "data/apple_health/hrv.csv",
+      "rows": 4946,
+      "columns": [
+        "date",
+        "hrv_ms"
+      ],
+      "first": "2023-06-19",
+      "last": "2026-01-29",
+      "sha256_16": "cd2de9a84f77bce9"
+    },
+    {
+      "path": "data/apple_health/nutrition_daily.csv",
+      "rows": 110,
+      "columns": [
+        "date",
+        "calcium_mg",
+        "calories",
+        "carbs_g",
+        "cholesterol_mg",
+        "fat_g",
+        "fiber_g",
+        "iron_mg",
+        "mono_fat_g",
+        "poly_fat_g",
+        "potassium_mg",
+        "protein_g",
+        "sat_fat_g",
+        "sodium_mg",
+        "sugar_g",
+        "vitamin_c_mg"
+      ],
+      "first": "2017-02-07",
+      "last": "2023-08-30",
+      "sha256_16": "fd6969c7fad66620"
+    },
+    {
+      "path": "data/apple_health/oxygen_saturation.csv",
+      "rows": 8141,
+      "columns": [
+        "date",
+        "spo2_pct"
+      ],
+      "first": "2023-06-19",
+      "last": "2026-01-29",
+      "sha256_16": "0957d3180ff250a0"
+    },
+    {
+      "path": "data/apple_health/resting_hr.csv",
+      "rows": 571,
+      "columns": [
+        "date",
+        "resting_hr"
+      ],
+      "first": "2023-06-19",
+      "last": "2026-01-29",
+      "sha256_16": "aba7a0f0b970cfd2"
+    },
+    {
+      "path": "data/apple_health/sleep.csv",
+      "rows": 23917,
+      "columns": [
+        "start",
+        "end",
+        "value",
+        "source"
+      ],
+      "first": "2017-02-04",
+      "last": "2026-01-25",
+      "sha256_16": "fa70e4ca7a1a1187"
+    },
+    {
+      "path": "data/apple_health/vo2max.csv",
+      "rows": 145,
+      "columns": [
+        "date",
+        "vo2max"
+      ],
+      "first": "2023-06-25",
+      "last": "2026-01-28",
+      "sha256_16": "24b0666dffebdd18"
+    },
+    {
+      "path": "data/apple_health/workouts.csv",
+      "rows": 699,
+      "columns": [
+        "date",
+        "type",
+        "duration_min",
+        "distance_km",
+        "calories",
+        "hr_avg",
+        "hr_min",
+        "hr_max",
+        "source"
+      ],
+      "first": "2017-02-07",
+      "last": "2026-01-29",
+      "sha256_16": "9d8adc9512f594af"
+    },
+    {
+      "path": "data/dexa/dexa_regional.csv",
+      "rows": 90,
+      "columns": [
+        "scan_date",
+        "region",
+        "fat_kg",
+        "lean_bmc_kg",
+        "total_kg",
+        "pct_fat",
+        "yn_pctile",
+        "am_pctile"
+      ],
+      "first": "2025-05-27",
+      "last": "2026-08-31",
+      "sha256_16": "db62a78ef578bcb6"
+    },
+    {
+      "path": "data/dexa/dexa_scans.csv",
+      "rows": 9,
+      "columns": [
+        "scan_number",
+        "scan_date",
+        "scan_id",
+        "weight_kg",
+        "fat_mass_kg",
+        "lean_bmc_kg",
+        "body_fat_pct",
+        "bf_yn_pctile",
+        "bf_am_pctile",
+        "almi_kg_m2",
+        "almi_yn_pctile",
+        "almi_am_pctile",
+        "lmi_kg_m2",
+        "lmi_yn_pctile",
+        "lmi_am_pctile",
+        "fmi_kg_m2",
+        "fmi_yn_pctile",
+        "fmi_am_pctile",
+        "vat_mass_g",
+        "vat_volume_cm3",
+        "vat_area_cm2",
+        "appendicular_lean_bmc_kg",
+        "subtotal_fat_kg",
+        "subtotal_lean_bmc_kg",
+        "subtotal_pct_fat",
+        "trunk_fat_kg",
+        "trunk_pct_fat",
+        "android_pct_fat",
+        "gynoid_pct_fat",
+        "android_gynoid_ratio",
+        "pct_fat_trunk_legs_ratio",
+        "trunk_limb_fat_mass_ratio",
+        "l_arm_lean_bmc_kg",
+        "r_arm_lean_bmc_kg",
+        "l_leg_lean_bmc_kg",
+        "r_leg_lean_bmc_kg",
+        "leg_lean_asymmetry_pct",
+        "bmd_total_g_cm2",
+        "bmd_t_score",
+        "bmd_z_score",
+        "provider",
+        "reported_by",
+        "source_file"
+      ],
+      "first": "2025-05-27",
+      "last": "2026-08-31",
+      "sha256_16": "7d5603c86c5b4fbe"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2025-05-27_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "b2cfbf20e34dd5b2"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2025-07-31_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "e80212bc38bf1294"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2025-09-02_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "6fb82b3f3baf9e74"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-01-30_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "ae458879adcffd87"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-02-26_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "d605ed7e89fd015c"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-04-24_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "61871be05b0a3966"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-06-04_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "27574ae2eda86b49"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-07-09_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "378d15866e6ba3d6"
+    },
+    {
+      "path": "data/dexa/raw/dexa_2026-08-31_report.txt",
+      "note": "raw report text; contains PII (name, email, DOB)",
+      "sha256_16": "32b067c2f18ad689"
+    }
+  ]
+}
