@@ -6,7 +6,10 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi.responses import HTMLResponse
 
+from api.dashboard_view import render_dashboard
+from core.dashboard import build_dashboard_model
 from core.schema import DEFAULT_DB, connect, load_schema, table_count
 from ingest.hae_rest import ingest_hae_payload
 
@@ -55,6 +58,16 @@ def status() -> dict[str, Any]:
         }
     finally:
         conn.close()
+
+
+@app.get("/api/dashboard/overview", operation_id="get_dashboard_overview")
+def dashboard_overview() -> dict[str, Any]:
+    return build_dashboard_model(db_path())
+
+
+@app.get("/dashboard", response_class=HTMLResponse, operation_id="get_dashboard")
+def dashboard() -> HTMLResponse:
+    return HTMLResponse(render_dashboard(build_dashboard_model(db_path())))
 
 
 @app.post("/ingest/hae", operation_id="ingest_hae")

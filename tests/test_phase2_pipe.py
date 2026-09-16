@@ -10,6 +10,7 @@ from api.app import app
 from core.schema import connect, load_schema, table_count
 from ingest.apple_export_xml import backfill_xml
 from ingest.hae_rest import ingest_hae_payload
+from core.dashboard import build_dashboard_model
 from jobs.staleness_monitor import check_staleness
 from jobs.widget_snapshot import build_snapshot
 
@@ -160,6 +161,51 @@ def test_widget_snapshot_exposes_life_dashboard_contract(tmp_path: Path) -> None
     assert snapshot["summary"]["body_fat_pct"] == 18.5
     assert snapshot["summary"]["hae_stream_count"] >= 8
     assert snapshot["items"][0]["title"] == "live health pipe fresh"
+
+
+def test_dashboard_model_keeps_dexa_eufy_and_estimate_separate(tmp_path: Path) -> None:
+    db = tmp_path / "health.duckdb"
+    ingest_hae_payload(sample_hae_payload(), db)
+    conn = connect(db)
+    try:
+        load_schema(conn)
+        conn.execute(
+            """
+            INSERT INTO dexa_scans (
+              scan_number, scan_date, provider, weight_kg, fat_mass_kg, lean_bmc_kg,
+              body_fat_pct, vat_mass_g, android_gynoid_ratio, bmd_total_g_cm2
+            ) VALUES (1, DATE '2026-09-12', 'Test DEXA', 81.65, 13.88, 67.77, 17.0, 250, 1.05, 1.18)
+            """
+        )
+    finally:
+        conn.close()
+
+    model = build_dashboard_model(db)
+
+    assert model["hero"]["latest_dexa"]["body_fat_pct"] == 17.0
+    assert model["hero"]["estimate"]["available"] is True
+    assert model["hero"]["estimate"]["body_fat_pct_mid"] == 17.0
+    assert model["source_policy"]["body_fat"] == ["DEXA measured", "Eufy measured", "Estimated from DEXA + Eufy trend"]
+    body_labels = {metric["label"]: metric["source_label"] for metric in model["body"]["metrics"]}
+    assert body_labels["DEXA body fat"] == "DEXA measured"
+    assert body_labels["Estimated current body fat"] == "Estimated from DEXA + Eufy trend"
+
+
+def test_dashboard_routes_render_private_overview(tmp_path: Path, monkeypatch) -> None:
+    db = tmp_path / "health.duckdb"
+    ingest_hae_payload(sample_hae_payload(), db)
+    monkeypatch.setenv("HEALTH_DB", str(db))
+
+    client = TestClient(app)
+    api_response = client.get("/api/dashboard/overview")
+    html_response = client.get("/dashboard")
+
+    assert api_response.status_code == 200
+    assert api_response.json()["hero"]["smoothed_weight_kg"] == 81.65
+    assert html_response.status_code == 200
+    assert "Health Optimization Dashboard" in html_response.text
+    assert "DEXA anchors, Eufy trend" in html_response.text
+    assert "Add source" in html_response.text
 
 
 def test_apple_xml_backfill_streams_and_appends_after_existing_max(tmp_path: Path) -> None:

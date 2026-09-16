@@ -15,14 +15,16 @@ Each integration is a component with one owner module, one runtime state boundar
 | Genome | future `ingest/genome/` | priors and experiment generation | planned |
 | API | `api/app.py` | OpenAPI surface over the state model | live, partial |
 | Push | `jobs/push.py` | deterministic Telegram/ntfy alerts | live |
-| Dashboard | future frontend app | private board of health/exercise statistics | planned |
+| Dashboard | `core/dashboard.py` + `api/dashboard_view.py` | private health optimization board | live, MVP overview |
 | Life dashboard widget | `jobs/widget_snapshot.py` + `ops/console/health.py` | small status widget for the existing ops console | live snapshot |
 
 `config/components.yaml` is the registry.
 
 ## Dashboard Direction
 
-The private dashboard should be a board of widgets, optimized for scanning:
+The dashboard product contract lives in `docs/dashboard_spec.md`. The first build is the private Overview surface at `/dashboard` and the JSON contract at `/api/dashboard/overview`.
+
+The dashboard is optimized for scanning:
 
 - freshness: HAE lag, backfill date, DEXA/lab anchor age
 - body composition: weight trend, DEXA bands, fat/lean/VAT trajectory
@@ -32,6 +34,8 @@ The private dashboard should be a board of widgets, optimized for scanning:
 - experiments: active experiments, predictions, override ledger
 
 The dashboard reads from the API and DuckDB-derived tables. It should not read raw imports, raw DEXA report text, raw genome files, or secrets.
+
+The public tunnel remains deliberately narrow: `/status` and authenticated `/ingest/hae` only. `/dashboard` is local/private unless routing and auth are explicitly changed.
 
 ## Life Dashboard Boundary
 
