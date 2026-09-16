@@ -4,5 +4,15 @@ no-autoupdate: true
 
 ingress:
   - hostname: health.<domain>
+    path: ^/ingest/hae$
+    service: http://127.0.0.1:8026
+  - hostname: health.<domain>
+    path: ^/dashboard$
+    service: http://127.0.0.1:8026
+  - hostname: health.<domain>
+    path: ^/api/dashboard/overview$
+    service: http://127.0.0.1:8026
+  - hostname: health.<domain>
+    path: ^/status$
     service: http://127.0.0.1:8026
   - service: http_status:404
