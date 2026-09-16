@@ -1,6 +1,8 @@
-# health-system-package (generated 2026-09-12)
+# health-tracker
 
-Everything needed to stand up the personal health system on a new machine, independent of any AI vendor: the data, the knowledge, the schema, the build brief, and the analysis programme.
+Private P-U-C repository for the personal health and exercise tracking system. It owns the data contracts, ingestion components, deterministic health state model, API, and dashboard/widget outputs.
+
+The original package contents are still present: data, knowledge, schema, build brief, and analysis programme. The implementation now lives around those contracts.
 
 ```
 README.md                      this file
@@ -24,6 +26,19 @@ data/
   templates/*.csv              labs, strength log, events, manual readings — the four capture streams that did not exist before
 reference/training_program_posture_density.md   the actual A/B lifting program (seed for the strength log)
 ```
+
+## Product Shape
+
+- Integrations are components: Health Auto Export, Apple Health XML, BodyStats/DEXA, labs, genome, push, API, dashboard, and life-dashboard widget.
+- Private runtime data stays local: `.env`, DuckDB, imports, exports, raw DEXA reports, BodyStats sessions, and generated snapshots are ignored.
+- Public exposure is intentionally narrow: only `/status` and authenticated `/ingest/hae` are behind the Cloudflare tunnel today.
+- The future primary surface is a polished private dashboard for health/exercise statistics. The life dashboard receives a small static JSON snapshot, not the whole DB.
+
+See:
+
+- `docs/product_architecture.md`
+- `docs/life_dashboard_widget.md`
+- `config/components.yaml`
 
 ## Order of operations on the new machine
 1. Unpack into an empty private repo. Commit as-is (`data/dexa/raw/` should be git-crypt/age-encrypted or gitignored before any remote push).

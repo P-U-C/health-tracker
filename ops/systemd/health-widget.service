@@ -1,0 +1,8 @@
+[Unit]
+Description=Personal Health System life-dashboard widget snapshot
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/health
+Environment=HEALTH_DB=/home/ubuntu/health/data/health.duckdb
+ExecStart=/home/ubuntu/.local/bin/uv run --quiet python -m jobs.widget_snapshot --db /home/ubuntu/health/data/health.duckdb --out /home/ubuntu/.local/state/health-tracker-widget.json

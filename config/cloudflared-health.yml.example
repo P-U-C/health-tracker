@@ -1,0 +1,8 @@
+tunnel: <stable-tunnel-id>
+credentials-file: /etc/cloudflared/<stable-tunnel-id>.json
+no-autoupdate: true
+
+ingress:
+  - hostname: health.<domain>
+    service: http://127.0.0.1:8026
+  - service: http_status:404

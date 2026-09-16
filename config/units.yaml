@@ -1,0 +1,9 @@
+mass: kg
+percentage: percent
+distance: km
+length: cm
+speed: km/h
+energy: kcal
+heart_rate: bpm
+hrv: ms
+timezone: America/Vancouver

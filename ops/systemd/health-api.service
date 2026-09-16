@@ -1,0 +1,16 @@
+[Unit]
+Description=Personal Health System API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/health
+Environment=HEALTH_DB=/home/ubuntu/health/data/health.duckdb
+EnvironmentFile=-/home/ubuntu/health/.env
+ExecStart=/home/ubuntu/.local/bin/uv run --quiet uvicorn api.app:app --host 127.0.0.1 --port 8026
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

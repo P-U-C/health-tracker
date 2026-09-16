@@ -1,0 +1,7 @@
+phase1:
+  csv_export_contract: normalized_source_equivalence
+  required_dexa_scans: 9
+  apple_timestamp_timezone: America/Vancouver
+  body_fat_fraction_cutoff: 1.0
+  mph_to_kmh: 1.609344
+  inch_to_cm: 2.54

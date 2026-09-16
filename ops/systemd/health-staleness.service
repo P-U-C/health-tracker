@@ -1,0 +1,9 @@
+[Unit]
+Description=Personal Health System HAE staleness check
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/health
+Environment=HEALTH_DB=/home/ubuntu/health/data/health.duckdb
+EnvironmentFile=-/home/ubuntu/health/.env
+ExecStart=/home/ubuntu/.local/bin/uv run --quiet python -m jobs.staleness_monitor --db /home/ubuntu/health/data/health.duckdb --notify

@@ -1,4 +1,10 @@
 data/dexa/raw/
 *.duckdb
 data/parquet/
+data/exports/
+data/imports/
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
 .env

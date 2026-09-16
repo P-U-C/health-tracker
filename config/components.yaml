@@ -1,0 +1,84 @@
+components:
+  - id: health_auto_export
+    name: Health Auto Export Live Ingest
+    kind: integration
+    owner_path: ingest/hae_rest.py
+    public_surface: POST /ingest/hae
+    runtime_state:
+      - data/health.duckdb
+      - ingest_log
+    secret_env:
+      - HEALTH_INGEST_TOKEN
+    status: live
+
+  - id: apple_health_xml
+    name: Apple Health XML Backfill
+    kind: integration
+    owner_path: ingest/apple_export_xml.py
+    runtime_state:
+      - data/imports/apple/export.xml
+      - apple_xml_backfills
+    status: live
+
+  - id: bodystats_dexa
+    name: BodyStats / DEXA
+    kind: integration
+    owner_path: data/imports/dexa/
+    runtime_state:
+      - data/dexa/dexa_scans.csv
+      - data/dexa/dexa_regional.csv
+      - data/imports/dexa/
+    status: staged
+
+  - id: labs
+    name: Labs
+    kind: integration
+    owner_path: data/templates/labs_template.csv
+    runtime_state:
+      - labs
+      - lab_variation
+    status: planned
+
+  - id: genome
+    name: Genome Priors
+    kind: integration
+    owner_path: ingest/genome/
+    runtime_state:
+      - genomics_variants
+      - genomics_prs
+      - genomics_priors
+    privacy_rule: raw VCF/CRAM never enters this repo or model context
+    status: planned
+
+  - id: push
+    name: Push Alerts
+    kind: adapter
+    owner_path: jobs/push.py
+    secret_env:
+      - HEALTH_NTFY_URL
+      - HEALTH_TELEGRAM_BOT_TOKEN
+      - HEALTH_TELEGRAM_CHAT_ID
+    status: live
+
+  - id: api
+    name: Health API
+    kind: adapter
+    owner_path: api/app.py
+    public_surface:
+      - GET /status
+      - POST /ingest/hae
+    status: live
+
+  - id: dashboard
+    name: Health Dashboard
+    kind: surface
+    owner_path: docs/product_architecture.md
+    status: planned
+
+  - id: life_dashboard_widget
+    name: Life Dashboard Widget
+    kind: surface_adapter
+    owner_path: jobs/widget_snapshot.py
+    runtime_state:
+      - ~/.local/state/health-tracker-widget.json
+    status: live_snapshot
