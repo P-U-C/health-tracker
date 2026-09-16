@@ -29,7 +29,7 @@
 ## 2026-09-16 Health Optimization Dashboard MVP
 
 - The pasted dashboard spec is now the product contract in `docs/dashboard_spec.md`; no extra questions were asked.
-- The first dashboard is a private/local FastAPI surface at `/dashboard` with JSON at `/api/dashboard/overview`. The Cloudflare public tunnel stays restricted to `/status` and authenticated `/ingest/hae`.
+- The first dashboard is a password-gated FastAPI surface at `/dashboard` with JSON at `/api/dashboard/overview`. Public Cloudflare routing is allowed only after HTTP Basic auth is configured through `HEALTH_DASHBOARD_USER` and `HEALTH_DASHBOARD_PASSWORD` in `.env`.
 - Eufy BIA and DEXA are kept as separate series. The DEXA-anchored estimate uses the latest DEXA offset versus median Eufy body-fat within +/- 3 days, then applies that offset to the 7-day Eufy trend and displays a range.
 - The current goal is shown as partially configured because `playbook/01_protocol_state.md` records an unconfirmed post-fast deficit variant and unresolved open items.
 - Starter tripwires are deterministic only: HAE freshness, Eufy weight band, training-load increase, HRV strain, and RHR strain. No AI-created thresholds are used.

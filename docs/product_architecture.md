@@ -35,7 +35,7 @@ The dashboard is optimized for scanning:
 
 The dashboard reads from the API and DuckDB-derived tables. It should not read raw imports, raw DEXA report text, raw genome files, or secrets.
 
-The public tunnel remains deliberately narrow: `/status` and authenticated `/ingest/hae` only. `/dashboard` is local/private unless routing and auth are explicitly changed.
+The public tunnel exposes `/status`, authenticated `/ingest/hae`, and the HTTP Basic-authenticated dashboard routes. Dashboard credentials live only in `.env`.
 
 ## Life Dashboard Boundary
 

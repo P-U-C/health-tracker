@@ -195,10 +195,13 @@ def test_dashboard_routes_render_private_overview(tmp_path: Path, monkeypatch) -
     db = tmp_path / "health.duckdb"
     ingest_hae_payload(sample_hae_payload(), db)
     monkeypatch.setenv("HEALTH_DB", str(db))
+    monkeypatch.setenv("HEALTH_DASHBOARD_USER", "chad")
+    monkeypatch.setenv("HEALTH_DASHBOARD_PASSWORD", "test-password")
 
     client = TestClient(app)
-    api_response = client.get("/api/dashboard/overview")
-    html_response = client.get("/dashboard")
+    assert client.get("/dashboard").status_code == 401
+    api_response = client.get("/api/dashboard/overview", auth=("chad", "test-password"))
+    html_response = client.get("/dashboard", auth=("chad", "test-password"))
 
     assert api_response.status_code == 200
     assert api_response.json()["hero"]["smoothed_weight_kg"] == 81.65
