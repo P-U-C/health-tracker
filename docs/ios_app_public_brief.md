@@ -2,7 +2,9 @@
 
 Date: 2026-09-22
 Owner: Chad / zoz
-Repo: `P-U-C/health-tracker` private repo, local path `/home/ubuntu/health`
+Repo: public GitHub repo `P-U-C/health-tracker` — https://github.com/P-U-C/health-tracker
+Local path: `/home/ubuntu/health`
+Public audit note: https://github.com/P-U-C/health-tracker/blob/master/docs/public_audit_note.md
 Public dashboard surface: `https://health.permanentupperclass.com/dashboard`
 Public read-only JSON surface: `https://health.permanentupperclass.com/api/dashboard/overview`
 
