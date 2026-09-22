@@ -84,6 +84,48 @@ def test_mobile_api_routes_return_today_and_context(tmp_path: Path, monkeypatch)
     assert "# Health Context Packet" in context["markdown"]
 
 
+def test_mobile_pwa_routes_render_installable_shell(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("HEALTH_DB", str(tmp_path / "health.duckdb"))
+    client = TestClient(app)
+
+    app_response = client.get("/app")
+    manifest_response = client.get("/app/manifest.webmanifest")
+    worker_response = client.get("/app/service-worker.js")
+    icon_response = client.get("/app/icon.svg")
+
+    assert app_response.status_code == 200
+    assert "Health" in app_response.text
+    assert "Add to Home Screen" in app_response.text
+    assert "Unlock capture" in app_response.text
+    assert manifest_response.status_code == 200
+    assert manifest_response.json()["display"] == "standalone"
+    assert worker_response.status_code == 200
+    assert "health-companion" in worker_response.text
+    assert icon_response.status_code == 200
+    assert "<svg" in icon_response.text
+
+
+def test_mobile_session_cookie_unlocks_capture(tmp_path: Path, monkeypatch) -> None:
+    db = tmp_path / "health.duckdb"
+    _seed_mobile_db(db)
+    monkeypatch.setenv("HEALTH_DB", str(db))
+    monkeypatch.setenv("HEALTH_DASHBOARD_USER", "chad")
+    monkeypatch.setenv("HEALTH_DASHBOARD_PASSWORD", "phone-pass")
+    monkeypatch.delenv("HEALTH_APP_TOKEN", raising=False)
+    monkeypatch.delenv("HEALTH_ALLOW_DEV_AUTH", raising=False)
+    client = TestClient(app, base_url="https://testserver")
+
+    denied = client.post("/api/mobile/capture", json={"intent": "event", "text": "Skipped swim"})
+    login = client.post("/api/mobile/session", json={"username": "chad", "password": "phone-pass"})
+    accepted = client.post("/api/mobile/capture", json={"intent": "event", "text": "Skipped swim"})
+
+    assert denied.status_code == 401
+    assert login.status_code == 200
+    assert login.json()["authenticated"] is True
+    assert accepted.status_code == 200
+    assert accepted.json()["stored_as"] == "events"
+
+
 def test_mobile_capture_requires_app_bearer(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setenv("HEALTH_DB", str(tmp_path / "health.duckdb"))
     monkeypatch.setenv("HEALTH_APP_TOKEN", "app-token")

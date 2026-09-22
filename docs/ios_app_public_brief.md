@@ -8,9 +8,11 @@ Public audit note: https://github.com/P-U-C/health-tracker/blob/master/docs/publ
 Public dashboard surface: `https://health.permanentupperclass.com/dashboard`
 Public read-only JSON surface: `https://health.permanentupperclass.com/api/dashboard/overview`
 Public mobile Today endpoint: `https://health.permanentupperclass.com/api/mobile/today`
+Installable phone web app: `https://health.permanentupperclass.com/app`
 Public Claude/ChatGPT context endpoint: `https://health.permanentupperclass.com/api/mobile/context`
 Authenticated mobile capture endpoint: `POST https://health.permanentupperclass.com/api/mobile/capture`
 Authenticated project-link endpoint: `GET https://health.permanentupperclass.com/api/mobile/links`
+Mobile session endpoint: `POST https://health.permanentupperclass.com/api/mobile/session`
 Mobile API contract: https://github.com/P-U-C/health-tracker/blob/master/docs/mobile_app_contract.md
 SwiftUI scaffold: https://github.com/P-U-C/health-tracker/tree/master/ios/HealthCompanion
 
@@ -45,10 +47,12 @@ The core loop should be:
   - `/api/dashboard/overview`
   - `/api/mobile/today`
   - `/api/mobile/context`
+  - `/app` and supporting PWA assets
 - Authenticated write/config routes:
   - `POST /ingest/hae` protected by `HEALTH_INGEST_TOKEN`
-  - `POST /api/mobile/capture` protected by `HEALTH_APP_TOKEN` or ingest-token fallback
-  - `GET /api/mobile/links` protected by `HEALTH_APP_TOKEN` or ingest-token fallback
+  - `POST /api/mobile/session` creates a signed phone session from dashboard credentials or app token
+  - `POST /api/mobile/capture` protected by phone session or bearer token
+  - `GET /api/mobile/links` protected by phone session or bearer token
 - Primary database:
   - `/home/ubuntu/health/data/health.duckdb`
 - Public dashboard implementation:
@@ -99,8 +103,11 @@ The core loop should be:
 
 ## Current Build Slices (2026-09-22)
 
-The app-oriented backend and scaffold are now implemented and public:
+The app-oriented backend, installable phone web app, and SwiftUI scaffold are now implemented and public:
 
+- `GET /app` serves an installable iPhone web app/PWA for immediate phone use.
+- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching.
+- `POST /api/mobile/session` creates a signed, HTTP-only phone session cookie from dashboard credentials or an app token.
 - `core/mobile.py` builds the compact Today contract and Claude/ChatGPT context packet from the existing deterministic dashboard model.
 - `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
 - `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff.
@@ -110,12 +117,12 @@ The app-oriented backend and scaffold are now implemented and public:
 - The Capture tab now has token entry, intent picker, submit state, examples, and recent-capture rendering.
 - The Context tab now has share support and locally stored Claude/ChatGPT project/chat links.
 - `ReminderScheduler.swift` adds the local notification scaffold for not-done items and tripwire reviews.
-- Production tunnel routing has been opened for `/api/mobile/today`, `/api/mobile/context`, `/api/mobile/capture`, and `/api/mobile/links`.
+- Production tunnel routing has been opened for `/app`, `/api/mobile/today`, `/api/mobile/context`, `/api/mobile/capture`, `/api/mobile/links`, and `/api/mobile/session`.
 
 Verification on 2026-09-22:
 
-- `uv run pytest tests/test_mobile_app_contract.py -q` -> 6 passed.
-- `uv run pytest -q` -> 18 passed.
+- `uv run pytest tests/test_mobile_app_contract.py -q` -> 8 passed.
+- `uv run pytest -q` -> 20 passed.
 - `python3 -m compileall -q core api tests` -> passed.
 - SwiftUI files received static reference checks on Linux; simulator/device compile still requires Xcode.
 
@@ -362,26 +369,28 @@ Private/do not publish:
 
 ## 10. Recommended Next Build
 
-Do not redesign the web dashboard first. Continue the iOS prototype against the new mobile backend contract.
+Do not redesign the web dashboard first. Use the installable `/app` phone surface now, while the native iOS track continues toward TestFlight.
 
-Already done in the backend/scaffold slices:
+Already done in the backend/app slices:
 
-1. SwiftUI shell with Today / Progress / Tripwires / Capture / Context tabs.
-2. Explicit `/api/mobile/today` endpoint that returns only what the app needs.
-3. `/api/mobile/context` endpoint that produces Claude/ChatGPT-ready Markdown.
-4. Authenticated `/api/mobile/capture` writes for events, sets, overrides, readings, symptoms, and phase decisions.
-5. Local notification scheduler scaffold for Not Done Today and tripwire review dates.
-6. Share/deep-link scaffolding for Claude and ChatGPT using the context packet.
-7. Public tunnel routing and tests for the mobile contract.
+1. Installable phone web app at `/app` with Today / Capture / Context / More tabs.
+2. Signed phone session cookie flow via `/api/mobile/session`; no raw token has to live in browser storage.
+3. SwiftUI shell with Today / Progress / Tripwires / Capture / Context tabs.
+4. Explicit `/api/mobile/today` endpoint that returns only what the app needs.
+5. `/api/mobile/context` endpoint that produces Claude/ChatGPT-ready Markdown.
+6. Authenticated `/api/mobile/capture` writes for events, sets, overrides, readings, symptoms, and phase decisions.
+7. Local notification scheduler scaffold for Not Done Today and tripwire review dates.
+8. Share/deep-link scaffolding for Claude and ChatGPT using the context packet.
+9. Public tunnel routing and tests for the mobile contract.
 
 Next build:
 
-1. Turn the scaffold into a real Xcode project with bundle id, signing settings, and simulator/device verification.
-2. Move the mobile bearer token from `@AppStorage` to Keychain and decide whether capture should use a separate app token in production.
-3. Add HealthKit permission flow and read a minimal metric set: steps, workouts, sleep, heart rate, resting HR, HRV, weight, body-fat if available.
-4. Improve capture parsing for multi-set workouts, meals/refeeds, fast windows, symptoms, and phase decisions that need one clarifying question.
-5. Add source/provenance detail sheet for any metric shown.
-6. Test with one real day: does the app tell Chad what he missed, what changed, and what to do next?
+1. Use the PWA for one real day and tighten what feels noisy or missing.
+2. Turn the SwiftUI scaffold into a real Xcode project with bundle id, signing settings, and simulator/device verification.
+3. Move the native mobile bearer token from `@AppStorage` to Keychain.
+4. Add HealthKit permission flow and read a minimal metric set: steps, workouts, sleep, heart rate, resting HR, HRV, weight, body-fat if available.
+5. Improve capture parsing for multi-set workouts, meals/refeeds, fast windows, symptoms, and phase decisions that need one clarifying question.
+6. Add source/provenance detail sheet for any metric shown.
 
 ## 11. Reviewer Questions
 

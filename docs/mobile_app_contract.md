@@ -4,6 +4,18 @@ Date: 2026-09-22
 
 This document defines the first iOS-facing contract for the Health Companion app. It is intentionally narrower than the public dashboard: the app opens to a daily decision surface, not a metrics board.
 
+## Phone App Surface
+
+### `GET /app`
+
+Returns the installable phone web app shell. It is designed for iPhone Safari and can be added to the home screen. The shell uses the same mobile API contract as the SwiftUI scaffold, with Today, Capture, Context, and More tabs.
+
+Supporting install routes:
+
+- `GET /app/manifest.webmanifest`
+- `GET /app/service-worker.js`
+- `GET /app/icon.svg`
+
 ## Routes
 
 ### `GET /api/mobile/today`
@@ -78,6 +90,15 @@ Response shape:
 ```
 
 If the app cannot parse required fields, the route returns `ok: false`, `needs_review: true`, `missing_fields`, and no database write.
+
+### `POST /api/mobile/session`
+
+Creates a signed, HTTP-only phone session cookie. The route accepts either the app token or the configured dashboard username/password. The phone web app uses this route so capture does not require storing a bearer token in browser local storage.
+
+Related routes:
+
+- `GET /api/mobile/session` returns `{ "authenticated": true|false }`.
+- `DELETE /api/mobile/session` clears the phone session cookie.
 
 ### `GET /api/mobile/links`
 
