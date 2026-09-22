@@ -7,6 +7,10 @@ Local path: `/home/ubuntu/health`
 Public audit note: https://github.com/P-U-C/health-tracker/blob/master/docs/public_audit_note.md
 Public dashboard surface: `https://health.permanentupperclass.com/dashboard`
 Public read-only JSON surface: `https://health.permanentupperclass.com/api/dashboard/overview`
+Public mobile Today endpoint: `https://health.permanentupperclass.com/api/mobile/today`
+Public Claude/ChatGPT context endpoint: `https://health.permanentupperclass.com/api/mobile/context`
+Mobile API contract: https://github.com/P-U-C/health-tracker/blob/master/docs/mobile_app_contract.md
+SwiftUI scaffold: https://github.com/P-U-C/health-tracker/tree/master/ios/HealthCompanion
 
 This is a public, sanitized design brief. It intentionally excludes secrets, raw DEXA reports, BodyStats session cookies, raw Apple Health exports, Claude/ChatGPT transcripts, and private medical details.
 
@@ -30,13 +34,15 @@ The core loop should be:
 
 ### Data and Backend
 
-- Private repo: `/home/ubuntu/health`
-- GitHub repo: `P-U-C/health-tracker` (private)
+- Local repo: `/home/ubuntu/health`
+- GitHub repo: `P-U-C/health-tracker` (public)
 - FastAPI service: local `127.0.0.1:8026`
 - Public read-only routes:
   - `/status`
   - `/dashboard`
   - `/api/dashboard/overview`
+  - `/api/mobile/today`
+  - `/api/mobile/context`
 - Authenticated write route:
   - `POST /ingest/hae` protected by `HEALTH_INGEST_TOKEN`
 - Primary database:
@@ -62,6 +68,9 @@ The core loop should be:
 - Analysis programme: `PLAN.md`
 - Product architecture: `docs/product_architecture.md`
 - Current dashboard contract: `docs/dashboard_spec.md`
+- Mobile app contract: `docs/mobile_app_contract.md`
+- Public audit note: `docs/public_audit_note.md`
+- SwiftUI scaffold: `ios/HealthCompanion/`
 - Life dashboard widget contract: `docs/life_dashboard_widget.md`
 - Data schema: `schema/schema.sql`
 - Integration registry: `config/components.yaml`
@@ -83,6 +92,23 @@ The core loop should be:
 - Snapshot path: `~/.local/state/health-tracker-widget.json`
 - Console adapter: `ops/console/health.py`
 - Systemd units: `ops/systemd/`
+
+## Current Build Slice (2026-09-22)
+
+The first app-oriented slice is now implemented and public:
+
+- `core/mobile.py` builds the compact Today contract and Claude/ChatGPT context packet from the existing deterministic dashboard model.
+- `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, not-done list, active tripwire, next action, capture affordance, and review links.
+- `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff.
+- `ios/HealthCompanion/` contains a SwiftUI scaffold with Today, Progress, Tripwires, Capture, and Context tabs.
+- Production tunnel routing has been opened for `/api/mobile/today` and `/api/mobile/context`.
+
+Verification on 2026-09-22:
+
+- `uv run pytest tests/test_mobile_app_contract.py -q` -> 3 passed.
+- `uv run pytest -q` -> 15 passed.
+- `python3 -m compileall -q core api tests` -> passed.
+- Public HTTPS checks for `/api/mobile/today`, `/api/mobile/context`, `/dashboard`, and `/api/dashboard/overview` returned 200.
 
 ## 3. What Is Not Working
 
@@ -327,26 +353,25 @@ Private/do not publish:
 
 ## 10. Recommended Next Build
 
-Do not redesign the web dashboard first. Build an iOS prototype against the existing backend.
+Do not redesign the web dashboard first. Continue the iOS prototype against the new mobile backend contract.
 
-Two-week spike:
+Already done in the first slice:
 
-1. Create SwiftUI shell with Today / Progress / Tripwires / Capture / Context tabs.
-2. Read `/api/dashboard/overview` and render a simplified Today screen.
-3. Add local notification model for Not Done Today.
-4. Implement capture text box and local parser stubs for workout/event/override/manual reading.
+1. SwiftUI shell with Today / Progress / Tripwires / Capture / Context tabs.
+2. Explicit `/api/mobile/today` endpoint that returns only what the app needs.
+3. `/api/mobile/context` endpoint that produces Claude/ChatGPT-ready Markdown.
+4. Public tunnel routing and tests for the mobile contract.
+
+Next build:
+
+1. Turn the scaffold into a real Xcode project with bundle id, signing settings, and simulator/device verification.
+2. Add private app auth; public dashboard can stay read-only, but the phone app should not rely on public unauthenticated personal state forever.
+3. Add local notification model for Not Done Today and tripwire review dates.
+4. Implement capture writes for events, sets, overrides, readings, symptoms, and phase decisions.
 5. Add HealthKit permission flow and read a minimal metric set: steps, workouts, sleep, heart rate, resting HR, HRV, weight, body-fat if available.
-6. Add context packet export: Markdown copied to clipboard / shared to Claude or ChatGPT.
+6. Add share sheet/deep-link actions for Claude and ChatGPT using the context packet.
 7. Add source/provenance detail sheet for any metric shown.
 8. Test with one real day: does the app tell Chad what he missed, what changed, and what to do next?
-
-Backend follow-up:
-
-1. Add explicit `today` endpoint that returns only what the app needs.
-2. Add structured endpoints for logging events, sets, overrides, readings, and phase decisions.
-3. Add a `context_packet` endpoint that produces Claude/ChatGPT-ready Markdown.
-4. Add reminders table and tripwire occurrence state.
-5. Add private auth for the app; keep public dashboard read-only if desired.
 
 ## 11. Reviewer Questions
 
