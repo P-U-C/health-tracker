@@ -7,8 +7,9 @@ It is intentionally small:
 - `TodayView`: phase, progress, not-done list, active tripwire, one next action.
 - `HealthProgressView`: simplified body/progress summary.
 - `TripwiresView`: deterministic rules state.
-- `CaptureView`: voice/text capture placeholder and supported intents.
-- `ContextView`: Claude/ChatGPT context packet fetch/copy surface.
+- `CaptureView`: token-gated voice/text capture UI for events, readings, overrides, symptoms, phase decisions, and strength sets.
+- `ContextView`: Claude/ChatGPT context packet share surface plus locally stored project/chat links.
+- `ReminderScheduler`: local notification scaffold for not-done items and tripwire reviews.
 
 ## Backend
 
@@ -22,6 +23,8 @@ Routes used:
 
 - `GET /api/mobile/today`
 - `GET /api/mobile/context`
+- `POST /api/mobile/capture`
+- `GET /api/mobile/links`
 
 ## How to turn this into an Xcode app
 
@@ -29,7 +32,9 @@ Routes used:
 2. Copy the Swift files from `Sources/HealthCompanion/` into the app target.
 3. Set deployment target to iOS 17 or newer.
 4. Run on device or simulator.
-5. Add HealthKit permissions only when direct on-device reads are implemented. This scaffold consumes the server contract first.
+5. Review the notification permission prompt copy when wiring reminders into a signed target.
+6. Add HealthKit permissions only when direct on-device reads are implemented. This scaffold consumes the server contract first.
+7. Store the mobile bearer token in Keychain before production use; `@AppStorage` is a prototype convenience.
 
 ## Privacy Boundary
 

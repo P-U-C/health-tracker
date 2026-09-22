@@ -11,6 +11,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 from api.dashboard_view import render_dashboard
+from core.capture import CaptureError, log_mobile_capture
 from core.dashboard import build_dashboard_model
 from core.mobile import build_context_packet, build_today_model
 from core.schema import DEFAULT_DB, connect, load_schema, table_count
@@ -31,6 +32,19 @@ def require_ingest_auth(authorization: str | None) -> None:
         raise HTTPException(status_code=503, detail="HEALTH_INGEST_TOKEN is not configured")
     if authorization != f"Bearer {token}":
         raise HTTPException(status_code=401, detail="invalid bearer token")
+
+
+def require_app_auth(authorization: str | None) -> None:
+    token = os.getenv("HEALTH_APP_TOKEN") or os.getenv("HEALTH_INGEST_TOKEN")
+    if not token:
+        if os.getenv("HEALTH_ALLOW_DEV_AUTH") == "1":
+            return
+        raise HTTPException(status_code=503, detail="HEALTH_APP_TOKEN is not configured")
+    prefix = "Bearer "
+    if not authorization or not authorization.startswith(prefix):
+        raise HTTPException(status_code=401, detail="app bearer token required")
+    if not compare_digest(authorization[len(prefix):].encode("utf-8"), token.encode("utf-8")):
+        raise HTTPException(status_code=401, detail="invalid app bearer token")
 
 
 def require_dashboard_auth(credentials: HTTPBasicCredentials | None = Depends(dashboard_security)) -> None:
@@ -102,6 +116,27 @@ def mobile_today() -> dict[str, Any]:
 @app.get("/api/mobile/context", operation_id="get_mobile_context")
 def mobile_context() -> dict[str, Any]:
     return {"format": "markdown", "markdown": build_context_packet(db_path())}
+
+
+@app.post("/api/mobile/capture", operation_id="post_mobile_capture")
+async def mobile_capture(request: Request, authorization: str | None = Header(default=None)) -> dict[str, Any]:
+    require_app_auth(authorization)
+    payload = await request.json()
+    try:
+        return log_mobile_capture(payload, db_path())
+    except CaptureError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/api/mobile/links", operation_id="get_mobile_links")
+def mobile_links(authorization: str | None = Header(default=None)) -> dict[str, Any]:
+    require_app_auth(authorization)
+    return {
+        "claude_project_url": os.getenv("HEALTH_CLAUDE_PROJECT_URL"),
+        "chatgpt_project_url": os.getenv("HEALTH_CHATGPT_PROJECT_URL"),
+        "context_packet": "/api/mobile/context",
+        "share_text": "Use the current Health Context Packet as the source of truth for this protocol check-in.",
+    }
 
 
 @app.get("/dashboard", response_class=HTMLResponse, operation_id="get_dashboard")

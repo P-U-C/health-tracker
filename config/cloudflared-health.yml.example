@@ -13,7 +13,7 @@ ingress:
     path: ^/api/dashboard/overview$
     service: http://127.0.0.1:8026
   - hostname: health.<domain>
-    path: ^/api/mobile/(today|context)$
+    path: ^/api/mobile/(today|context|capture|links)$
     service: http://127.0.0.1:8026
   - hostname: health.<domain>
     path: ^/status$

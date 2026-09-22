@@ -9,6 +9,7 @@ struct TodayResponse: Codable {
     let tripwire: TripwireItem?
     let nextAction: NextAction
     let capture: CaptureContract
+    let recentCapture: [RecentCaptureItem]
     let reviewLinks: ReviewLinks
 
     enum CodingKeys: String, CodingKey {
@@ -20,6 +21,7 @@ struct TodayResponse: Codable {
         case tripwire
         case nextAction = "next_action"
         case capture
+        case recentCapture = "recent_capture"
         case reviewLinks = "review_links"
     }
 }
@@ -156,15 +158,44 @@ struct NextAction: Codable {
 
 struct CaptureContract: Codable {
     let primaryPrompt: String?
+    let endpoint: String?
+    let authRequired: Bool?
     let examples: [String]
+    let quickActions: [QuickAction]
     let intents: [String]
     let writeStatus: String?
 
     enum CodingKeys: String, CodingKey {
         case primaryPrompt = "primary_prompt"
+        case endpoint
+        case authRequired = "auth_required"
         case examples
+        case quickActions = "quick_actions"
         case intents
         case writeStatus = "write_status"
+    }
+}
+
+struct QuickAction: Codable, Identifiable {
+    let intent: String
+    let label: String
+
+    var id: String { intent }
+}
+
+struct RecentCaptureItem: Codable, Identifiable {
+    let occurredAt: String
+    let source: String
+    let title: String
+    let detail: String
+
+    var id: String { "\(source)-\(occurredAt)-\(title)" }
+
+    enum CodingKeys: String, CodingKey {
+        case occurredAt = "occurred_at"
+        case source
+        case title
+        case detail
     }
 }
 
@@ -183,4 +214,42 @@ struct ReviewLinks: Codable {
 struct ContextPacketResponse: Codable {
     let format: String
     let markdown: String
+}
+
+struct CaptureRequest: Codable {
+    let intent: String
+    let text: String
+    let occurredAt: String?
+    let source: String
+    let fields: [String: String]
+
+    enum CodingKeys: String, CodingKey {
+        case intent
+        case text
+        case occurredAt = "occurred_at"
+        case source
+        case fields
+    }
+}
+
+struct CaptureResponse: Codable {
+    let ok: Bool
+    let intent: String
+    let storedAs: String?
+    let recordsWritten: Int
+    let ids: [String]
+    let needsReview: Bool
+    let missingFields: [String]?
+    let summary: String
+
+    enum CodingKeys: String, CodingKey {
+        case ok
+        case intent
+        case storedAs = "stored_as"
+        case recordsWritten = "records_written"
+        case ids
+        case needsReview = "needs_review"
+        case missingFields = "missing_fields"
+        case summary
+    }
 }

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from fastapi.testclient import TestClient
 
@@ -43,7 +45,9 @@ def test_mobile_today_contract_prioritizes_protocol_actions(tmp_path: Path) -> N
     assert today["next_action"]["title"]
     assert any(item["id"] == "confirm-phase" for item in today["not_done_today"])
     assert any(item["id"] == "strength-log" for item in today["not_done_today"])
-    assert today["capture"]["write_status"] == "planned"
+    assert today["capture"]["write_status"] == "enabled"
+    assert today["capture"]["endpoint"] == "/api/mobile/capture"
+    assert today["capture"]["auth_required"] is True
     assert "context_packet" in today["review_links"]
 
 
@@ -78,3 +82,89 @@ def test_mobile_api_routes_return_today_and_context(tmp_path: Path, monkeypatch)
     context = context_response.json()
     assert context["format"] == "markdown"
     assert "# Health Context Packet" in context["markdown"]
+
+
+def test_mobile_capture_requires_app_bearer(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("HEALTH_DB", str(tmp_path / "health.duckdb"))
+    monkeypatch.setenv("HEALTH_APP_TOKEN", "app-token")
+    monkeypatch.delenv("HEALTH_ALLOW_DEV_AUTH", raising=False)
+    client = TestClient(app)
+
+    payload = {"intent": "event", "text": "Skipped swim; fatigue and heat"}
+
+    assert client.post("/api/mobile/capture", json=payload).status_code == 401
+    assert client.post("/api/mobile/capture", json=payload, headers={"Authorization": "Bearer wrong"}).status_code == 401
+    assert client.post("/api/mobile/capture", json=payload, headers={"Authorization": "Bearer app-token"}).status_code == 200
+
+
+def test_mobile_capture_logs_strength_and_clears_strength_reminder(tmp_path: Path, monkeypatch) -> None:
+    db = tmp_path / "health.duckdb"
+    _seed_mobile_db(db)
+    monkeypatch.setenv("HEALTH_DB", str(db))
+    monkeypatch.setenv("HEALTH_APP_TOKEN", "app-token")
+    client = TestClient(app)
+    occurred_at = datetime.now(ZoneInfo("America/Vancouver")).replace(hour=10, minute=0, second=0, microsecond=0)
+
+    response = client.post(
+        "/api/mobile/capture",
+        json={"intent": "strength_set", "text": "KB press 24 kg 3x8 RPE 8", "occurred_at": occurred_at.isoformat()},
+        headers={"Authorization": "Bearer app-token"},
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["ok"] is True
+    assert body["stored_as"] == "strength_sets"
+    assert body["records_written"] == 3
+
+    conn = connect(db)
+    try:
+        rows = conn.execute(
+            """
+            SELECT exercise, set_no, load_kg, reps, rpe
+            FROM strength_sets
+            WHERE session_date = ?
+            ORDER BY set_no
+            """,
+            [occurred_at.date()],
+        ).fetchall()
+    finally:
+        conn.close()
+    assert rows == [("KB press", 1, 24.0, 8, 8.0), ("KB press", 2, 24.0, 8, 8.0), ("KB press", 3, 24.0, 8, 8.0)]
+
+    today = build_today_model(db)
+    assert not any(item["id"] == "strength-log" for item in today["not_done_today"])
+    assert any(item["source"] == "strength_set" and item["title"] == "KB press" for item in today["recent_capture"])
+
+
+def test_mobile_capture_logs_reading_and_override(tmp_path: Path, monkeypatch) -> None:
+    db = tmp_path / "health.duckdb"
+    _seed_mobile_db(db)
+    monkeypatch.setenv("HEALTH_DB", str(db))
+    monkeypatch.setenv("HEALTH_APP_TOKEN", "app-token")
+    client = TestClient(app)
+
+    reading_response = client.post(
+        "/api/mobile/capture",
+        json={"intent": "manual_reading", "text": "weight 81.2 kg"},
+        headers={"Authorization": "Bearer app-token"},
+    )
+    override_response = client.post(
+        "/api/mobile/capture",
+        json={"intent": "override", "text": "Override: trained despite HRV strain"},
+        headers={"Authorization": "Bearer app-token"},
+    )
+
+    assert reading_response.status_code == 200
+    assert reading_response.json()["stored_as"] == "readings"
+    assert override_response.status_code == 200
+    assert override_response.json()["stored_as"] == "overrides"
+
+    conn = connect(db)
+    try:
+        reading = conn.execute("SELECT metric, value, unit FROM readings WHERE source = 'ios'").fetchone()
+        override_count = conn.execute("SELECT COUNT(*) FROM overrides").fetchone()[0]
+    finally:
+        conn.close()
+    assert reading == ("weight", 81.2, "kg")
+    assert override_count == 1

@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from core.dashboard import build_dashboard_model
-from core.schema import DEFAULT_DB
+from core.schema import DEFAULT_DB, connect, load_schema
 
 ATTENTION_STATES = {"Triggered", "Watch", "Data needed"}
 SEVERITY_RANK = {"high": 3, "medium": 2, "low": 1}
+VANCOUVER = ZoneInfo("America/Vancouver")
 
 
 def build_today_model(db_path: str | Path = DEFAULT_DB) -> dict[str, Any]:
@@ -17,16 +20,18 @@ def build_today_model(db_path: str | Path = DEFAULT_DB) -> dict[str, Any]:
     hero = dashboard.get("hero") or {}
     tripwires = dashboard.get("tripwires") or []
     attention_tripwires = [item for item in tripwires if item.get("state") in ATTENTION_STATES]
+    today = _local_today()
 
     return {
         "generated_at": dashboard.get("generated_at"),
         "overall": dashboard.get("overall") or {},
         "phase": _phase(goal),
         "progress": _progress(hero, goal),
-        "not_done_today": _not_done_today(dashboard, attention_tripwires),
+        "not_done_today": _not_done_today(dashboard, attention_tripwires, _has_strength_or_rest_today(db_path, today)),
         "tripwire": _top_tripwire(attention_tripwires),
         "next_action": _next_action(dashboard.get("intervention") or {}),
         "capture": _capture_contract(),
+        "recent_capture": _recent_capture(db_path),
         "review_links": {
             "dashboard": "/dashboard",
             "overview_json": "/api/dashboard/overview",
@@ -41,6 +46,7 @@ def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
     next_action = today.get("next_action") or {}
     tripwire = today.get("tripwire")
     not_done = today.get("not_done_today") or []
+    recent_capture = today.get("recent_capture") or []
 
     lines = [
         "# Health Context Packet",
@@ -65,6 +71,12 @@ def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
         lines.extend(f"- [{item.get('state', 'open')}] {item.get('title')} - {item.get('detail')}" for item in not_done)
     else:
         lines.append("- None currently surfaced by deterministic rules.")
+
+    lines.extend(["", "## Recent Capture"])
+    if recent_capture:
+        lines.extend(f"- {item.get('occurred_at')}: {item.get('title')} - {item.get('detail')}" for item in recent_capture)
+    else:
+        lines.append("- None logged yet.")
 
     lines.extend(["", "## Active Tripwire"])
     if tripwire:
@@ -130,7 +142,7 @@ def _progress(hero: dict[str, Any], goal: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _not_done_today(dashboard: dict[str, Any], tripwires: list[dict[str, Any]]) -> list[dict[str, str]]:
+def _not_done_today(dashboard: dict[str, Any], tripwires: list[dict[str, Any]], strength_or_rest_today: bool) -> list[dict[str, str]]:
     goal = dashboard.get("goal") or {}
     freshness = dashboard.get("freshness") or {}
     performance = dashboard.get("performance") or {}
@@ -151,7 +163,7 @@ def _not_done_today(dashboard: dict[str, Any], tripwires: list[dict[str, Any]]) 
         items.append(_reminder("confirm-phase", "Confirm current phase", str(goal["open_decision"]), "today"))
 
     strength_metric = _metric_by_label(performance.get("metrics") or [], "Strength progression")
-    if not strength_metric or strength_metric.get("source_label") == "Add source":
+    if not strength_or_rest_today and (not strength_metric or strength_metric.get("source_label") == "Add source"):
         items.append(
             _reminder(
                 "strength-log",
@@ -203,15 +215,146 @@ def _next_action(intervention: dict[str, Any]) -> dict[str, Any]:
 def _capture_contract() -> dict[str, Any]:
     return {
         "primary_prompt": "What happened today?",
+        "endpoint": "/api/mobile/capture",
+        "auth_required": True,
         "examples": [
             "KB press 24 kg 3x8 RPE 8",
+            "Rest day; sleep debt and HRV strain",
             "Skipped swim; fatigue and heat after lifting",
             "36 h fast started 20:00, electrolytes ok",
             "Override: trained despite HRV strain",
+            "weight 81.2 kg",
+        ],
+        "quick_actions": [
+            {"intent": "strength_set", "label": "Strength"},
+            {"intent": "event", "label": "Event"},
+            {"intent": "manual_reading", "label": "Reading"},
+            {"intent": "override", "label": "Override"},
+            {"intent": "symptom", "label": "Symptom"},
+            {"intent": "phase_decision", "label": "Phase"},
         ],
         "intents": ["strength_set", "event", "manual_reading", "override", "symptom", "phase_decision"],
-        "write_status": "planned",
+        "write_status": "enabled",
     }
+
+
+def _has_strength_or_rest_today(db_path: str | Path, today: date) -> bool:
+    conn = connect(db_path)
+    try:
+        load_schema(conn)
+        strength_count = conn.execute(
+            """
+            SELECT COUNT(*)
+            FROM strength_sets
+            WHERE session_date = ?
+            """,
+            [today],
+        ).fetchone()[0]
+        rest_count = conn.execute(
+            """
+            SELECT COUNT(*)
+            FROM events
+            WHERE CAST(start_ts AS DATE) = ? AND kind IN ('rest_day', 'strength_session')
+            """,
+            [today],
+        ).fetchone()[0]
+        return int(strength_count or 0) + int(rest_count or 0) > 0
+    finally:
+        conn.close()
+
+
+def _recent_capture(db_path: str | Path, limit: int = 5) -> list[dict[str, str]]:
+    conn = connect(db_path)
+    try:
+        load_schema(conn)
+        rows: list[dict[str, Any]] = []
+        rows.extend(
+            {
+                "occurred_at": row[0],
+                "source": "event",
+                "title": str(row[1] or "event"),
+                "detail": str(row[2] or ""),
+            }
+            for row in conn.execute(
+                """
+                SELECT start_ts, kind, notes
+                FROM events
+                WHERE start_ts IS NOT NULL
+                ORDER BY start_ts DESC
+                LIMIT ?
+                """,
+                [limit],
+            ).fetchall()
+        )
+        rows.extend(
+            {
+                "occurred_at": row[0],
+                "source": "override",
+                "title": "override",
+                "detail": str(row[1] or row[2] or ""),
+            }
+            for row in conn.execute(
+                """
+                SELECT ts, decision, reason
+                FROM overrides
+                WHERE ts IS NOT NULL
+                ORDER BY ts DESC
+                LIMIT ?
+                """,
+                [limit],
+            ).fetchall()
+        )
+        rows.extend(
+            {
+                "occurred_at": row[0],
+                "source": "reading",
+                "title": str(row[1] or "reading"),
+                "detail": _format_value(row[2], row[3]),
+            }
+            for row in conn.execute(
+                """
+                SELECT ts, metric, value, unit
+                FROM readings
+                WHERE ts IS NOT NULL
+                ORDER BY ts DESC
+                LIMIT ?
+                """,
+                [limit],
+            ).fetchall()
+        )
+        rows.extend(
+            {
+                "occurred_at": row[0],
+                "source": "strength_set",
+                "title": str(row[1] or "strength"),
+                "detail": f"{row[2]} reps" + (f" at {row[3]:g} kg" if row[3] is not None else ""),
+            }
+            for row in conn.execute(
+                """
+                SELECT session_date, exercise, reps, load_kg
+                FROM strength_sets
+                ORDER BY session_date DESC, set_no DESC
+                LIMIT ?
+                """,
+                [limit],
+            ).fetchall()
+        )
+        rows = sorted(rows, key=lambda item: str(item["occurred_at"] or ""), reverse=True)[:limit]
+        return [
+            {
+                "occurred_at": item["occurred_at"].isoformat() if hasattr(item["occurred_at"], "isoformat") else str(item["occurred_at"]),
+                "source": str(item["source"]),
+                "title": str(item["title"]),
+                "detail": str(item["detail"]),
+            }
+            for item in rows
+        ]
+    finally:
+        conn.close()
+
+
+def _local_today() -> date:
+    return datetime.now(VANCOUVER).date()
 
 
 def _metric_by_label(metrics: list[dict[str, Any]], label: str) -> dict[str, Any] | None:
