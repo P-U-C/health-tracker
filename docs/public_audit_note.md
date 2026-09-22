@@ -7,6 +7,8 @@ This repository has been opened for external product/design/security review of t
 ## What Auditors Can Review
 
 - Product direction and iOS companion brief: `docs/ios_app_public_brief.md`
+- Mobile API contract: `docs/mobile_app_contract.md`
+- SwiftUI scaffold: `ios/HealthCompanion/`
 - Existing dashboard specification: `docs/dashboard_spec.md`
 - Product architecture: `docs/product_architecture.md`
 - Data normalization and ingestion design: `docs/phase1_normalization.md`, `docs/phase2_pipe.md`

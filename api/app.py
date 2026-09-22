@@ -12,6 +12,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 from api.dashboard_view import render_dashboard
 from core.dashboard import build_dashboard_model
+from core.mobile import build_context_packet, build_today_model
 from core.schema import DEFAULT_DB, connect, load_schema, table_count
 from ingest.hae_rest import ingest_hae_payload
 
@@ -91,6 +92,16 @@ def status() -> dict[str, Any]:
 @app.get("/api/dashboard/overview", operation_id="get_dashboard_overview")
 def dashboard_overview(_: None = Depends(require_dashboard_auth)) -> dict[str, Any]:
     return build_dashboard_model(db_path())
+
+
+@app.get("/api/mobile/today", operation_id="get_mobile_today")
+def mobile_today() -> dict[str, Any]:
+    return build_today_model(db_path())
+
+
+@app.get("/api/mobile/context", operation_id="get_mobile_context")
+def mobile_context() -> dict[str, Any]:
+    return {"format": "markdown", "markdown": build_context_packet(db_path())}
 
 
 @app.get("/dashboard", response_class=HTMLResponse, operation_id="get_dashboard")
