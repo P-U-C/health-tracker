@@ -114,15 +114,17 @@ def test_mobile_pwa_routes_render_installable_shell(tmp_path: Path, monkeypatch)
     assert "data-tab=\"food\"" in app_response.text
     assert "data-tab=\"capture\"" in app_response.text
     assert "renderBody" in app_response.text
+    assert "body-scan-layout" in app_response.text
+    assert "renderBodyMap" in app_response.text
     assert "renderFood" in app_response.text
     assert "capture=\"environment\"" in app_response.text
     assert "aria-label=\"Log health note\"" in app_response.text
-    assert "service-worker.js?v=4" in app_response.text
+    assert "service-worker.js?v=5" in app_response.text
     assert "Unlock capture" in app_response.text
     assert manifest_response.status_code == 200
     assert manifest_response.json()["display"] == "standalone"
     assert worker_response.status_code == 200
-    assert "health-companion-v4" in worker_response.text
+    assert "health-companion-v5" in worker_response.text
     assert icon_response.status_code == 200
     assert "<svg" in icon_response.text
 

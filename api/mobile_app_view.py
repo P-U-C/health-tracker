@@ -217,15 +217,46 @@ def render_mobile_app() -> str:
     .quick-drawer summary::-webkit-details-marker { display: none; }
     .quick-note { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
     .quick-note::-webkit-scrollbar { display: none; }
-    .body-hero { padding: 12px; background: var(--surface-strong); }
-    .scan-value { display: grid; gap: 2px; margin-top: 10px; }
-    .scan-value strong { font-size: 45px; line-height: .9; letter-spacing: 0; }
+    .body-hero { padding: 10px; background: var(--surface-strong); }
+    .body-scan-layout { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 10px; align-items: stretch; margin-top: 9px; }
+    .body-map {
+      min-height: 210px;
+      border-radius: var(--radius);
+      border: 1px solid #1f241f;
+      background: #141814;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .body-map svg { width: 100%; height: 100%; display: block; }
+    .body-map .heat-fat { fill: #d34238; }
+    .body-map .heat-lean { fill: #2a71b2; }
+    .body-map .heat-bone { fill: #f4efe4; }
+    .scan-value { display: grid; gap: 2px; }
+    .scan-value strong { font-size: 39px; line-height: .9; letter-spacing: 0; }
     .scan-value span { color: var(--muted); font-size: 13px; font-weight: 760; }
-    .body-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
-    .body-tile { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; padding: 9px; }
-    .body-tile b { display: block; font-size: 20px; line-height: 1.05; letter-spacing: 0; overflow-wrap: anywhere; }
+    .body-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-top: 9px; }
+    .body-grid.tight { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .body-tile { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; padding: 8px; }
+    .body-tile b { display: block; font-size: 18px; line-height: 1.05; letter-spacing: 0; overflow-wrap: anywhere; }
     .body-tile span { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.2; }
-    .body-chart { width: 100%; height: 122px; display: block; margin-top: 10px; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; }
+    .estimate-line {
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbf8f0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .estimate-line b { font-size: 18px; line-height: 1.05; }
+    .delta-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+    .delta-chip { min-width: 0; padding: 7px 6px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .delta-chip b { display: block; font-size: 14px; line-height: 1.05; overflow-wrap: anywhere; }
+    .delta-chip span { display: block; color: var(--muted); font-size: 10px; line-height: 1.2; margin-top: 3px; }
+    .body-chart { width: 100%; height: 94px; display: block; margin-top: 8px; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; }
     .chart-grid { stroke: rgba(104,112,100,.22); stroke-width: .5; }
     .chart-axis { stroke: rgba(20,24,20,.34); stroke-width: .9; }
     .chart-line { fill: none; stroke: var(--bad); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
@@ -540,10 +571,8 @@ function renderBody() {
   const metrics = body.metrics || [];
   const delta = summary.delta || {};
   const history = body.history || [];
-  const dexaBf = metricByKey(metrics, 'dexa_bf');
   const estimatedBf = metricByKey(metrics, 'estimated_bf');
   const weight = metricByKey(metrics, 'weight_trend');
-  const lean = metricByKey(metrics, 'dexa_lean');
   const appendicular = metricByKey(metrics, 'appendicular_lean');
   const vat = metricByKey(metrics, 'vat');
   const ratio = metricByKey(metrics, 'android_gynoid');
@@ -555,45 +584,64 @@ function renderBody() {
     </li>`).join('');
   screen.innerHTML = `
     <section class="surface body-hero" aria-label="Body composition">
-      <div class="row"><span class="kicker">Body composition</span><span class="status-pill">DEXA ${esc(summary.latest_dexa_date || 'n/a')}</span></div>
-      <div class="scan-value"><strong>${esc(valueWithUnit(summary.body_fat_pct, '%'))}</strong><span>BodyStats DEXA body fat</span></div>
-      <div class="body-grid">
-        ${renderBodyTile('Weight', valueWithUnit(summary.weight_kg, 'kg'), 'DEXA scan')}
-        ${renderBodyTile('Lean + BMC', valueWithUnit(summary.lean_bmc_kg, 'kg'), 'DEXA measured')}
-        ${renderBodyTile('Fat mass', valueWithUnit(summary.fat_mass_kg, 'kg'), 'DEXA measured')}
-        ${renderBodyTile('VAT', valueWithUnit(summary.vat_mass_g, 'g'), 'DEXA measured')}
+      <div class="row"><span class="kicker">BodyStats DEXA</span><span class="status-pill">${esc(summary.latest_dexa_date || 'n/a')}</span></div>
+      <div class="body-scan-layout">
+        ${renderBodyMap()}
+        <div>
+          <div class="scan-value"><strong>${esc(valueWithUnit(summary.body_fat_pct, '%'))}</strong><span>Body fat · measured scan</span></div>
+          <div class="body-grid tight">
+            ${renderBodyTile('Weight', valueWithUnit(summary.weight_kg, 'kg'), '')}
+            ${renderBodyTile('Fat', valueWithUnit(summary.fat_mass_kg, 'kg'), '')}
+            ${renderBodyTile('Lean+BMC', valueWithUnit(summary.lean_bmc_kg, 'kg'), '')}
+            ${renderBodyTile('VAT', valueWithUnit(summary.vat_mass_g, 'g'), '')}
+          </div>
+          <div class="estimate-line">
+            <div><span class="kicker">Current estimate</span><div class="detail">DEXA-calibrated Eufy trend</div></div>
+            <b>${esc(valueWithUnit(estimatedBf.value, estimatedBf.unit))}</b>
+          </div>
+          <div class="delta-strip" aria-label="Change since previous scan">
+            ${renderDeltaChip('BF', signed(delta.body_fat_pct, 'pp'))}
+            ${renderDeltaChip('Lean', signed(delta.lean_bmc_kg, 'kg'))}
+            ${renderDeltaChip('VAT', signed(delta.vat_mass_g, 'g'))}
+          </div>
+        </div>
       </div>
       ${renderBodyChart(body.chart_history || [])}
       <div class="detail">${esc(body.source_note || '')}</div>
     </section>
     <section class="surface section">
-      <div class="section-title"><h2>Current Estimate</h2><span class="status-pill">${esc(estimatedBf.source_label || 'Estimated')}</span></div>
+      <div class="section-title"><h2>Composition Detail</h2><span class="status-pill">DEXA measured</span></div>
       <div class="body-grid">
-        ${renderBodyTile('DEXA BF', valueWithUnit(dexaBf.value, dexaBf.unit), dexaBf.source_label)}
-        ${renderBodyTile('Estimate', valueWithUnit(estimatedBf.value, estimatedBf.unit), estimatedBf.source_label)}
-        ${renderBodyTile('Trend weight', valueWithUnit(weight.value, weight.unit), weight.source_label)}
         ${renderBodyTile('Appendicular', valueWithUnit(appendicular.value, appendicular.unit), appendicular.source_label)}
+        ${renderBodyTile('A/G ratio', valueWithUnit(ratio.value, ratio.unit), ratio.source_label)}
+        ${renderBodyTile('BMD', valueWithUnit(bmd.value, bmd.unit), bmd.source_label)}
+        ${renderBodyTile('Trend weight', valueWithUnit(weight.value, weight.unit), weight.source_label)}
       </div>
     </section>
     <section class="surface section">
       <div class="section-title"><h2>DEXA Anchors</h2><span class="status-pill">${esc(summary.dexa_count || 0)} scans</span></div>
       <ul class="plain-list">${anchors || '<li class="empty">No DEXA scans connected.</li>'}</ul>
-    </section>
-    <section class="surface section">
-      <div class="section-title"><h2>Delta</h2><span class="status-pill">${esc(delta.from_date || 'previous')} to ${esc(delta.to_date || 'latest')}</span></div>
-      <div class="delta-grid">
-        ${renderBodyTile('BF', signed(delta.body_fat_pct, 'pp'), 'since previous')}
-        ${renderBodyTile('Lean', signed(delta.lean_bmc_kg, 'kg'), 'since previous')}
-        ${renderBodyTile('VAT', signed(delta.vat_mass_g, 'g'), 'since previous')}
-      </div>
-      <div class="body-grid">
-        ${renderBodyTile('A/G ratio', valueWithUnit(ratio.value, ratio.unit), ratio.source_label)}
-        ${renderBodyTile('BMD', valueWithUnit(bmd.value, bmd.unit), bmd.source_label)}
-      </div>
     </section>`;
+}
+function renderBodyMap() {
+  return `<div class="body-map" aria-hidden="true">
+    <svg viewBox="0 0 82 210" focusable="false">
+      <rect width="82" height="210" fill="#141814"></rect>
+      <circle class="heat-bone" cx="41" cy="19" r="10"></circle>
+      <path class="heat-lean" d="M29 36h24l7 38-8 45 8 75H49l-8-57-8 57H22l8-75-8-45 7-38Z"></path>
+      <path class="heat-fat" d="M31 47h20l5 28-6 26H32l-6-26 5-28Z" opacity=".92"></path>
+      <path class="heat-fat" d="M27 119h11l-5 54H22l5-54Zm17 0h11l5 54H49l-5-54Z" opacity=".72"></path>
+      <path class="heat-lean" d="M22 45 9 88l8 4 13-38-8-9Zm38 0 13 43-8 4-13-38 8-9Z"></path>
+      <path class="heat-bone" d="M38 34h6v152h-6z" opacity=".38"></path>
+      <path d="M23 198h36" stroke="#f4efe4" stroke-width="2" stroke-linecap="round" opacity=".65"></path>
+    </svg>
+  </div>`;
 }
 function renderBodyTile(label, value, source) {
   return `<div class="body-tile"><b>${esc(value || 'n/a')}</b><span>${esc(label)}${source ? ` · ${esc(source)}` : ''}</span></div>`;
+}
+function renderDeltaChip(label, value) {
+  return `<div class="delta-chip"><b>${esc(value || 'n/a')}</b><span>${esc(label)} since prior</span></div>`;
 }
 function renderBodyChart(history) {
   const points = (history || [])
@@ -835,7 +883,7 @@ document.getElementById('unlockForm').addEventListener('submit', async event => 
     showToast('Unlock failed');
   }
 });
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=4').catch(() => {});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=5').catch(() => {});
 setTab(state.tab);
 load();
 </script>
@@ -862,7 +910,7 @@ def render_manifest() -> str:
 
 
 def render_service_worker() -> str:
-    return """const CACHE = 'health-companion-v4';
+    return """const CACHE = 'health-companion-v5';
 const ASSETS = ['/app', '/app/manifest.webmanifest', '/app/icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));

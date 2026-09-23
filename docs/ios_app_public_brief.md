@@ -1,7 +1,7 @@
 # Health App Public Brief: From Dashboard to iOS Companion
 
 Date: 2026-09-22
-Last updated: 2026-09-23 - Food/macros, meal photo, and voice capture slice shipped.
+Last updated: 2026-09-23 - Condensed BodyStats body-composition pass plus Food/macros slice shipped.
 Owner: Chad / zoz
 Repo: public GitHub repo `P-U-C/health-tracker` — https://github.com/P-U-C/health-tracker
 Local path: `/home/ubuntu/health`
@@ -108,7 +108,7 @@ The core loop should be:
 The app-oriented backend, installable phone web app, and SwiftUI scaffold are now implemented and public:
 
 - `GET /app` serves an installable iPhone web app/PWA for immediate phone use. The current phone shell has Today, Body, Food, Capture, and Context tabs.
-- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching. The worker is registered as `/app/service-worker.js?v=4` and served with `Cache-Control: no-store, max-age=0` to avoid stale phone shells.
+- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching. The worker is registered as `/app/service-worker.js?v=5` and served with `Cache-Control: no-store, max-age=0` to avoid stale phone shells.
 - `POST /api/mobile/session` creates a signed, HTTP-only phone session cookie from dashboard credentials or an app token.
 - `core/mobile.py` builds the compact Today contract and Claude/ChatGPT context packet from the existing deterministic dashboard model.
 - `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, BodyStats/DEXA body-composition block, Food/macros summary, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
@@ -116,7 +116,7 @@ The app-oriented backend, installable phone web app, and SwiftUI scaffold are no
 - `POST /api/mobile/capture` logs phone captures into the existing `strength_sets`, `events`, `readings`, and `overrides` tables, plus the new `nutrition_logs` table for meals/macros, behind bearer auth.
 - `GET /api/mobile/links` returns configured Claude/ChatGPT project links behind bearer auth; the public Today route does not expose private chat URLs.
 - `ios/HealthCompanion/` contains a SwiftUI scaffold with Today, Progress, Tripwires, Capture, and Context tabs.
-- The PWA Body tab now shows a BodyStats-style DEXA hero, body-fat sparkline, fat/lean/VAT tiles, DEXA anchors, estimate tiles, and prior-scan deltas.
+- The PWA Body tab now shows a condensed BodyStats-style DEXA scan card: body-map visual, body-fat hero, weight/fat/lean/VAT tiles, current DEXA-calibrated estimate, prior-scan deltas, trend sparkline, and anchor history.
 - The PWA Food tab now shows today's protein, calories, carbs, fat, recent meals, 14-day macro history, and pending macro-estimate count.
 - The PWA Capture tab now keeps intent selection, text entry, and Log button above the fold with a compact intent grid; examples are tucked behind a Quick fill drawer.
 - The PWA Capture tab now supports meal photo attachment through the phone camera/file picker and progressive voice dictation; photo/freeform meals are stored as `pending_estimate` rather than inventing macros.
@@ -155,6 +155,19 @@ Verification:
 - Meal captures with explicit calories/protein/carbs/fat write structured macros immediately.
 - Photo/freeform meal captures save locally ignored photo references and enter `pending_estimate` for LLM or human review.
 - Live `/app` includes the Food tab, camera capture input, voice dictation button, and `service-worker.js?v=4`.
+
+2026-09-23 condensed BodyStats phone pass:
+
+- Body tab updated from a stacked dashboard into a compact BodyStats-inspired scan card.
+- Latest DEXA measured body-fat, weight, fat mass, lean+BMC, VAT, current estimate, prior-scan deltas, and trend chart now fit into a tighter first screen.
+- Worker bumped to `/app/service-worker.js?v=5` / `health-companion-v5`.
+
+Current DEXA ingestion boundary:
+
+- New DEXA scans are not automatically pulled from BodyStats yet.
+- Canonical app data still comes from `data/dexa/dexa_scans.csv` and `data/dexa/dexa_regional.csv`; after adding rows, run `make ingest` and restart the health API.
+- Raw BodyStats PDFs/text/images and session artifacts stay local/ignored under `data/dexa/raw/` or `data/imports/dexa/`.
+- The intended next step is an authenticated BodyStats/IMAP/manual-upload importer that stages a new scan, extracts values, and requires human confirmation before the scan affects tripwires.
 
 ## 3. What Is Not Working
 
