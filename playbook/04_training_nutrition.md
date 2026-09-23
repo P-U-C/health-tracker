@@ -14,7 +14,7 @@
 - **Calorie cycling** toward lift days; weekly total at the phase target.
 - **Anchors**: Subway chicken bowl, double protein (reliable lunch). Refeed default after fasts: protein-forward, low-fat, cooked (lamb + sweet potato worked; whole pizza + consecutive high-fat meals did not).
 - **Supplements**: creatine monohydrate 5 g/day (continued through fasts; expect creatinine elevation on labs), omega-3 ethyl esters with food (not fasted), magnesium glycinate pre-bed, whey protein. Skin: CeraVe Hydrating Cleanser + Moisturizing Cream; Rosiver evenings; Nizoral routine; chlorine mitigation for swimming (silicone cap, chelating shampoo 1–2×/week).
-- **Logging**: food logging is dead since 2023 and is **not being rebuilt**. The 7-day weight trend against the tripwire is the energy audit. Log only deviations and anchors as events (fast, refeed, travel, alcohol, protein-floor misses). Logged days in 2026, when they existed, averaged ~2,600 kcal against a 2,000 kcal target — the leakage hypothesis stands until the trend says otherwise.
+- **Logging**: full tracker-style food logging was dead since 2023, but a selective macro loop restarted on 2026-09-23 for the phone app. Log meal anchors, protein, calories/macros when known, and photo/freeform meals for LLM or human estimation. The 7-day weight trend against the tripwire remains the energy audit; macro logs explain the trend, they do not overrule it. Prior logged days in 2026 averaged ~2,600 kcal against a 2,000 kcal target — the leakage hypothesis stands until the trend says otherwise.
 - **Fasting**: see `01_protocol_state.md` — monthly 36 h with electrolytes; 72 h only trigger-based.
 
 ## Body composition history (DEXA, kg)

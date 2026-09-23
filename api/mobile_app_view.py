@@ -96,8 +96,8 @@ def render_mobile_app() -> str:
       backdrop-filter: blur(18px);
       border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 6px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 4px;
       z-index: 4;
     }
     .tab {
@@ -111,7 +111,7 @@ def render_mobile_app() -> str:
       place-items: center;
       gap: 2px;
       padding: 5px 2px;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1;
     }
     .tab svg { width: 20px; height: 20px; stroke-width: 2.1; }
@@ -241,6 +241,27 @@ def render_mobile_app() -> str:
     .anchor-row:first-child { border-top: 0; padding-top: 0; }
     .anchor-metrics { color: var(--muted); font-size: 12px; line-height: 1.35; margin-top: 3px; }
     .delta-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .macro-hero { padding: 12px; background: var(--surface-strong); }
+    .macro-value { display: grid; gap: 2px; margin-top: 10px; }
+    .macro-value strong { font-size: 43px; line-height: .9; letter-spacing: 0; }
+    .macro-value span { color: var(--muted); font-size: 13px; font-weight: 760; }
+    .macro-meter { height: 9px; border-radius: 999px; background: var(--soft); overflow: hidden; margin-top: 12px; }
+    .macro-meter span { display: block; height: 100%; width: min(var(--pct, 0%), 100%); background: var(--ok); border-radius: inherit; }
+    .macro-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+    .macro-tile { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; padding: 9px 8px; }
+    .macro-tile b { display: block; font-size: 17px; line-height: 1.05; letter-spacing: 0; overflow-wrap: anywhere; }
+    .macro-tile span { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.2; }
+    .meal-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      padding: 9px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .meal-row:first-child { border-top: 0; padding-top: 0; }
+    .capture-tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .capture-tools input { display: none; }
+    .photo-status { min-height: 18px; color: var(--muted); font-size: 12px; line-height: 1.25; }
     .recent-row, .status-row {
       display: grid;
       gap: 3px;
@@ -326,6 +347,7 @@ def render_mobile_app() -> str:
     <nav class="tabbar" aria-label="Health app sections">
       <button class="tab active" type="button" data-tab="today" aria-label="Today"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor"></circle><path d="m8 12 2.6 2.6L16.5 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Today</span></button>
       <button class="tab" type="button" data-tab="body" aria-label="Body composition"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M7 6.5c0 2.4 2.2 4 5 4s5-1.6 5-4M6.5 14.5c1.5 1.8 3.2 2.7 5.5 2.7s4-.9 5.5-2.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 6.5a4 4 0 0 1 8 0M7 14.5a5 5 0 0 1 10 0" stroke="currentColor" stroke-linecap="round"></path></svg><span>Body</span></button>
+      <button class="tab" type="button" data-tab="food" aria-label="Food macros"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v8M11 3v8M7 7h4M9 11v10M17 3v18M15 3c3 2.4 3 5.7 0 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Food</span></button>
       <button class="tab" type="button" data-tab="capture" aria-label="Capture"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10M8 7v4a4 4 0 0 0 8 0V7M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-linecap="round"></path></svg><span>Capture</span></button>
       <button class="tab" type="button" data-tab="context" aria-label="Context"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor"></rect><path d="M8 8h8M8 12h6M8 16h8" stroke="currentColor" stroke-linecap="round"></path></svg><span>Context</span></button>
     </nav>
@@ -347,9 +369,9 @@ def render_mobile_app() -> str:
   </section>
 
 <script>
-const validTabs = new Set(['today', 'body', 'capture', 'context']);
+const validTabs = new Set(['today', 'body', 'food', 'capture', 'context']);
 const requestedTab = new URLSearchParams(window.location.search).get('tab');
-const state = { tab: validTabs.has(requestedTab) ? requestedTab : 'today', today: null, context: '', links: null, selectedIntent: 'strength_set' };
+const state = { tab: validTabs.has(requestedTab) ? requestedTab : 'today', today: null, context: '', links: null, selectedIntent: 'strength_set', pendingPhotoDataUrl: null, pendingPhotoLabel: '', captureInputMethod: 'text' };
 const screen = document.getElementById('screen');
 const phaseLine = document.getElementById('phaseLine');
 const toast = document.getElementById('toast');
@@ -396,6 +418,17 @@ function shortDate(value) {
   const date = new Date(`${value}T00:00:00`);
   if (Number.isNaN(date.getTime())) return String(value);
   return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(date);
+}
+function macroValue(value, unit = 'g') {
+  if (value === null || value === undefined || value === '') return 'not logged';
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  return `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(n)} ${unit}`;
+}
+function proteinPct(nutrition) {
+  const current = Number(nutrition?.today?.protein_g || 0);
+  const target = Number(nutrition?.targets?.protein_floor_g || 137);
+  return Math.max(0, Math.min(100, Math.round((current / Math.max(target, 1)) * 100)));
 }
 function toneClass(tone) {
   if (tone === 'green') return 'tone-green';
@@ -461,6 +494,7 @@ function setTab(tab) {
 }
 function render() {
   if (state.tab === 'body') return renderBody();
+  if (state.tab === 'food') return renderFood();
   if (state.tab === 'capture') return renderCapture();
   if (state.tab === 'context') return renderContext();
   return renderToday();
@@ -585,6 +619,49 @@ function renderBodyChart(history) {
     <text class="chart-label" x="92" y="95" text-anchor="end">${esc(shortDate(points[points.length - 1].date))}</text>
   </svg>`;
 }
+function renderFood() {
+  const nutrition = state.today?.nutrition || {};
+  const today = nutrition.today || {};
+  const targets = nutrition.targets || {};
+  const pct = proteinPct(nutrition);
+  const recent = nutrition.recent || [];
+  const history = nutrition.history || [];
+  screen.innerHTML = `
+    <section class="surface macro-hero" aria-label="Food and macros">
+      <div class="row"><span class="kicker">Food</span><span class="status-pill">${esc(today.meal_count || 0)} meals</span></div>
+      <div class="macro-value"><strong>${esc(macroValue(today.protein_g || 0))}</strong><span>Protein today / ${esc(macroValue(targets.protein_floor_g))} floor</span></div>
+      <div class="macro-meter" aria-label="Protein floor progress" style="--pct: ${pct}%"><span></span></div>
+      <div class="macro-grid">
+        ${renderMacroTile('Calories', macroValue(today.calories, 'kcal'))}
+        ${renderMacroTile('Carbs', macroValue(today.carbs_g))}
+        ${renderMacroTile('Fat', macroValue(today.fat_g))}
+      </div>
+      <div class="detail">${esc(nutrition.protein?.remaining_g ? `${nutrition.protein.remaining_g} g protein remaining.` : 'Protein floor met or not logged yet.')} ${esc(nutrition.pending_estimates ? `${nutrition.pending_estimates} pending estimate${nutrition.pending_estimates === 1 ? '' : 's'}.` : '')}</div>
+    </section>
+    <section class="surface section">
+      <div class="section-title"><h2>Recent Meals</h2><button class="small-button" id="foodCapture" type="button">Log</button></div>
+      <ul class="plain-list">${recent.length ? recent.map(renderMealRow).join('') : '<li class="empty">No meals logged yet.</li>'}</ul>
+    </section>
+    <section class="surface section">
+      <div class="section-title"><h2>History</h2><span class="status-pill">14 days</span></div>
+      <ul class="plain-list">${history.length ? history.map(day => `<li class="meal-row"><div><div class="item-title">${esc(shortDate(day.date))}</div><div class="anchor-metrics">${esc(macroValue(day.calories, 'kcal'))} · ${esc(macroValue(day.protein_g))} protein · ${esc(day.meal_count)} meals</div></div><span class="status-pill">${esc(day.pending_count || 0)} pending</span></li>`).join('') : '<li class="empty">No macro history yet.</li>'}</ul>
+    </section>`;
+  document.getElementById('foodCapture')?.addEventListener('click', () => {
+    state.selectedIntent = 'meal';
+    state.captureInputMethod = 'text';
+    setTab('capture');
+  });
+}
+function renderMacroTile(label, value) {
+  return `<div class="macro-tile"><b>${esc(value)}</b><span>${esc(label)}</span></div>`;
+}
+function renderMealRow(meal) {
+  const status = meal.needs_review ? 'estimate' : (meal.confidence || 'logged');
+  const macros = meal.needs_review
+    ? 'Pending macro estimate'
+    : `${macroValue(meal.calories, 'kcal')} · ${macroValue(meal.protein_g)} protein`;
+  return `<li class="meal-row"><div><div class="item-title">${esc(meal.description || 'Meal')}</div><div class="anchor-metrics">${esc(macros)} · ${esc(meal.input_method || 'text')}</div></div><span class="status-pill">${esc(status)}</span></li>`;
+}
 function renderCapture() {
   const today = state.today;
   const capture = today?.capture || {};
@@ -596,6 +673,12 @@ function renderCapture() {
     <section class="surface capture-card">
       <div class="row"><div><div class="kicker">Capture</div><h2>Quick log</h2></div><span class="status-pill">${esc(selected.label || 'Event')}</span></div>
       <div class="segmented capture-intents" role="tablist" aria-label="Capture type">${actions.map(action => `<button class="segmented-button ${state.selectedIntent === action.intent ? 'active' : ''}" type="button" data-intent="${esc(action.intent)}">${esc(action.label)}</button>`).join('')}</div>
+      <div class="capture-tools">
+        <button class="secondary" id="voiceButton" type="button">Dictate</button>
+        <label class="secondary" for="mealPhotoInput">Photo</label>
+        <input id="mealPhotoInput" type="file" accept="image/*" capture="environment" aria-label="Meal photo">
+      </div>
+      <div class="photo-status" id="photoStatus">${esc(state.pendingPhotoLabel || '')}</div>
       <textarea id="captureText" placeholder="${esc(capture.primary_prompt || 'What happened today?')}" aria-label="Health note"></textarea>
       <button class="primary" id="submitCapture" type="button" aria-label="Log health note">Log</button>
       <details class="quick-drawer"><summary>Quick fill</summary><div class="quick-note">${examples.map(example => `<button class="segmented-button" type="button" data-example="${esc(example)}">${esc(example)}</button>`).join('')}</div></details>
@@ -610,25 +693,78 @@ function renderCapture() {
     input.value = button.dataset.example || '';
     input.focus();
   }));
+  document.getElementById('voiceButton')?.addEventListener('click', startDictation);
+  document.getElementById('mealPhotoInput')?.addEventListener('change', handleMealPhoto);
   document.getElementById('submitCapture')?.addEventListener('click', submitCapture);
+}
+function startDictation() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const input = document.getElementById('captureText');
+  if (!SpeechRecognition || !input) {
+    state.captureInputMethod = 'voice';
+    input?.focus();
+    showToast('Use keyboard dictation');
+    return;
+  }
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript || '';
+    input.value = `${input.value ? `${input.value} ` : ''}${transcript}`.trim();
+    state.captureInputMethod = 'voice';
+  };
+  recognition.onerror = () => showToast('Dictation unavailable');
+  recognition.start();
+}
+function handleMealPhoto(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  if (file.size > 6 * 1024 * 1024) {
+    showToast('Photo is too large');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    state.pendingPhotoDataUrl = String(reader.result || '');
+    state.pendingPhotoLabel = `${file.name || 'meal photo'} attached`;
+    state.captureInputMethod = 'photo';
+    state.selectedIntent = 'meal';
+    renderCapture();
+  };
+  reader.onerror = () => showToast('Photo unavailable');
+  reader.readAsDataURL(file);
 }
 async function submitCapture() {
   const input = document.getElementById('captureText');
   const text = input?.value.trim() || '';
-  if (!text) {
+  if (!text && !(state.selectedIntent === 'meal' && state.pendingPhotoDataUrl)) {
     showToast('Add a note first');
     input?.focus();
     return;
   }
+  const fields = {};
+  if (state.selectedIntent === 'meal') {
+    fields.input_method = state.captureInputMethod || (state.pendingPhotoDataUrl ? 'photo' : 'text');
+    if (state.pendingPhotoDataUrl) {
+      fields.photo_data_url = state.pendingPhotoDataUrl;
+      fields.estimate_required = true;
+    }
+  }
+  const submittedIntent = state.selectedIntent;
   try {
     const result = await getJSON('/api/mobile/capture', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ intent: state.selectedIntent, text, source: 'pwa', fields: {} }),
+      body: JSON.stringify({ intent: state.selectedIntent, text, source: 'pwa', fields }),
     });
     showToast(result.summary || 'Logged');
+    state.pendingPhotoDataUrl = null;
+    state.pendingPhotoLabel = '';
+    state.captureInputMethod = 'text';
     await load();
-    setTab('today');
+    setTab(submittedIntent === 'meal' ? 'food' : 'today');
   } catch (error) {
     if (error.message !== 'Unlock required') showToast(error.message);
   }
@@ -699,7 +835,7 @@ document.getElementById('unlockForm').addEventListener('submit', async event => 
     showToast('Unlock failed');
   }
 });
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=3').catch(() => {});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=4').catch(() => {});
 setTab(state.tab);
 load();
 </script>
@@ -726,7 +862,7 @@ def render_manifest() -> str:
 
 
 def render_service_worker() -> str:
-    return """const CACHE = 'health-companion-v3';
+    return """const CACHE = 'health-companion-v4';
 const ASSETS = ['/app', '/app/manifest.webmanifest', '/app/icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));

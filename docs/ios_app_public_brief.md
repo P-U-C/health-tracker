@@ -1,7 +1,7 @@
 # Health App Public Brief: From Dashboard to iOS Companion
 
 Date: 2026-09-22
-Last updated: 2026-09-23 - Body composition tab and compact capture pass shipped.
+Last updated: 2026-09-23 - Food/macros, meal photo, and voice capture slice shipped.
 Owner: Chad / zoz
 Repo: public GitHub repo `P-U-C/health-tracker` — https://github.com/P-U-C/health-tracker
 Local path: `/home/ubuntu/health`
@@ -70,6 +70,7 @@ The core loop should be:
 - Labs template: `data/templates/labs_template.csv`
 - Strength log template: `data/templates/strength_log_template.csv`
 - Events/manual readings templates: `data/templates/events_template.csv`, `data/templates/readings_template.csv`
+- Meal-level nutrition logs: `nutrition_logs` table, with local ignored meal photos under `data/imports/nutrition/photos/`
 
 ### Product and Protocol Documents
 
@@ -106,17 +107,19 @@ The core loop should be:
 
 The app-oriented backend, installable phone web app, and SwiftUI scaffold are now implemented and public:
 
-- `GET /app` serves an installable iPhone web app/PWA for immediate phone use. The current phone shell has Today, Body, Capture, and Context tabs.
-- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching. The worker is registered as `/app/service-worker.js?v=3` and served with `Cache-Control: no-store, max-age=0` to avoid stale phone shells.
+- `GET /app` serves an installable iPhone web app/PWA for immediate phone use. The current phone shell has Today, Body, Food, Capture, and Context tabs.
+- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching. The worker is registered as `/app/service-worker.js?v=4` and served with `Cache-Control: no-store, max-age=0` to avoid stale phone shells.
 - `POST /api/mobile/session` creates a signed, HTTP-only phone session cookie from dashboard credentials or an app token.
 - `core/mobile.py` builds the compact Today contract and Claude/ChatGPT context packet from the existing deterministic dashboard model.
-- `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, BodyStats/DEXA body-composition block, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
-- `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff, now including the latest DEXA/body-composition summary.
-- `POST /api/mobile/capture` logs phone captures into the existing `strength_sets`, `events`, `readings`, and `overrides` tables behind bearer auth.
+- `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, BodyStats/DEXA body-composition block, Food/macros summary, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
+- `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff, now including the latest DEXA/body-composition and nutrition/macro summary.
+- `POST /api/mobile/capture` logs phone captures into the existing `strength_sets`, `events`, `readings`, and `overrides` tables, plus the new `nutrition_logs` table for meals/macros, behind bearer auth.
 - `GET /api/mobile/links` returns configured Claude/ChatGPT project links behind bearer auth; the public Today route does not expose private chat URLs.
 - `ios/HealthCompanion/` contains a SwiftUI scaffold with Today, Progress, Tripwires, Capture, and Context tabs.
 - The PWA Body tab now shows a BodyStats-style DEXA hero, body-fat sparkline, fat/lean/VAT tiles, DEXA anchors, estimate tiles, and prior-scan deltas.
-- The PWA Capture tab now keeps intent selection, text entry, and Log button above the fold with a 3x2 intent grid; examples are tucked behind a Quick fill drawer.
+- The PWA Food tab now shows today's protein, calories, carbs, fat, recent meals, 14-day macro history, and pending macro-estimate count.
+- The PWA Capture tab now keeps intent selection, text entry, and Log button above the fold with a compact intent grid; examples are tucked behind a Quick fill drawer.
+- The PWA Capture tab now supports meal photo attachment through the phone camera/file picker and progressive voice dictation; photo/freeform meals are stored as `pending_estimate` rather than inventing macros.
 - The native Capture tab scaffold has token entry, intent picker, submit state, examples, and recent-capture rendering.
 - The Context tab now has share support and locally stored Claude/ChatGPT project/chat links.
 - `ReminderScheduler.swift` adds the local notification scaffold for not-done items and tripwire reviews.
@@ -142,6 +145,16 @@ Verification:
 - Live `/app` returned 200 and includes the Body tab, `renderBody`, the compact capture intent grid, and `service-worker.js?v=3`.
 - Live `/app/service-worker.js?v=3` returned 200 with `health-companion-v3`, `Cache-Control: no-store, max-age=0`, and Cloudflare `cf-cache-status: BYPASS`.
 - Chromium 390x844 screenshots reviewed after deployment for Body and Capture.
+
+2026-09-23 Food/Macros phone pass:
+
+- `uv run pytest tests/test_mobile_app_contract.py -q` -> 9 passed.
+- `uv run pytest -q` -> 21 passed.
+- `python3 -m compileall -q core api tests` -> passed.
+- `nutrition_logs` added as the meal-level history table; `nutrition_daily` remains legacy aggregate/import surface.
+- Meal captures with explicit calories/protein/carbs/fat write structured macros immediately.
+- Photo/freeform meal captures save locally ignored photo references and enter `pending_estimate` for LLM or human review.
+- Live `/app` includes the Food tab, camera capture input, voice dictation button, and `service-worker.js?v=4`.
 
 ## 3. What Is Not Working
 
@@ -381,6 +394,7 @@ Private/do not publish:
 - Raw DEXA PDFs/text.
 - BodyStats cookies/session artifacts.
 - Raw Claude/ChatGPT health conversations.
+- Raw meal photos and unreviewed meal descriptions.
 - Genetic raw files.
 - Exact private medical values unless Chad explicitly chooses to publish them.
 
@@ -390,15 +404,16 @@ Do not redesign the web dashboard first. Use the installable `/app` phone surfac
 
 Already done in the backend/app slices:
 
-1. Installable phone web app at `/app` with Today / Capture / Context / More tabs.
+1. Installable phone web app at `/app` with Today / Body / Food / Capture / Context tabs.
 2. Signed phone session cookie flow via `/api/mobile/session`; no raw token has to live in browser storage.
 3. SwiftUI shell with Today / Progress / Tripwires / Capture / Context tabs.
 4. Explicit `/api/mobile/today` endpoint that returns only what the app needs.
 5. `/api/mobile/context` endpoint that produces Claude/ChatGPT-ready Markdown.
-6. Authenticated `/api/mobile/capture` writes for events, sets, overrides, readings, symptoms, and phase decisions.
+6. Authenticated `/api/mobile/capture` writes for events, sets, overrides, readings, symptoms, phase decisions, and meals/macros.
 7. Local notification scheduler scaffold for Not Done Today and tripwire review dates.
 8. Share/deep-link scaffolding for Claude and ChatGPT using the context packet.
-9. Public tunnel routing and tests for the mobile contract.
+9. Food/Macros tab backed by `nutrition_logs`, text/voice/photo meal capture, and pending estimate queue.
+10. Public tunnel routing and tests for the mobile contract.
 
 Next build:
 

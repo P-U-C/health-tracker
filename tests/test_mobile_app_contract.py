@@ -54,6 +54,9 @@ def test_mobile_today_contract_prioritizes_protocol_actions(tmp_path: Path) -> N
     assert today["capture"]["write_status"] == "enabled"
     assert today["capture"]["endpoint"] == "/api/mobile/capture"
     assert today["capture"]["auth_required"] is True
+    assert "meal" in today["capture"]["intents"]
+    assert today["nutrition"]["targets"]["protein_floor_g"] == 137.0
+    assert today["nutrition"]["today"]["meal_count"] == 0
     assert "context_packet" in today["review_links"]
 
 
@@ -67,6 +70,8 @@ def test_mobile_context_packet_is_chat_ready(tmp_path: Path) -> None:
     assert "## Current Phase" in packet
     assert "## Body Composition" in packet
     assert "DEXA body fat: 17.0 %" in packet
+    assert "## Nutrition" in packet
+    assert "Protein floor: 137.0 g" in packet
     assert "## Not Done Today" in packet
     assert "## Active Tripwire" in packet
     assert "Use deterministic tripwires as authority" in packet
@@ -106,15 +111,18 @@ def test_mobile_pwa_routes_render_installable_shell(tmp_path: Path, monkeypatch)
     assert "viewport-fit=cover" in app_response.text
     assert "height: 100dvh" in app_response.text
     assert "data-tab=\"body\"" in app_response.text
+    assert "data-tab=\"food\"" in app_response.text
     assert "data-tab=\"capture\"" in app_response.text
     assert "renderBody" in app_response.text
+    assert "renderFood" in app_response.text
+    assert "capture=\"environment\"" in app_response.text
     assert "aria-label=\"Log health note\"" in app_response.text
-    assert "service-worker.js?v=3" in app_response.text
+    assert "service-worker.js?v=4" in app_response.text
     assert "Unlock capture" in app_response.text
     assert manifest_response.status_code == 200
     assert manifest_response.json()["display"] == "standalone"
     assert worker_response.status_code == 200
-    assert "health-companion-v3" in worker_response.text
+    assert "health-companion-v4" in worker_response.text
     assert icon_response.status_code == 200
     assert "<svg" in icon_response.text
 
@@ -224,3 +232,59 @@ def test_mobile_capture_logs_reading_and_override(tmp_path: Path, monkeypatch) -
         conn.close()
     assert reading == ("weight", 81.2, "kg")
     assert override_count == 1
+
+
+def test_mobile_capture_logs_meal_macros_and_photo_queue(tmp_path: Path, monkeypatch) -> None:
+    db = tmp_path / "health.duckdb"
+    _seed_mobile_db(db)
+    monkeypatch.setenv("HEALTH_DB", str(db))
+    monkeypatch.setenv("HEALTH_APP_TOKEN", "app-token")
+    client = TestClient(app)
+
+    macro_response = client.post(
+        "/api/mobile/capture",
+        json={"intent": "meal", "text": "Meal 620 kcal protein 48g carbs 55g fat 18g"},
+        headers={"Authorization": "Bearer app-token"},
+    )
+    photo_response = client.post(
+        "/api/mobile/capture",
+        json={
+            "intent": "meal",
+            "text": "salmon bowl photo",
+            "fields": {"input_method": "photo", "photo_data_url": "data:image/png;base64,aGk="},
+        },
+        headers={"Authorization": "Bearer app-token"},
+    )
+
+    assert macro_response.status_code == 200
+    assert macro_response.json()["stored_as"] == "nutrition_logs"
+    assert macro_response.json()["needs_review"] is False
+    assert photo_response.status_code == 200
+    assert photo_response.json()["stored_as"] == "nutrition_logs"
+    assert photo_response.json()["needs_review"] is True
+    assert photo_response.json()["llm_status"] == "pending_estimate"
+    assert photo_response.json()["photo_ref"]
+
+    conn = connect(db)
+    try:
+        rows = conn.execute(
+            """
+            SELECT description, calories, protein_g, carbs_g, fat_g, input_method, needs_review, llm_status, photo_ref
+            FROM nutrition_logs
+            ORDER BY needs_review, description
+            """
+        ).fetchall()
+    finally:
+        conn.close()
+
+    assert rows[0][:5] == ("620 kcal protein 48g carbs 55g fat 18g", 620.0, 48.0, 55.0, 18.0)
+    assert rows[0][5:8] == ("text", False, "not_needed")
+    assert rows[1][0] == "salmon bowl photo"
+    assert rows[1][5:8] == ("photo", True, "pending_estimate")
+    assert rows[1][8].endswith(".png")
+
+    today = build_today_model(db)
+    assert today["nutrition"]["today"]["meal_count"] == 2
+    assert today["nutrition"]["today"]["protein_g"] == 48.0
+    assert today["nutrition"]["pending_estimates"] == 1
+    assert any(item["source"] == "meal" for item in today["recent_capture"])

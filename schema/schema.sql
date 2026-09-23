@@ -26,6 +26,11 @@ CREATE TABLE IF NOT EXISTS nutrition_daily  (
   import_id TEXT PRIMARY KEY, date DATE, calcium_mg DOUBLE, calories DOUBLE, carbs_g DOUBLE, cholesterol_mg DOUBLE,
   fat_g DOUBLE, fiber_g DOUBLE, iron_mg DOUBLE, mono_fat_g DOUBLE, poly_fat_g DOUBLE, potassium_mg DOUBLE,
   protein_g DOUBLE, sat_fat_g DOUBLE, sodium_mg DOUBLE, sugar_g DOUBLE, vitamin_c_mg DOUBLE, notes TEXT);
+CREATE TABLE IF NOT EXISTS nutrition_logs (
+  meal_id TEXT PRIMARY KEY, occurred_at TIMESTAMP, local_date DATE, source TEXT, input_method TEXT,
+  description TEXT, photo_ref TEXT,
+  calories DOUBLE, protein_g DOUBLE, carbs_g DOUBLE, fat_g DOUBLE, fiber_g DOUBLE, sugar_g DOUBLE, sodium_mg DOUBLE,
+  confidence TEXT, needs_review BOOLEAN, llm_status TEXT, llm_model TEXT, raw_json TEXT, notes TEXT);
 CREATE TABLE IF NOT EXISTS readings (ts TIMESTAMP, source TEXT, metric TEXT, value DOUBLE, unit TEXT, notes TEXT, PRIMARY KEY (ts, source, metric)); -- manual / chest strap / BP cuff
 
 -- ---------- Tier 1: ground truth ----------

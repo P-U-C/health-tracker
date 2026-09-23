@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import base64
+import binascii
 import hashlib
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,8 +15,9 @@ from core.schema import DEFAULT_DB, connect, load_schema
 from ingest.hae_rest import parse_datetime, stable_id, to_float
 
 VANCOUVER = ZoneInfo("America/Vancouver")
-SUPPORTED_INTENTS = {"strength_set", "event", "manual_reading", "override", "symptom", "phase_decision"}
+SUPPORTED_INTENTS = {"strength_set", "event", "manual_reading", "override", "symptom", "phase_decision", "meal"}
 REST_WORDS = {"rest", "rested", "off", "skip", "skipped"}
+PHOTO_MAX_BYTES = 6 * 1024 * 1024
 
 
 class CaptureError(ValueError):
@@ -35,11 +39,14 @@ def log_mobile_capture(payload: dict[str, Any], db_path: str | Path = DEFAULT_DB
     occurred_at = _capture_time(payload.get("occurred_at"), now)
     source = _clean_source(payload.get("source"))
 
+    db_path = Path(db_path)
     conn = connect(db_path)
     try:
         load_schema(conn)
         if intent == "strength_set":
             result = _log_strength(conn, text, fields, occurred_at, source)
+        elif intent == "meal":
+            result = _log_meal(conn, text, fields, occurred_at, source, db_path)
         elif intent == "manual_reading":
             result = _log_reading(conn, text, fields, occurred_at, source)
         elif intent == "override":
@@ -97,6 +104,78 @@ def _log_strength(conn, text: str, fields: dict[str, Any], occurred_at: datetime
         "ids": ids,
         "needs_review": False,
         "summary": f"Logged {sets}x{reps} {exercise}" + (f" at {load_kg:g} kg" if load_kg is not None else ""),
+    }
+
+
+def _log_meal(conn, text: str, fields: dict[str, Any], occurred_at: datetime, source: str, db_path: Path) -> dict[str, Any]:
+    parsed = _parse_meal(text, fields)
+    photo_ref = _save_meal_photo(fields.get("photo_data_url") or fields.get("photo"), fields, occurred_at, source, db_path)
+    description = str(fields.get("description") or _strip_prefix(text, "meal") or text or "").strip()
+    if not description and photo_ref:
+        description = "Photo meal capture"
+    if not description and not photo_ref:
+        return _needs_review("meal", ["description"], "Need meal text or a photo before logging nutrition.")
+
+    macro_keys = ("calories", "protein_g", "carbs_g", "fat_g", "fiber_g", "sugar_g", "sodium_mg")
+    has_macros = any(parsed.get(key) is not None for key in macro_keys)
+    needs_review = not has_macros
+    input_method = str(fields.get("input_method") or ("photo" if photo_ref else "text")).strip().lower()
+    confidence = str(fields.get("confidence") or ("user_supplied" if has_macros else "pending")).strip()
+    llm_status = str(fields.get("llm_status") or ("not_needed" if has_macros else "pending_estimate")).strip()
+    meal_id = stable_id("mobile", "nutrition_logs", occurred_at.isoformat(), description, photo_ref or "", source)
+    raw_json = json.dumps(
+        {
+            "text": text,
+            "fields": {key: value for key, value in fields.items() if key not in {"photo", "photo_data_url"}},
+            "parsed": parsed,
+        },
+        sort_keys=True,
+        default=str,
+    )
+
+    conn.execute("DELETE FROM nutrition_logs WHERE meal_id = ?", [meal_id])
+    conn.execute(
+        """
+        INSERT INTO nutrition_logs (
+          meal_id, occurred_at, local_date, source, input_method, description, photo_ref,
+          calories, protein_g, carbs_g, fat_g, fiber_g, sugar_g, sodium_mg,
+          confidence, needs_review, llm_status, llm_model, raw_json, notes
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        [
+            meal_id,
+            occurred_at,
+            occurred_at.date(),
+            source,
+            input_method,
+            description,
+            photo_ref,
+            parsed.get("calories"),
+            parsed.get("protein_g"),
+            parsed.get("carbs_g"),
+            parsed.get("fat_g"),
+            parsed.get("fiber_g"),
+            parsed.get("sugar_g"),
+            parsed.get("sodium_mg"),
+            confidence,
+            needs_review,
+            llm_status,
+            fields.get("llm_model"),
+            raw_json,
+            fields.get("notes"),
+        ],
+    )
+    return {
+        "ok": True,
+        "intent": "meal",
+        "stored_as": "nutrition_logs",
+        "records_written": 1,
+        "ids": [meal_id],
+        "needs_review": needs_review,
+        "summary": _meal_summary(parsed, needs_review),
+        "llm_status": llm_status,
+        "photo_ref": photo_ref,
     }
 
 
@@ -234,6 +313,85 @@ def _parse_reading(text: str, fields: dict[str, Any]) -> dict[str, Any]:
     if match:
         result.update(match.groupdict())
     return result
+
+
+def _parse_meal(text: str, fields: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "calories": _macro_value(text, fields, ("calories", "kcal"), r"(?:kcal|calories|cals?|cal)\b"),
+        "protein_g": _macro_value(text, fields, ("protein_g", "protein"), r"(?:protein|prot)\b", shorthand="p"),
+        "carbs_g": _macro_value(text, fields, ("carbs_g", "carbs", "carbohydrates"), r"(?:carbs?|carbohydrates?)\b", shorthand="c"),
+        "fat_g": _macro_value(text, fields, ("fat_g", "fat"), r"\bfat\b", shorthand="f"),
+        "fiber_g": _macro_value(text, fields, ("fiber_g", "fiber", "fibre"), r"(?:fiber|fibre)\b"),
+        "sugar_g": _macro_value(text, fields, ("sugar_g", "sugar"), r"\bsugar\b"),
+        "sodium_mg": _macro_value(text, fields, ("sodium_mg", "sodium"), r"\bsodium\b", unit="mg"),
+    }
+
+
+def _macro_value(text: str, fields: dict[str, Any], field_names: tuple[str, ...], label_pattern: str, shorthand: str | None = None, unit: str = "g") -> float | None:
+    for name in field_names:
+        value = to_float(fields.get(name))
+        if value is not None:
+            return value
+    if not text:
+        return None
+    number = r"(?P<value>-?\d+(?:\.\d+)?)"
+    patterns = [
+        rf"{label_pattern}\s*[:=]?\s*{number}\s*{unit}?",
+        rf"{number}\s*{unit}\s*{label_pattern}",
+    ]
+    if unit == "mg":
+        patterns.insert(0, rf"{number}\s*mg\s*{label_pattern}")
+    elif label_pattern.startswith("(?:kcal"):
+        patterns = [rf"{number}\s*(?:kcal|calories|cals?|cal)\b", rf"(?:kcal|calories|cals?|cal)\s*[:=]?\s*{number}"]
+    if shorthand:
+        patterns.append(rf"\b{number}\s*{re.escape(shorthand)}\b")
+    for pattern in patterns:
+        if match := re.search(pattern, text, flags=re.IGNORECASE):
+            return float(match.group("value"))
+    return None
+
+
+def _save_meal_photo(data_url: Any, fields: dict[str, Any], occurred_at: datetime, source: str, db_path: Path) -> str | None:
+    if not data_url:
+        return None
+    payload = str(data_url)
+    match = re.match(r"^data:(?P<mime>image/(?:jpeg|jpg|png|webp));base64,(?P<data>.+)$", payload, flags=re.IGNORECASE | re.DOTALL)
+    if not match:
+        raise CaptureError("meal photo must be a data URL image")
+    try:
+        raw = base64.b64decode(match.group("data"), validate=True)
+    except (binascii.Error, ValueError) as exc:
+        raise CaptureError("meal photo is not valid base64") from exc
+    if len(raw) > PHOTO_MAX_BYTES:
+        raise CaptureError("meal photo is too large")
+    mime = match.group("mime").lower()
+    ext = {"image/jpeg": "jpg", "image/jpg": "jpg", "image/png": "png", "image/webp": "webp"}[mime]
+    digest = hashlib.sha256(raw).hexdigest()
+    safe_source = _clean_source(source)
+    root = Path(os.getenv("HEALTH_NUTRITION_PHOTO_DIR") or (db_path.parent / "imports" / "nutrition" / "photos"))
+    root.mkdir(parents=True, exist_ok=True)
+    filename = f"{occurred_at.date().isoformat()}_{safe_source}_{digest[:20]}.{ext}"
+    target = root / filename
+    target.write_bytes(raw)
+    try:
+        return str(target.relative_to(db_path.parent))
+    except ValueError:
+        return str(target)
+
+
+def _meal_summary(parsed: dict[str, Any], needs_review: bool) -> str:
+    if needs_review:
+        return "Saved meal for macro estimate"
+    parts = []
+    if parsed.get("calories") is not None:
+        parts.append(f"{parsed['calories']:g} kcal")
+    if parsed.get("protein_g") is not None:
+        parts.append(f"{parsed['protein_g']:g} g protein")
+    if parsed.get("carbs_g") is not None:
+        parts.append(f"{parsed['carbs_g']:g} g carbs")
+    if parsed.get("fat_g") is not None:
+        parts.append(f"{parsed['fat_g']:g} g fat")
+    return "Logged meal: " + ", ".join(parts or ["macros"])
 
 
 def _guess_exercise(text: str) -> str:

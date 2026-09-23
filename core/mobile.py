@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -30,6 +30,7 @@ def build_today_model(db_path: str | Path = DEFAULT_DB) -> dict[str, Any]:
         "phase": _phase(goal),
         "progress": _progress(hero, goal),
         "body": _body_composition(dashboard.get("body") or {}, hero),
+        "nutrition": _nutrition_summary(db_path, today),
         "not_done_today": _not_done_today(dashboard, attention_tripwires, _has_strength_or_rest_today(db_path, today)),
         "tripwire": _top_tripwire(attention_tripwires),
         "next_action": _next_action(dashboard.get("intervention") or {}),
@@ -48,6 +49,8 @@ def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
     progress = today.get("progress") or {}
     body = today.get("body") or {}
     body_summary = body.get("summary") or {}
+    nutrition = today.get("nutrition") or {}
+    nutrition_totals = nutrition.get("today") or {}
     next_action = today.get("next_action") or {}
     tripwire = today.get("tripwire")
     not_done = today.get("not_done_today") or []
@@ -77,6 +80,11 @@ def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
         f"- DEXA lean + BMC: {_format_value(body_summary.get('lean_bmc_kg'), 'kg')}",
         f"- DEXA fat mass: {_format_value(body_summary.get('fat_mass_kg'), 'kg')}",
         f"- VAT: {_format_value(body_summary.get('vat_mass_g'), 'g')}",
+        "",
+        "## Nutrition",
+        f"- Today: {_format_value(nutrition_totals.get('calories'), 'kcal')}, protein {_format_value(nutrition_totals.get('protein_g'), 'g')}",
+        f"- Protein floor: {_format_value(nutrition.get('targets', {}).get('protein_floor_g'), 'g')}",
+        f"- Pending estimates: {nutrition.get('pending_estimates', 0)}",
         "",
         "## Not Done Today",
     ]
@@ -205,6 +213,98 @@ def _body_composition(body: dict[str, Any], hero: dict[str, Any]) -> dict[str, A
     }
 
 
+def _nutrition_summary(db_path: str | Path, today: date) -> dict[str, Any]:
+    protein_floor_g = 137.0
+    history_cutoff = today - timedelta(days=13)
+    conn = _open_mobile_read_conn(db_path)
+    try:
+        totals = conn.execute(
+            """
+            SELECT
+              COALESCE(SUM(calories), 0),
+              COALESCE(SUM(protein_g), 0),
+              COALESCE(SUM(carbs_g), 0),
+              COALESCE(SUM(fat_g), 0),
+              COALESCE(SUM(fiber_g), 0),
+              COALESCE(SUM(sugar_g), 0),
+              COUNT(*),
+              COALESCE(SUM(CASE WHEN needs_review THEN 1 ELSE 0 END), 0)
+            FROM nutrition_logs
+            WHERE local_date = ?
+            """,
+            [today],
+        ).fetchone()
+        recent_rows = conn.execute(
+            """
+            SELECT meal_id, occurred_at, local_date, input_method, description, photo_ref,
+                   calories, protein_g, carbs_g, fat_g, fiber_g, sugar_g, sodium_mg,
+                   confidence, needs_review, llm_status
+            FROM nutrition_logs
+            ORDER BY occurred_at DESC
+            LIMIT 8
+            """
+        ).fetchall()
+        history_rows = conn.execute(
+            """
+            SELECT local_date, COALESCE(SUM(calories), 0), COALESCE(SUM(protein_g), 0),
+                   COALESCE(SUM(carbs_g), 0), COALESCE(SUM(fat_g), 0), COUNT(*),
+                   COALESCE(SUM(CASE WHEN needs_review THEN 1 ELSE 0 END), 0)
+            FROM nutrition_logs
+            WHERE local_date >= ?
+            GROUP BY local_date
+            ORDER BY local_date DESC
+            LIMIT 14
+            """,
+            [history_cutoff],
+        ).fetchall()
+    finally:
+        conn.close()
+
+    protein_g = float(totals[1] or 0)
+    remaining = max(protein_floor_g - protein_g, 0)
+    return {
+        "today": {
+            "date": today.isoformat(),
+            "calories": _none_if_zero(totals[0]),
+            "protein_g": _none_if_zero(totals[1]),
+            "carbs_g": _none_if_zero(totals[2]),
+            "fat_g": _none_if_zero(totals[3]),
+            "fiber_g": _none_if_zero(totals[4]),
+            "sugar_g": _none_if_zero(totals[5]),
+            "meal_count": int(totals[6] or 0),
+            "pending_count": int(totals[7] or 0),
+        },
+        "targets": {
+            "protein_floor_g": protein_floor_g,
+            "calorie_target": None,
+            "source": "playbook protein floor; calories remain phase-dependent",
+        },
+        "protein": {
+            "status": "met" if protein_g >= protein_floor_g else ("not_logged" if protein_g == 0 else "open"),
+            "remaining_g": round(remaining, 1),
+        },
+        "pending_estimates": int(totals[7] or 0),
+        "recent": [_nutrition_entry(row) for row in recent_rows],
+        "history": [
+            {
+                "date": row[0].isoformat() if hasattr(row[0], "isoformat") else str(row[0]),
+                "calories": _none_if_zero(row[1]),
+                "protein_g": _none_if_zero(row[2]),
+                "carbs_g": _none_if_zero(row[3]),
+                "fat_g": _none_if_zero(row[4]),
+                "meal_count": int(row[5] or 0),
+                "pending_count": int(row[6] or 0),
+            }
+            for row in history_rows
+        ],
+        "llm": {
+            "status": "queue_ready",
+            "pending_route": "/api/mobile/capture",
+            "review_note": "Entries without macros are stored as pending_estimate for LLM or human review.",
+        },
+    }
+
+
 def _not_done_today(dashboard: dict[str, Any], tripwires: list[dict[str, Any]], strength_or_rest_today: bool) -> list[dict[str, str]]:
     goal = dashboard.get("goal") or {}
     freshness = dashboard.get("freshness") or {}
@@ -281,6 +381,8 @@ def _capture_contract() -> dict[str, Any]:
         "endpoint": "/api/mobile/capture",
         "auth_required": True,
         "examples": [
+            "Meal: chicken bowl double protein, rice, black beans",
+            "Meal 620 kcal protein 48g carbs 55g fat 18g",
             "KB press 24 kg 3x8 RPE 8",
             "Rest day; sleep debt and HRV strain",
             "Skipped swim; fatigue and heat after lifting",
@@ -289,6 +391,7 @@ def _capture_contract() -> dict[str, Any]:
             "weight 81.2 kg",
         ],
         "quick_actions": [
+            {"intent": "meal", "label": "Meal"},
             {"intent": "strength_set", "label": "Strength"},
             {"intent": "event", "label": "Event"},
             {"intent": "manual_reading", "label": "Reading"},
@@ -296,7 +399,7 @@ def _capture_contract() -> dict[str, Any]:
             {"intent": "symptom", "label": "Symptom"},
             {"intent": "phase_decision", "label": "Phase"},
         ],
-        "intents": ["strength_set", "event", "manual_reading", "override", "symptom", "phase_decision"],
+        "intents": ["meal", "strength_set", "event", "manual_reading", "override", "symptom", "phase_decision"],
         "write_status": "enabled",
     }
 
@@ -386,6 +489,24 @@ def _recent_capture(db_path: str | Path, limit: int = 5) -> list[dict[str, str]]
         rows.extend(
             {
                 "occurred_at": row[0],
+                "source": "meal",
+                "title": "meal",
+                "detail": _meal_detail(row[1], row[2], row[3], row[4]),
+            }
+            for row in conn.execute(
+                """
+                SELECT occurred_at, description, calories, protein_g, needs_review
+                FROM nutrition_logs
+                WHERE occurred_at IS NOT NULL
+                ORDER BY occurred_at DESC
+                LIMIT ?
+                """,
+                [limit],
+            ).fetchall()
+        )
+        rows.extend(
+            {
+                "occurred_at": row[0],
                 "source": "strength_set",
                 "title": str(row[1] or "strength"),
                 "detail": f"{row[2]} reps" + (f" at {row[3]:g} kg" if row[3] is not None else ""),
@@ -451,3 +572,40 @@ def _format_value(value: Any, unit: Any) -> str:
     if value is None:
         return "not available"
     return f"{value} {unit or ''}".strip()
+
+
+def _none_if_zero(value: Any) -> float | None:
+    number = float(value or 0)
+    return None if number == 0 else round(number, 2)
+
+
+def _nutrition_entry(row: tuple[Any, ...]) -> dict[str, Any]:
+    return {
+        "id": str(row[0]),
+        "occurred_at": row[1].isoformat() if hasattr(row[1], "isoformat") else str(row[1]),
+        "date": row[2].isoformat() if hasattr(row[2], "isoformat") else str(row[2]),
+        "input_method": str(row[3] or "text"),
+        "description": str(row[4] or "Meal"),
+        "photo_ref": row[5],
+        "calories": row[6],
+        "protein_g": row[7],
+        "carbs_g": row[8],
+        "fat_g": row[9],
+        "fiber_g": row[10],
+        "sugar_g": row[11],
+        "sodium_mg": row[12],
+        "confidence": row[13],
+        "needs_review": bool(row[14]),
+        "llm_status": row[15],
+    }
+
+
+def _meal_detail(description: Any, calories: Any, protein_g: Any, needs_review: Any) -> str:
+    if needs_review:
+        return f"{description or 'Meal'} - pending macro estimate"
+    parts = [str(description or "Meal")]
+    if calories is not None:
+        parts.append(f"{calories:g} kcal")
+    if protein_g is not None:
+        parts.append(f"{protein_g:g} g protein")
+    return " - ".join(parts)

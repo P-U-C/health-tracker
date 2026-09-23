@@ -8,7 +8,7 @@ This document defines the first iOS-facing contract for the Health Companion app
 
 ### `GET /app`
 
-Returns the installable phone web app shell. It is designed for iPhone Safari and can be added to the home screen. The shell uses the same mobile API contract as the SwiftUI scaffold, with Today, Body, Capture, and Context tabs.
+Returns the installable phone web app shell. It is designed for iPhone Safari and can be added to the home screen. The shell uses the same mobile API contract as the SwiftUI scaffold, with Today, Body, Food, Capture, and Context tabs.
 
 Supporting install routes:
 
@@ -29,6 +29,7 @@ Top-level fields:
 - `phase`: current phase title, status, day count, next anchor, and open decision.
 - `progress`: the primary phase progress metric, target band, rate, DEXA snapshot, and current DEXA-anchored estimate summary.
 - `body`: BodyStats/DEXA-oriented composition payload with latest scan summary, selected metrics, DEXA anchors, body-fat chart points, and prior-scan deltas.
+- `nutrition`: meal-level macro summary with today's totals, protein floor, recent meals, 14-day history, and pending LLM/human estimate count.
 - `not_done_today`: a short list of open adherence/reminder items.
 - `tripwire`: the highest-priority active tripwire, or `null`.
 - `next_action`: one prioritized action derived from deterministic tripwires.
@@ -49,7 +50,7 @@ Returns:
 }
 ```
 
-This packet is designed to paste or share into Claude or ChatGPT. It includes current phase, progress, body composition, not-done list, active tripwire, next action, and analyst rules. It is a curated packet, not a raw health-data export.
+This packet is designed to paste or share into Claude or ChatGPT. It includes current phase, progress, body composition, nutrition/macros, not-done list, active tripwire, next action, and analyst rules. It is a curated packet, not a raw health-data export.
 
 ### `POST /api/mobile/capture`
 
@@ -70,6 +71,7 @@ Request shape:
 Supported intents:
 
 - `strength_set` -> `strength_sets`, or `events` for rest-day capture.
+- `meal` -> `nutrition_logs`, including text/voice macros or photo/freeform entries queued as `pending_estimate`.
 - `event` -> `events`.
 - `manual_reading` -> `readings`.
 - `override` -> `overrides`.
@@ -107,7 +109,7 @@ Authenticated route for configured Claude/ChatGPT project links. The public Toda
 
 ## Current Capture Boundary
 
-Capture writes are enabled for the first practical app path. The parser is intentionally narrow and deterministic; ambiguous notes should ask for one missing field rather than inventing structure.
+Capture writes are enabled for the first practical app path. The parser is intentionally narrow and deterministic; ambiguous notes should ask for one missing field rather than inventing structure. Meal captures with explicit numbers write macros immediately; meal captures from photo/freeform text are stored for LLM or human macro estimation instead of fabricating values.
 
 ## Design Rule
 
