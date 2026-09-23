@@ -143,7 +143,11 @@ def mobile_manifest() -> Response:
 
 @app.get("/app/service-worker.js", include_in_schema=False)
 def mobile_service_worker() -> Response:
-    return Response(render_service_worker(), media_type="text/javascript")
+    return Response(
+        render_service_worker(),
+        media_type="text/javascript",
+        headers={"Cache-Control": "no-store, max-age=0"},
+    )
 
 
 @app.get("/app/icon.svg", include_in_schema=False)

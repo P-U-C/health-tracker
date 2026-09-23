@@ -95,12 +95,16 @@ def test_mobile_pwa_routes_render_installable_shell(tmp_path: Path, monkeypatch)
 
     assert app_response.status_code == 200
     assert "Health" in app_response.text
-    assert "Add to Home Screen" in app_response.text
+    assert "viewport-fit=cover" in app_response.text
+    assert "height: 100dvh" in app_response.text
+    assert "data-tab=\"capture\"" in app_response.text
+    assert "aria-label=\"Log health note\"" in app_response.text
+    assert "service-worker.js?v=2" in app_response.text
     assert "Unlock capture" in app_response.text
     assert manifest_response.status_code == 200
     assert manifest_response.json()["display"] == "standalone"
     assert worker_response.status_code == 200
-    assert "health-companion" in worker_response.text
+    assert "health-companion-v2" in worker_response.text
     assert icon_response.status_code == 200
     assert "<svg" in icon_response.text
 
