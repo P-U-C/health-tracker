@@ -5,6 +5,8 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+import duckdb
+
 from core.dashboard import build_dashboard_model
 from core.schema import DEFAULT_DB, connect, load_schema
 
@@ -27,6 +29,7 @@ def build_today_model(db_path: str | Path = DEFAULT_DB) -> dict[str, Any]:
         "overall": dashboard.get("overall") or {},
         "phase": _phase(goal),
         "progress": _progress(hero, goal),
+        "body": _body_composition(dashboard.get("body") or {}, hero),
         "not_done_today": _not_done_today(dashboard, attention_tripwires, _has_strength_or_rest_today(db_path, today)),
         "tripwire": _top_tripwire(attention_tripwires),
         "next_action": _next_action(dashboard.get("intervention") or {}),
@@ -43,6 +46,8 @@ def build_today_model(db_path: str | Path = DEFAULT_DB) -> dict[str, Any]:
 def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
     today = build_today_model(db_path)
     progress = today.get("progress") or {}
+    body = today.get("body") or {}
+    body_summary = body.get("summary") or {}
     next_action = today.get("next_action") or {}
     tripwire = today.get("tripwire")
     not_done = today.get("not_done_today") or []
@@ -64,6 +69,14 @@ def build_context_packet(db_path: str | Path = DEFAULT_DB) -> str:
         f"- Current: {_format_value(progress.get('primary_value'), progress.get('primary_unit'))}",
         f"- Target: {progress.get('target_label') or 'not configured'}",
         f"- Rate: {_format_value(progress.get('rate_value'), progress.get('rate_unit'))}",
+        "",
+        "## Body Composition",
+        f"- Latest DEXA: {body_summary.get('latest_dexa_date') or 'not available'}",
+        f"- DEXA body fat: {_format_value(body_summary.get('body_fat_pct'), '%')}",
+        f"- Estimated current body fat: {_format_value(body_summary.get('estimated_body_fat_range'), '%')}",
+        f"- DEXA lean + BMC: {_format_value(body_summary.get('lean_bmc_kg'), 'kg')}",
+        f"- DEXA fat mass: {_format_value(body_summary.get('fat_mass_kg'), 'kg')}",
+        f"- VAT: {_format_value(body_summary.get('vat_mass_g'), 'g')}",
         "",
         "## Not Done Today",
     ]
@@ -139,6 +152,56 @@ def _progress(hero: dict[str, Any], goal: dict[str, Any]) -> dict[str, Any]:
             "body_fat_range": estimate.get("range_label"),
             "confidence": estimate.get("confidence"),
         },
+    }
+
+
+def _body_composition(body: dict[str, Any], hero: dict[str, Any]) -> dict[str, Any]:
+    metrics = body.get("metrics") or []
+    history = body.get("dexa_history") or []
+    latest_dexa = hero.get("latest_dexa") or (history[-1] if history else {})
+    estimate = hero.get("estimate") or {}
+    delta = body.get("dexa_delta") or hero.get("previous_dexa_delta") or {}
+    visible_metric_keys = {
+        "weight_trend",
+        "dexa_bf",
+        "estimated_bf",
+        "dexa_lean",
+        "appendicular_lean",
+        "vat",
+        "android_gynoid",
+        "bone_density",
+    }
+    selected_metrics = [metric for metric in metrics if metric.get("key") in visible_metric_keys]
+    chart_history = [
+        {
+            "scan_date": row.get("scan_date"),
+            "body_fat_pct": row.get("body_fat_pct"),
+            "weight_kg": row.get("weight_kg"),
+            "lean_bmc_kg": row.get("lean_bmc_kg"),
+            "vat_mass_g": row.get("vat_mass_g"),
+        }
+        for row in history[-8:]
+    ]
+    return {
+        "summary": {
+            "latest_dexa_date": body.get("latest_dexa_date") or latest_dexa.get("scan_date"),
+            "dexa_count": body.get("dexa_count") or len(history),
+            "provider": latest_dexa.get("provider"),
+            "weight_kg": latest_dexa.get("weight_kg"),
+            "body_fat_pct": latest_dexa.get("body_fat_pct"),
+            "estimated_body_fat_range": estimate.get("range_label"),
+            "fat_mass_kg": latest_dexa.get("fat_mass_kg"),
+            "lean_bmc_kg": latest_dexa.get("lean_bmc_kg"),
+            "appendicular_lean_bmc_kg": latest_dexa.get("appendicular_lean_bmc_kg"),
+            "vat_mass_g": latest_dexa.get("vat_mass_g"),
+            "android_gynoid_ratio": latest_dexa.get("android_gynoid_ratio"),
+            "bmd_total_g_cm2": latest_dexa.get("bmd_total_g_cm2"),
+            "delta": delta,
+        },
+        "metrics": selected_metrics,
+        "history": history[-6:],
+        "chart_history": chart_history,
+        "source_note": "DEXA anchors stay separate from Eufy BIA; estimates are DEXA-calibrated trend values.",
     }
 
 
@@ -239,9 +302,8 @@ def _capture_contract() -> dict[str, Any]:
 
 
 def _has_strength_or_rest_today(db_path: str | Path, today: date) -> bool:
-    conn = connect(db_path)
+    conn = _open_mobile_read_conn(db_path)
     try:
-        load_schema(conn)
         strength_count = conn.execute(
             """
             SELECT COUNT(*)
@@ -264,9 +326,8 @@ def _has_strength_or_rest_today(db_path: str | Path, today: date) -> bool:
 
 
 def _recent_capture(db_path: str | Path, limit: int = 5) -> list[dict[str, str]]:
-    conn = connect(db_path)
+    conn = _open_mobile_read_conn(db_path)
     try:
-        load_schema(conn)
         rows: list[dict[str, Any]] = []
         rows.extend(
             {
@@ -355,6 +416,18 @@ def _recent_capture(db_path: str | Path, limit: int = 5) -> list[dict[str, str]]
 
 def _local_today() -> date:
     return datetime.now(VANCOUVER).date()
+
+
+def _open_mobile_read_conn(db_path: str | Path) -> duckdb.DuckDBPyConnection:
+    path = Path(db_path)
+    if path.exists():
+        try:
+            return duckdb.connect(str(path), read_only=True)
+        except duckdb.IOException:
+            return connect(path)
+    conn = connect(path)
+    load_schema(conn)
+    return conn
 
 
 def _metric_by_label(metrics: list[dict[str, Any]], label: str) -> dict[str, Any] | None:

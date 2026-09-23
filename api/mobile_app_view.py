@@ -195,6 +195,8 @@ def render_mobile_app() -> str:
     .segmented::-webkit-scrollbar { display: none; }
     .segmented-button { min-height: 38px; white-space: nowrap; font-size: 13px; color: var(--muted); font-weight: 760; }
     .segmented-button.active { background: var(--ink); border-color: var(--ink); color: white; }
+    .capture-intents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+    .capture-intents .segmented-button { min-width: 0; padding: 0 8px; }
     textarea, input {
       width: 100%;
       border: 1px solid var(--line);
@@ -204,12 +206,41 @@ def render_mobile_app() -> str:
       padding: 12px;
       outline: none;
     }
-    textarea { min-height: 126px; resize: none; line-height: 1.35; }
+    textarea { min-height: 104px; resize: none; line-height: 1.35; }
     input { min-height: 46px; }
     textarea:focus, input:focus, button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-    .capture-card { padding: 12px; display: grid; gap: 11px; }
+    .capture-card { padding: 12px; display: grid; gap: 8px; }
+    .capture-card textarea { min-height: 92px; }
+    .capture-card .primary { min-height: 42px; }
+    .quick-drawer { border-top: 1px solid var(--line); padding-top: 8px; }
+    .quick-drawer summary { min-height: 34px; display: flex; align-items: center; color: var(--muted); font-size: 13px; font-weight: 760; list-style: none; }
+    .quick-drawer summary::-webkit-details-marker { display: none; }
     .quick-note { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
     .quick-note::-webkit-scrollbar { display: none; }
+    .body-hero { padding: 12px; background: var(--surface-strong); }
+    .scan-value { display: grid; gap: 2px; margin-top: 10px; }
+    .scan-value strong { font-size: 45px; line-height: .9; letter-spacing: 0; }
+    .scan-value span { color: var(--muted); font-size: 13px; font-weight: 760; }
+    .body-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+    .body-tile { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; padding: 9px; }
+    .body-tile b { display: block; font-size: 20px; line-height: 1.05; letter-spacing: 0; overflow-wrap: anywhere; }
+    .body-tile span { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.2; }
+    .body-chart { width: 100%; height: 122px; display: block; margin-top: 10px; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f0; }
+    .chart-grid { stroke: rgba(104,112,100,.22); stroke-width: .5; }
+    .chart-axis { stroke: rgba(20,24,20,.34); stroke-width: .9; }
+    .chart-line { fill: none; stroke: var(--bad); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .chart-dot { fill: var(--bad); stroke: var(--surface-strong); stroke-width: 1.6; }
+    .chart-label { fill: var(--muted); font-size: 7px; }
+    .anchor-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      padding: 9px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .anchor-row:first-child { border-top: 0; padding-top: 0; }
+    .anchor-metrics { color: var(--muted); font-size: 12px; line-height: 1.35; margin-top: 3px; }
+    .delta-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .recent-row, .status-row {
       display: grid;
       gap: 3px;
@@ -294,9 +325,9 @@ def render_mobile_app() -> str:
 
     <nav class="tabbar" aria-label="Health app sections">
       <button class="tab active" type="button" data-tab="today" aria-label="Today"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor"></circle><path d="m8 12 2.6 2.6L16.5 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Today</span></button>
+      <button class="tab" type="button" data-tab="body" aria-label="Body composition"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M7 6.5c0 2.4 2.2 4 5 4s5-1.6 5-4M6.5 14.5c1.5 1.8 3.2 2.7 5.5 2.7s4-.9 5.5-2.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 6.5a4 4 0 0 1 8 0M7 14.5a5 5 0 0 1 10 0" stroke="currentColor" stroke-linecap="round"></path></svg><span>Body</span></button>
       <button class="tab" type="button" data-tab="capture" aria-label="Capture"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10M8 7v4a4 4 0 0 0 8 0V7M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-linecap="round"></path></svg><span>Capture</span></button>
       <button class="tab" type="button" data-tab="context" aria-label="Context"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor"></rect><path d="M8 8h8M8 12h6M8 16h8" stroke="currentColor" stroke-linecap="round"></path></svg><span>Context</span></button>
-      <button class="tab" type="button" data-tab="more" aria-label="More"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="2"></path></svg><span>More</span></button>
     </nav>
   </div>
 
@@ -316,7 +347,9 @@ def render_mobile_app() -> str:
   </section>
 
 <script>
-const state = { tab: 'today', today: null, context: '', links: null, selectedIntent: 'strength_set' };
+const validTabs = new Set(['today', 'body', 'capture', 'context']);
+const requestedTab = new URLSearchParams(window.location.search).get('tab');
+const state = { tab: validTabs.has(requestedTab) ? requestedTab : 'today', today: null, context: '', links: null, selectedIntent: 'strength_set' };
 const screen = document.getElementById('screen');
 const phaseLine = document.getElementById('phaseLine');
 const toast = document.getElementById('toast');
@@ -341,6 +374,28 @@ function signed(value, unit = '') {
 function compactRate(value, unit = '') {
   const compactUnit = unit === 'kg/week' ? 'kg/wk' : unit;
   return signed(value, compactUnit);
+}
+function valueWithUnit(value, unit = '') {
+  if (value === null || value === undefined || value === '') return 'n/a';
+  const suffix = unit || '';
+  if (typeof value === 'string') {
+    if (!suffix || value.toLowerCase().includes('source')) return value;
+    return suffix === '%' ? `${value}%` : `${value} ${suffix}`;
+  }
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  const digits = suffix === 'g/cm2' ? 3 : (suffix === 'g' ? 0 : 1);
+  const rendered = new Intl.NumberFormat(undefined, { maximumFractionDigits: digits }).format(n);
+  return suffix === '%' ? `${rendered}%` : (suffix ? `${rendered} ${suffix}` : rendered);
+}
+function metricByKey(metrics, key) {
+  return (metrics || []).find(metric => metric.key === key) || {};
+}
+function shortDate(value) {
+  if (!value) return 'n/a';
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(date);
 }
 function toneClass(tone) {
   if (tone === 'green') return 'tone-green';
@@ -405,9 +460,9 @@ function setTab(tab) {
   screen.scrollTop = 0;
 }
 function render() {
+  if (state.tab === 'body') return renderBody();
   if (state.tab === 'capture') return renderCapture();
   if (state.tab === 'context') return renderContext();
-  if (state.tab === 'more') return renderMore();
   return renderToday();
 }
 function renderToday() {
@@ -445,20 +500,106 @@ function renderTripwire(tripwire) {
   const severe = tripwire.severity === 'high' || tripwire.state === 'Triggered';
   return `<section class="surface banner ${severe ? 'high' : ''}"><span class="banner-rule" aria-hidden="true"></span><div><div class="row"><span class="kicker">Tripwire</span><span class="status-pill">${esc(tripwire.state || 'Watch')}</span></div><h3>${esc(tripwire.title || 'Review signal')}</h3><div class="detail clamp">${esc(tripwire.recommended_action || tripwire.evidence || '')}</div></div></section>`;
 }
+function renderBody() {
+  const body = state.today?.body || {};
+  const summary = body.summary || {};
+  const metrics = body.metrics || [];
+  const delta = summary.delta || {};
+  const history = body.history || [];
+  const dexaBf = metricByKey(metrics, 'dexa_bf');
+  const estimatedBf = metricByKey(metrics, 'estimated_bf');
+  const weight = metricByKey(metrics, 'weight_trend');
+  const lean = metricByKey(metrics, 'dexa_lean');
+  const appendicular = metricByKey(metrics, 'appendicular_lean');
+  const vat = metricByKey(metrics, 'vat');
+  const ratio = metricByKey(metrics, 'android_gynoid');
+  const bmd = metricByKey(metrics, 'bone_density');
+  const anchors = history.slice().reverse().map(row => `
+    <li class="anchor-row">
+      <div><div class="item-title">${esc(shortDate(row.scan_date))}</div><div class="anchor-metrics">BF ${esc(valueWithUnit(row.body_fat_pct, '%'))} · Lean ${esc(valueWithUnit(row.lean_bmc_kg, 'kg'))} · VAT ${esc(valueWithUnit(row.vat_mass_g, 'g'))}</div></div>
+      <span class="status-pill">${esc(valueWithUnit(row.weight_kg, 'kg'))}</span>
+    </li>`).join('');
+  screen.innerHTML = `
+    <section class="surface body-hero" aria-label="Body composition">
+      <div class="row"><span class="kicker">Body composition</span><span class="status-pill">DEXA ${esc(summary.latest_dexa_date || 'n/a')}</span></div>
+      <div class="scan-value"><strong>${esc(valueWithUnit(summary.body_fat_pct, '%'))}</strong><span>BodyStats DEXA body fat</span></div>
+      <div class="body-grid">
+        ${renderBodyTile('Weight', valueWithUnit(summary.weight_kg, 'kg'), 'DEXA scan')}
+        ${renderBodyTile('Lean + BMC', valueWithUnit(summary.lean_bmc_kg, 'kg'), 'DEXA measured')}
+        ${renderBodyTile('Fat mass', valueWithUnit(summary.fat_mass_kg, 'kg'), 'DEXA measured')}
+        ${renderBodyTile('VAT', valueWithUnit(summary.vat_mass_g, 'g'), 'DEXA measured')}
+      </div>
+      ${renderBodyChart(body.chart_history || [])}
+      <div class="detail">${esc(body.source_note || '')}</div>
+    </section>
+    <section class="surface section">
+      <div class="section-title"><h2>Current Estimate</h2><span class="status-pill">${esc(estimatedBf.source_label || 'Estimated')}</span></div>
+      <div class="body-grid">
+        ${renderBodyTile('DEXA BF', valueWithUnit(dexaBf.value, dexaBf.unit), dexaBf.source_label)}
+        ${renderBodyTile('Estimate', valueWithUnit(estimatedBf.value, estimatedBf.unit), estimatedBf.source_label)}
+        ${renderBodyTile('Trend weight', valueWithUnit(weight.value, weight.unit), weight.source_label)}
+        ${renderBodyTile('Appendicular', valueWithUnit(appendicular.value, appendicular.unit), appendicular.source_label)}
+      </div>
+    </section>
+    <section class="surface section">
+      <div class="section-title"><h2>DEXA Anchors</h2><span class="status-pill">${esc(summary.dexa_count || 0)} scans</span></div>
+      <ul class="plain-list">${anchors || '<li class="empty">No DEXA scans connected.</li>'}</ul>
+    </section>
+    <section class="surface section">
+      <div class="section-title"><h2>Delta</h2><span class="status-pill">${esc(delta.from_date || 'previous')} to ${esc(delta.to_date || 'latest')}</span></div>
+      <div class="delta-grid">
+        ${renderBodyTile('BF', signed(delta.body_fat_pct, 'pp'), 'since previous')}
+        ${renderBodyTile('Lean', signed(delta.lean_bmc_kg, 'kg'), 'since previous')}
+        ${renderBodyTile('VAT', signed(delta.vat_mass_g, 'g'), 'since previous')}
+      </div>
+      <div class="body-grid">
+        ${renderBodyTile('A/G ratio', valueWithUnit(ratio.value, ratio.unit), ratio.source_label)}
+        ${renderBodyTile('BMD', valueWithUnit(bmd.value, bmd.unit), bmd.source_label)}
+      </div>
+    </section>`;
+}
+function renderBodyTile(label, value, source) {
+  return `<div class="body-tile"><b>${esc(value || 'n/a')}</b><span>${esc(label)}${source ? ` · ${esc(source)}` : ''}</span></div>`;
+}
+function renderBodyChart(history) {
+  const points = (history || [])
+    .map(row => ({ date: row.scan_date, value: Number(row.body_fat_pct) }))
+    .filter(point => point.date && Number.isFinite(point.value));
+  if (points.length < 2) return '<div class="empty">Add another DEXA scan for trend.</div>';
+  const values = points.map(point => point.value);
+  const minY = Math.min(...values) - Math.max((Math.max(...values) - Math.min(...values)) * 0.28, 0.8);
+  const maxY = Math.max(...values) + Math.max((Math.max(...values) - Math.min(...values)) * 0.28, 0.8);
+  const coords = points.map((point, index) => {
+    const x = 8 + (index / Math.max(points.length - 1, 1)) * 84;
+    const y = 84 - ((point.value - minY) / Math.max(maxY - minY, 0.1)) * 64;
+    return { ...point, x, y };
+  });
+  const line = coords.map(point => `${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(' ');
+  const dots = coords.map(point => `<circle class="chart-dot" cx="${point.x.toFixed(2)}" cy="${point.y.toFixed(2)}" r="3"><title>${esc(point.date)}: ${esc(valueWithUnit(point.value, '%'))}</title></circle>`).join('');
+  return `<svg class="body-chart" viewBox="0 0 100 100" role="img" aria-label="DEXA body fat trend">
+    <path class="chart-grid" d="M8 20H92M8 40H92M8 60H92M8 80H92"></path>
+    <path class="chart-axis" d="M8 84H92"></path>
+    <polyline class="chart-line" points="${line}"></polyline>
+    ${dots}
+    <text class="chart-label" x="8" y="95">${esc(shortDate(points[0].date))}</text>
+    <text class="chart-label" x="92" y="95" text-anchor="end">${esc(shortDate(points[points.length - 1].date))}</text>
+  </svg>`;
+}
 function renderCapture() {
   const today = state.today;
   const capture = today?.capture || {};
   const actions = capture.quick_actions || [{ intent: 'event', label: 'Event' }];
   const examples = capture.examples || [];
   const recent = today?.recent_capture || [];
+  const selected = actions.find(action => action.intent === state.selectedIntent) || actions[0] || {};
   screen.innerHTML = `
     <section class="surface capture-card">
-      <div><div class="kicker">Capture</div><h2>${esc(capture.primary_prompt || 'What happened today?')}</h2></div>
-      <div class="segmented" role="tablist" aria-label="Capture type">${actions.map(action => `<button class="segmented-button ${state.selectedIntent === action.intent ? 'active' : ''}" type="button" data-intent="${esc(action.intent)}">${esc(action.label)}</button>`).join('')}</div>
-      <textarea id="captureText" placeholder="Dictate or type the note" aria-label="Health note"></textarea>
+      <div class="row"><div><div class="kicker">Capture</div><h2>Quick log</h2></div><span class="status-pill">${esc(selected.label || 'Event')}</span></div>
+      <div class="segmented capture-intents" role="tablist" aria-label="Capture type">${actions.map(action => `<button class="segmented-button ${state.selectedIntent === action.intent ? 'active' : ''}" type="button" data-intent="${esc(action.intent)}">${esc(action.label)}</button>`).join('')}</div>
+      <textarea id="captureText" placeholder="${esc(capture.primary_prompt || 'What happened today?')}" aria-label="Health note"></textarea>
       <button class="primary" id="submitCapture" type="button" aria-label="Log health note">Log</button>
+      <details class="quick-drawer"><summary>Quick fill</summary><div class="quick-note">${examples.map(example => `<button class="segmented-button" type="button" data-example="${esc(example)}">${esc(example)}</button>`).join('')}</div></details>
     </section>
-    <section class="surface section"><div class="kicker">Quick fill</div><div class="quick-note">${examples.map(example => `<button class="segmented-button" type="button" data-example="${esc(example)}">${esc(example)}</button>`).join('')}</div></section>
     <section class="surface section"><div class="section-title"><h2>Recent</h2><span class="status-pill">${esc(capture.write_status || 'unknown')}</span></div><ul class="plain-list">${recent.length ? recent.map(item => `<li class="recent-row"><div class="item-title">${esc(item.title)}</div><div class="detail clamp">${esc(item.detail)}</div><div class="detail">${esc(item.occurred_at)}</div></li>`).join('') : '<li class="empty">No app captures yet.</li>'}</ul></section>`;
   screen.querySelectorAll('[data-intent]').forEach(button => button.addEventListener('click', () => {
     state.selectedIntent = button.dataset.intent;
@@ -558,7 +699,8 @@ document.getElementById('unlockForm').addEventListener('submit', async event => 
     showToast('Unlock failed');
   }
 });
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=2').catch(() => {});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/app/service-worker.js?v=3').catch(() => {});
+setTab(state.tab);
 load();
 </script>
 </body>
@@ -584,7 +726,7 @@ def render_manifest() -> str:
 
 
 def render_service_worker() -> str:
-    return """const CACHE = 'health-companion-v2';
+    return """const CACHE = 'health-companion-v3';
 const ASSETS = ['/app', '/app/manifest.webmanifest', '/app/icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));

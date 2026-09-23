@@ -42,6 +42,12 @@ def test_mobile_today_contract_prioritizes_protocol_actions(tmp_path: Path) -> N
     assert today["phase"]["title"] == "Post-fast body-composition stint"
     assert today["progress"]["primary_label"] == "7-day weight trend"
     assert today["progress"]["target_label"] == "70.5-71.5 kg"
+    assert today["body"]["summary"]["latest_dexa_date"] == "2026-09-12"
+    assert today["body"]["summary"]["body_fat_pct"] == 17.0
+    assert today["body"]["summary"]["lean_bmc_kg"] == 67.77
+    assert today["body"]["summary"]["vat_mass_g"] == 250
+    assert today["body"]["summary"]["dexa_count"] == 2
+    assert {metric["key"] for metric in today["body"]["metrics"]} >= {"dexa_bf", "dexa_lean", "vat"}
     assert today["next_action"]["title"]
     assert any(item["id"] == "confirm-phase" for item in today["not_done_today"])
     assert any(item["id"] == "strength-log" for item in today["not_done_today"])
@@ -59,6 +65,8 @@ def test_mobile_context_packet_is_chat_ready(tmp_path: Path) -> None:
 
     assert packet.startswith("# Health Context Packet")
     assert "## Current Phase" in packet
+    assert "## Body Composition" in packet
+    assert "DEXA body fat: 17.0 %" in packet
     assert "## Not Done Today" in packet
     assert "## Active Tripwire" in packet
     assert "Use deterministic tripwires as authority" in packet
@@ -97,14 +105,16 @@ def test_mobile_pwa_routes_render_installable_shell(tmp_path: Path, monkeypatch)
     assert "Health" in app_response.text
     assert "viewport-fit=cover" in app_response.text
     assert "height: 100dvh" in app_response.text
+    assert "data-tab=\"body\"" in app_response.text
     assert "data-tab=\"capture\"" in app_response.text
+    assert "renderBody" in app_response.text
     assert "aria-label=\"Log health note\"" in app_response.text
-    assert "service-worker.js?v=2" in app_response.text
+    assert "service-worker.js?v=3" in app_response.text
     assert "Unlock capture" in app_response.text
     assert manifest_response.status_code == 200
     assert manifest_response.json()["display"] == "standalone"
     assert worker_response.status_code == 200
-    assert "health-companion-v2" in worker_response.text
+    assert "health-companion-v3" in worker_response.text
     assert icon_response.status_code == 200
     assert "<svg" in icon_response.text
 

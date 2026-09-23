@@ -1,6 +1,6 @@
 # Mobile App Contract
 
-Date: 2026-09-22
+Date: 2026-09-23
 
 This document defines the first iOS-facing contract for the Health Companion app. It is intentionally narrower than the public dashboard: the app opens to a daily decision surface, not a metrics board.
 
@@ -8,7 +8,7 @@ This document defines the first iOS-facing contract for the Health Companion app
 
 ### `GET /app`
 
-Returns the installable phone web app shell. It is designed for iPhone Safari and can be added to the home screen. The shell uses the same mobile API contract as the SwiftUI scaffold, with Today, Capture, Context, and More tabs.
+Returns the installable phone web app shell. It is designed for iPhone Safari and can be added to the home screen. The shell uses the same mobile API contract as the SwiftUI scaffold, with Today, Body, Capture, and Context tabs.
 
 Supporting install routes:
 
@@ -28,6 +28,7 @@ Top-level fields:
 - `overall`: state/tone/phrase from deterministic dashboard rules.
 - `phase`: current phase title, status, day count, next anchor, and open decision.
 - `progress`: the primary phase progress metric, target band, rate, DEXA snapshot, and current DEXA-anchored estimate summary.
+- `body`: BodyStats/DEXA-oriented composition payload with latest scan summary, selected metrics, DEXA anchors, body-fat chart points, and prior-scan deltas.
 - `not_done_today`: a short list of open adherence/reminder items.
 - `tripwire`: the highest-priority active tripwire, or `null`.
 - `next_action`: one prioritized action derived from deterministic tripwires.
@@ -48,7 +49,7 @@ Returns:
 }
 ```
 
-This packet is designed to paste or share into Claude or ChatGPT. It includes current phase, progress, not-done list, active tripwire, next action, and analyst rules. It is a curated packet, not a raw health-data export.
+This packet is designed to paste or share into Claude or ChatGPT. It includes current phase, progress, body composition, not-done list, active tripwire, next action, and analyst rules. It is a curated packet, not a raw health-data export.
 
 ### `POST /api/mobile/capture`
 
@@ -110,4 +111,4 @@ Capture writes are enabled for the first practical app path. The parser is inten
 
 ## Design Rule
 
-The mobile app should lead with one daily verdict and one action. Full dashboard data remains available behind review links, but not on first open.
+The mobile app should lead with one daily verdict and one action. Body composition is the one exception that deserves its own phone tab because DEXA anchors are the core progress measure; deeper dashboard data remains available behind review links.

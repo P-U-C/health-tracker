@@ -1,6 +1,7 @@
 # Health App Public Brief: From Dashboard to iOS Companion
 
 Date: 2026-09-22
+Last updated: 2026-09-23 - Body composition tab and compact capture pass shipped.
 Owner: Chad / zoz
 Repo: public GitHub repo `P-U-C/health-tracker` — https://github.com/P-U-C/health-tracker
 Local path: `/home/ubuntu/health`
@@ -101,30 +102,46 @@ The core loop should be:
 - Console adapter: `ops/console/health.py`
 - Systemd units: `ops/systemd/`
 
-## Current Build Slices (2026-09-22)
+## Current Build Slices (2026-09-23)
 
 The app-oriented backend, installable phone web app, and SwiftUI scaffold are now implemented and public:
 
-- `GET /app` serves an installable iPhone web app/PWA for immediate phone use.
-- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching.
+- `GET /app` serves an installable iPhone web app/PWA for immediate phone use. The current phone shell has Today, Body, Capture, and Context tabs.
+- `/app/manifest.webmanifest`, `/app/service-worker.js`, and `/app/icon.svg` support home-screen install and offline shell caching. The worker is registered as `/app/service-worker.js?v=3` and served with `Cache-Control: no-store, max-age=0` to avoid stale phone shells.
 - `POST /api/mobile/session` creates a signed, HTTP-only phone session cookie from dashboard credentials or an app token.
 - `core/mobile.py` builds the compact Today contract and Claude/ChatGPT context packet from the existing deterministic dashboard model.
-- `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
-- `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff.
+- `GET /api/mobile/today` returns the mobile-first state: overall verdict, phase, progress, BodyStats/DEXA body-composition block, not-done list, active tripwire, next action, capture affordance, recent captures, and review links.
+- `GET /api/mobile/context` returns Markdown intended for Claude/ChatGPT handoff, now including the latest DEXA/body-composition summary.
 - `POST /api/mobile/capture` logs phone captures into the existing `strength_sets`, `events`, `readings`, and `overrides` tables behind bearer auth.
 - `GET /api/mobile/links` returns configured Claude/ChatGPT project links behind bearer auth; the public Today route does not expose private chat URLs.
 - `ios/HealthCompanion/` contains a SwiftUI scaffold with Today, Progress, Tripwires, Capture, and Context tabs.
-- The Capture tab now has token entry, intent picker, submit state, examples, and recent-capture rendering.
+- The PWA Body tab now shows a BodyStats-style DEXA hero, body-fat sparkline, fat/lean/VAT tiles, DEXA anchors, estimate tiles, and prior-scan deltas.
+- The PWA Capture tab now keeps intent selection, text entry, and Log button above the fold with a 3x2 intent grid; examples are tucked behind a Quick fill drawer.
+- The native Capture tab scaffold has token entry, intent picker, submit state, examples, and recent-capture rendering.
 - The Context tab now has share support and locally stored Claude/ChatGPT project/chat links.
 - `ReminderScheduler.swift` adds the local notification scaffold for not-done items and tripwire reviews.
 - Production tunnel routing has been opened for `/app`, `/api/mobile/today`, `/api/mobile/context`, `/api/mobile/capture`, `/api/mobile/links`, and `/api/mobile/session`.
 
-Verification on 2026-09-22:
+Verification:
+
+2026-09-22 baseline:
 
 - `uv run pytest tests/test_mobile_app_contract.py -q` -> 8 passed.
 - `uv run pytest -q` -> 20 passed.
 - `python3 -m compileall -q core api tests` -> passed.
 - SwiftUI files received static reference checks on Linux; simulator/device compile still requires Xcode.
+
+2026-09-23 Body/Capture phone pass:
+
+- `uv run pytest tests/test_mobile_app_contract.py -q` -> 8 passed.
+- `uv run pytest -q` -> 20 passed.
+- `python3 -m compileall -q core api tests` -> passed.
+- Live `/api/mobile/today` returned latest DEXA `2026-08-31`, body fat `16.7`, and 9 canonical scans.
+- Live `/api/mobile/context` includes `## Body Composition`, DEXA body fat, and VAT lines.
+- Parallel live Today/Context requests succeeded after making mobile read helpers use read-only DuckDB connections.
+- Live `/app` returned 200 and includes the Body tab, `renderBody`, the compact capture intent grid, and `service-worker.js?v=3`.
+- Live `/app/service-worker.js?v=3` returned 200 with `health-companion-v3`, `Cache-Control: no-store, max-age=0`, and Cloudflare `cf-cache-status: BYPASS`.
+- Chromium 390x844 screenshots reviewed after deployment for Body and Capture.
 
 ## 3. What Is Not Working
 
